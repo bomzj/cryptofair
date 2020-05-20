@@ -1,0 +1,68 @@
+[
+  { 
+    "exchange": { 
+      "name": "Paxful" 
+    },
+    "trader": { 
+      "name": "Lorenzo123", 
+      "rating": 4.5,
+      "trades": 128,
+      "country": "Mexico"
+    },
+    "type": "SELL",
+    "coin": "BTC",
+    "price": { 
+      "value": 9844.70,
+      "currency": "USD"
+    },
+    "paymentMethods": ["Bank Transfer", "SEPA Transfer", "TransferWise"], 
+    "tradingAmount": {
+      "min": 50,
+      "max": 560
+    }
+  },
+  { 
+    "exchange": { 
+      "name": "LocalBitcoins" 
+    },
+    "trader": { 
+      "name": "BestPrice4You", 
+      "rating": 4.1,
+      "trades": 1200,
+      "country": "USA"
+    },
+    "type": "SELL",
+    "coin": "BTC",
+    "price": { 
+      "value": 9620.00,
+      "currency": "USD"
+    },
+    "paymentMethods": ["Skrill", "PayPal", "Credit Card"], 
+    "tradingAmount": {
+      "min": 10,
+      "max": 5000
+    }
+  },
+  { 
+    "exchange": { 
+      "name": "Bisq" 
+    },
+    "trader": { 
+      "name": "andiz", 
+      "rating": 3.5,
+      "trades": 12,
+      "country": "Germany"
+    },
+    "type": "SELL",
+    "coin": "BTC",
+    "price": { 
+      "value": 8788.50,
+      "currency": "EUR"
+    },
+    "paymentMethods": ["SEPA Transfer", "PayPal"], 
+    "tradingAmount": {
+      "min": 100,
+      "max": 2600
+    }
+  }
+]
