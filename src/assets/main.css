@@ -3,3 +3,9 @@
 @import "tailwindcss/components";
 
 @import "tailwindcss/utilities";
+
+/* Disable input outlining globally */
+input:focus, button:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
