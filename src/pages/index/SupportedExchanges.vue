@@ -1,24 +1,22 @@
 <template>
   <section class="bg-gray-200">
     <div class="container mx-auto p-6">
-      <h2 class="text-4xl font-semibold text-center mb-8 text-center">Supported Exchanges</h2>
+      <h2 class="text-4xl font-semibold text-center m-8 text-center">Supported Exchanges</h2>
       <div class="flex flex-wrap justify-around text-gray-800">
-        <div class="flex m-6">
-          <img src="../../assets/paxful.svg" width="200"/>
+        <div class="flex m-8">
+          <img src="../../assets/paxful.svg" class="w-56"/>
         </div>
-        <div class="flex m-6">
-          <img src="../../assets/localbitcoins.svg"  width="50"  class="mr-3" />
-          <p class="text-3xl text-gray-700 font-bold">LocalBitcoins</p>
+        <div class="flex m-8">
+          <img src="../../assets/localbitcoins.svg"  class="w-56" />
         </div>
-        <div class="flex m-6">
-          <img src="../../assets/localcoinswap.svg"  width="80" class="mr-3"/>
-          <p class="text-3xl text-gray-700 font-bold">LocalCoinSwap</p>
+        <div class="flex m-8">
+          <img src="../../assets/localcoinswap.svg" class="w-56"/>
         </div>
-        <div class="flex m-6">
-          <img src="../../assets/bisq.svg"  width="120" class="mr-3"/>
+        <div class="flex m-8">
+          <img src="../../assets/bisq.svg" class="w-56"/>
         </div>
-        <div class="flex m-6">
-          <p class="text-3xl text-gray-700 font-bold">LocalCryptos</p>
+        <div class="flex m-8">
+          <img src="../../assets/localcryptos.svg" class="w-56"/>
         </div>
       </div>
     </div>

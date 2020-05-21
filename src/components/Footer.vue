@@ -22,7 +22,7 @@
         </ul>
       </div>
     </div>
-    <p class="text-center">©Cryptofair 2020</p>
+    <p class="text-center">© Cryptofair 2020</p>
   </footer>
 </template>
 

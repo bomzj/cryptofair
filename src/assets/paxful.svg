@@ -8,12 +8,12 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    enable-background="new 0 0 123.7 23.3"
-   viewBox="0 0 135 25.000001"
+   viewBox="0 0 175 25.000001"
    class="c-header__logoImg"
    version="1.1"
    id="svg6"
    sodipodi:docname="paxful.svg"
-   width="135"
+   width="175"
    height="25"
    style="fill:currentColor"
    inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
@@ -45,7 +45,7 @@
      id="namedview8"
      showgrid="false"
      inkscape:zoom="2.4333064"
-     inkscape:cx="61.849998"
+     inkscape:cx="-75.000832"
      inkscape:cy="11.65"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
@@ -53,7 +53,7 @@
      inkscape:current-layer="svg6" />
   <g
      id="g824"
-     transform="translate(1.15514,-0.00625071)">
+     transform="translate(21.15514,-0.00625071)">
     <path
        style="stroke-width:1"
        inkscape:connector-curvature="0"

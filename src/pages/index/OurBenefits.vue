@@ -1,21 +1,19 @@
 <template>
   <section class="container mx-auto p-6">
-    <h2 class="text-4xl font-semibold text-center mb-8">All best cryptocurrency prices from real people from all the world!</h2>
+    <h2 class="text-4xl font-semibold text-center m-8">All best cryptocurrency prices directly from real people from all the world in one place!</h2>
     <div class="flex flex-wrap justify-around text-gray-800 ">
-      <div class="flex flex-col w-1/3">
-        <img src="./cards.svg" width="64" class="mb-2"/>
-        <h2 class="text-xl font-medium mb-2">Free search for best offers without fees, registration and app downloading.</h2>
-        <p class="mb-2 text-gray-800">
-          
-        </p>
+      <div class="flex flex-col w-1/3 items-center text-center">
+        <img src="./number-one.svg" width="64" class="m-6"/>
+        <h2 class="text-xl font-medium m-4">Free search for best buying and selling cryptocurrencies offers without fees, registration and app downloading</h2>
+       
       </div>
-      <div class="flex flex-col w-1/3">
-        <img src="./piggy-bank.svg" width="64" class="mb-2"/>
-        <h2 class="text-xl font-medium mb-2">Convenient search filters with opportunity to view best prices in your local currency.</h2>
+      <div class="flex flex-col w-1/3 items-center text-center">
+        <img src="./number-two.svg" width="64" class="m-6"/>
+        <h2 class="text-xl font-medium m-4">Convenient search filters with opportunity to view best prices for Bitcoin, Ethereum, XRP and other coins in your local currency</h2>
       </div>
-      <div class="flex flex-col">
-        <img src="./ninja.svg" width="64" class="mb-2"/>
-        <h2 class="text-xl font-medium mb-2">Fast transition to offer to buy cryptocurrency by best price.</h2>
+      <div class="flex flex-col w-1/3 items-center text-center">
+        <img src="./number-three.svg" width="64" class="m-6"/>
+        <h2 class="text-xl font-medium m-4">Fast transition to offer to buy or sell selected cryptocurrency by best price directly from real people</h2>
       </div>
     </div>
   </section>
