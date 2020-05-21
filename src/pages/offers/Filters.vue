@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap items-center mx-auto my-8">
-    <BuySellToggle />
+    <BuySellToggleFilter class="mr-2"/>
       
     <a href="#" class="border-2 border-solid border-gray-600 hover:border-gray-600 text-gray-600 font-normal py-1 px-4 rounded-full mr-3">
       Bitcoin
@@ -17,12 +17,12 @@
 </template>
 
 <script>
-import BuySellToggle from './filters/BuySellToggle.vue'
+import BuySellToggleFilter from './filters/BuySellToggleFilter.vue'
 
 export default {
   name: 'App',
   components: {
-    BuySellToggle
+    BuySellToggleFilter
   },
   data() {
     return {

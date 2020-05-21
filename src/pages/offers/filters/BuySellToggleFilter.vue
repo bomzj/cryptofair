@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="toggleTradeType" class="border-2 border-solid border-gray-600 hover:border-gray-600 text-gray-600 font-normal py-1 px-4 rounded-full mr-3">
+    <button @click="toggleTradeType" class="trade-type-toggle">
       {{ tradeType }}
     </button>
   </div>
@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style>
-
+.trade-type-toggle {
+  @apply border-2 border-solid border-gray-600 text-gray-600 font-normal px-4 py-1 rounded-full;
+  min-width: 62px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="showModal" class="inline-block text-sm px-4 py-2 leading-none border rounded-full text-blue-200 border-blue-500 hover:border-white hover:text-white mt-4 lg:mt-0">{{ selectedCurrency }}</button>
+    <button @click="showModal" class="currency-toggle-button">{{ selectedCurrency }}</button>
     <modal name="currency-switcher" width="400px" classes="modal">
       <div>
         <div class="px-4 py-5">
@@ -45,8 +45,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .currency-toggle-button {
+    @apply inline-block text-sm px-4 py-2 leading-none border rounded-full text-blue-200 border-blue-500;
+    min-width: 62px;
+  }
+  
+  .currency-toggle-button:hover {
+    @apply border-white text-white;
+  }
+  
   .form-radio {
-    @apply .form-radio .w-6 .h-6;
+    @apply form-radio w-6 h-6;
   }
 </style>
 
