@@ -12,19 +12,19 @@
         </div>
         <div class="w-full block lg:flex lg:items-center lg:w-auto">
           <div class="text-sm lg:flex-grow">
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+            <a href="/offers" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Offers
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+            <a href="/news" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               News
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+            <a href="/exchanges" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Exchanges
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+            <a href="/coins" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Coins
             </a>
-            <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
+            <a href="/wallets" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Wallets
             </a>
           </div>
