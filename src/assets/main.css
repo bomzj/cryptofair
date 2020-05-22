@@ -9,3 +9,8 @@ input:focus, button:focus {
   box-shadow: none !important;
   outline: none !important;
 }
+
+/* Make rounded borders for modals */
+.vm--modal.modal {
+  border-radius: 22px;
+}
