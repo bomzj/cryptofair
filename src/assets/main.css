@@ -14,3 +14,12 @@ input:focus, button:focus {
 .vm--modal.modal {
   border-radius: 22px;
 }
+
+.form-radio {
+  @apply w-6 h-6;
+}
+
+.search-input {
+  @apply px-10;
+  background: url('./search-icon.svg') no-repeat 12px;
+} 
