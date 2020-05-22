@@ -4,19 +4,19 @@
       <h2 class="text-4xl font-semibold text-center m-8 text-center">Supported Exchanges</h2>
       <div class="flex flex-wrap justify-around text-gray-800">
         <div class="flex m-8">
-          <img src="../../assets/paxful.svg" class="w-56"/>
+          <img src="../../assets/paxful.svg" class="w-64"/>
         </div>
         <div class="flex m-8">
-          <img src="../../assets/localbitcoins.svg"  class="w-56" />
+          <img src="../../assets/localbitcoins.svg"  class="w-64" />
         </div>
         <div class="flex m-8">
-          <img src="../../assets/localcoinswap.svg" class="w-56"/>
+          <img src="../../assets/localcoinswap.svg" class="w-64"/>
         </div>
         <div class="flex m-8">
-          <img src="../../assets/bisq.svg" class="w-56"/>
+          <img src="../../assets/bisq.svg" class="w-64"/>
         </div>
         <div class="flex m-8">
-          <img src="../../assets/localcryptos.svg" class="w-56"/>
+          <img src="../../assets/localcryptos.svg" class="w-64"/>
         </div>
       </div>
     </div>
