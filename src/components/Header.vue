@@ -28,22 +28,19 @@
               Wallets
             </a>
           </div>
-          <CurrencySwitcher />
-          <!-- <div>
-            <a href="#" class="inline-block text-sm px-4 py-2 leading-none border rounded text-blue-200 border-blue-500 hover:border-transparent hover:text-white hover:bg-blue-500 mt-4 lg:mt-0">$ USD</a>
-          </div> -->
+          <SelectCurrencyButton />
         </div>
       </nav>
     </header>
 </template>
 
 <script>
-import CurrencySwitcher from './CurrencySwitcher'
+import SelectCurrencyButton from './SelectCurrencyButton'
 
 export default {
   name: 'Header',
   components: {
-    CurrencySwitcher
+    SelectCurrencyButton
   }
 }
 </script>

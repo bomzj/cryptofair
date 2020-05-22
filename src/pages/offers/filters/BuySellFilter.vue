@@ -1,15 +1,14 @@
 <template>
   <div>
-    <button @click="toggleTradeType" class="trade-type-toggle">
+    <button @click="toggleTradeType" class="buy-sell-filter">
       {{ tradeType }}
     </button>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'BuySellToggle',
+  name: 'BuySellFilter',
   data() {
     return {
       tradeType: 'Buy'
@@ -20,13 +19,14 @@ export default {
       this.tradeType = this.tradeType == 'Buy' ? 'Sell' : 'Buy';
     }
   }
-
 }
 </script>
 
 <style>
-.trade-type-toggle {
-  @apply border-2 border-solid border-gray-600 text-gray-600 font-normal px-4 py-1 rounded-full;
+@import '../offers-page.css';
+
+.buy-sell-filter {
+  @apply button-filter;
   min-width: 62px;
-}
+} 
 </style>
