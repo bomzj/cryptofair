@@ -6,11 +6,11 @@
           <a href="/" class="font-semibold text-xl tracking-tight inline-block">Cryptofair</a>
         </div>
         <div class="block lg:hidden">
-          <button class="flex items-center px-3 py-2 border rounded text-blue-200 border-blue-500 hover:text-white hover:border-white">
+          <button class="flex items-center px-3 py-2 border rounded text-blue-200 border-blue-500 hover:text-white hover:border-white" @click="toggleMenuVisibility">
             <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
           </button>
         </div>
-        <div class="w-full block lg:flex lg:items-center lg:w-auto">
+        <div class="w-full hidden lg:flex lg:items-center lg:w-auto" ref="menu">
           <div class="text-sm lg:flex-grow">
             <a href="/offers" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Offers
@@ -41,6 +41,37 @@ export default {
   name: 'Header',
   components: {
     SelectCurrencyButton
+  },
+  data() {
+    return {
+      isMenuVisible: null
+    }
+  },
+  mounted () {
+    this.isMenuVisible = window.getComputedStyle(this.$refs.menu).display == 'none';
+
+    // this.observer = new MutationObserver(mutations => {
+    //   for (const m of mutations) {
+    //     const newValue = m.target.getAttribute(m.attributeName);
+    //     this.$nextTick(() => {
+    //       this.onClassChange(newValue, m.oldValue);
+    //     });
+    //   }
+    // });
+
+    // this.observer.observe(this.$refs.menu, {
+    //   attributes: true,
+    //   attributeOldValue : true,
+    //   attributeFilter: ['class'],
+    // });
+  },
+  methods: {
+    toggleMenuVisibility() {
+      //if (isMenuVisible)
+    },
+    onClassChange() {
+      this.isMenuVisible = window.getComputedStyle(this.$refs.menu).display == 'none';
+    }
   }
 }
 </script>

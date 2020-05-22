@@ -27,6 +27,6 @@ export default {
 
 .buy-sell-filter {
   @apply button-filter;
-  min-width: 62px;
+  min-width: 66px;
 } 
 </style>
