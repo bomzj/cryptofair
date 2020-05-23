@@ -35,6 +35,9 @@ module.exports = {
     // template is inferred to be `public/subpage.html`
     // and falls back to `public/index.html` if not found.
     // Output filename is inferred to be `subpage.html`.
-    //offers: 'src/pages/offers/main.js'
+    news: 'src/pages/other/main.js',
+    exchanges: 'src/pages/other/main.js',
+    coins: 'src/pages/other/main.js',
+    wallets: 'src/pages/other/main.js',
   }
 }
