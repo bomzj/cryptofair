@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap items-center mx-auto my-8">
+  <div class="flex flex-wrap items-center my-0">
     <BuySellFilter class="text-lg m-2"/>
       
     <CryptoFilter class="text-lg m-2"/>

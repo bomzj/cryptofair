@@ -28,8 +28,8 @@
           </div>
         </div>
         <footer class="flex justify-end">
-          <button class="px-4 py-2 font-semibold text-lg text-gray-700 border-gray-500 hover:bg-gray-200 uppercase mr-4" @click="closeModal">Cancel</button>
-          <button class="px-4 py-2 font-semibold text-lg text-white bg-blue-500 hover:bg-blue-400 uppercase" @click="onSave">Save</button>
+          <button class="button mr-4" @click="closeModal">Cancel</button>
+          <button class="button button-primary" @click="onSave">Save</button>
         </footer>
     </div>
   </v-modal> 
