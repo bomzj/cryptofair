@@ -7,10 +7,10 @@
       "name": "Lorenzo123", 
       "rating": 4.5,
       "trades": 128,
-      "country": "Mexico"
+      "country": "Estonia"
     },
-    "type": "SELL",
-    "coin": "BTC",
+    "tradeType": "Buy",
+    "crypto": "Bitcoin",
     "price": { 
       "value": 9844.70,
       "currency": "USD"
@@ -31,8 +31,8 @@
       "trades": 1200,
       "country": "USA"
     },
-    "type": "SELL",
-    "coin": "BTC",
+    "tradeType": "Sell",
+    "crypto": "Bitcoin",
     "price": { 
       "value": 9620.00,
       "currency": "USD"
@@ -53,8 +53,8 @@
       "trades": 12,
       "country": "Germany"
     },
-    "type": "SELL",
-    "coin": "BTC",
+    "tradeType": "Buy",
+    "crypto": "Bitcoin",
     "price": { 
       "value": 8788.50,
       "currency": "EUR"
@@ -64,5 +64,73 @@
       "min": 100,
       "max": 2600
     }
+  },
+  
+  { 
+    "exchange": { 
+      "name": "LocalCoinSwap" 
+    },
+    "trader": { 
+      "name": "DJCool", 
+      "rating": 4.1,
+      "trades": 60,
+      "country": "Lithuania"
+    },
+    "tradeType": "Buy",
+    "crypto": "Ethereum",
+    "price": { 
+      "value": 207.85,
+      "currency": "USD"
+    },
+    "paymentMethods": ["Bank Transfer", "SEPA Transfer", "TransferWise", "Skrill"], 
+    "tradingAmount": {
+      "min": 10,
+      "max": 120
+    }
+  },
+  { 
+    "exchange": { 
+      "name": "LocalBitcoins" 
+    },
+    "trader": { 
+      "name": "BestPrice4You", 
+      "rating": 4.1,
+      "trades": 1200,
+      "country": "USA"
+    },
+    "tradeType": "Sell",
+    "crypto": "Ethereum",
+    "price": { 
+      "value": 202.10,
+      "currency": "USD"
+    },
+    "paymentMethods": ["Skrill", "PayPal", "Credit Card"], 
+    "tradingAmount": {
+      "min": 100,
+      "max": 980
+    }
+  },
+  { 
+    "exchange": { 
+      "name": "Bisq" 
+    },
+    "trader": { 
+      "name": "mister-twister", 
+      "rating": 5.0,
+      "trades": 3,
+      "country": "Estonia"
+    },
+    "tradeType": "Buy",
+    "crypto": "Ethereum",
+    "price": { 
+      "value": 209.50,
+      "currency": "EUR"
+    },
+    "paymentMethods": ["SEPA Transfer", "PayPal", "Bank Transfer", "Credit Card"], 
+    "tradingAmount": {
+      "min": 20,
+      "max": 10000
+    }
   }
+  
 ]
