@@ -1,7 +1,7 @@
 <template>
-  <section class="bg-gray-200">
+  <section class="bg-gray-100">
     <div class="container mx-auto p-6">
-      <h2 class="text-4xl font-semibold text-center m-8 text-center">Supported Exchanges</h2>
+      <h1 class="text-4xl font-medium text-gray-800 m-8 text-center">Supported Exchanges</h1>
       <div class="flex flex-wrap justify-around text-gray-800">
         <div class="flex m-8">
           <img src="../../assets/paxful.svg" class="w-64"/>

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header />
-    <p class="text-3xl p-20">To Be Done</p>
+    <div class="container flex mx-auto px-6">
+		<h1 class="text-4xl font-medium my-6 text-gray-700">To Be Done</h1>
+	</div>
     <Footer />
   </div>
 </template>
