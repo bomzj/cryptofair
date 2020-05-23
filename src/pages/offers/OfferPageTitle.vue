@@ -3,7 +3,8 @@
 </template>
 
 <script>
-
+// import state from '@/app-state.js'
+// console.log(state)
 export default {
   name: 'OfferPageTitle',
   data() {

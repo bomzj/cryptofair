@@ -1,6 +1,6 @@
 <template>
 <div>
-  <button @click="$modal.show($options.name)" class="select-currency-button">{{ selectedCurrency }}</button>
+  <button @click="$modal.show($options.name)" class="select-currency-button">{{ state.currency }}</button>
   <v-modal :name="$options.name"  classes="modal" height="400px">
       <div class="flex flex-col h-full px-8 py-5">
         <header class="mb-10">
@@ -40,6 +40,8 @@
 </div>
 </template>
 <script>
+import state from '@/app-state.js'
+
 export default {
   name: 'SelectCurrencyButton',
   data() {
@@ -51,8 +53,9 @@ export default {
         { name: 'RUB' }, 
         
       ],
-      selectedCurrency: 'USD',
-      searchQuery: ''
+      selectedCurrency: state.currency || 'USD',
+      searchQuery: '',
+      state: state
     }
   },
   created() {
@@ -75,10 +78,12 @@ export default {
       this.searchQuery = '';
     },
     onSave() {
-      // TODO: Save Crypto filter into app state so it will be available for all components
+      // Save currency filter into app state so it will be available for all components
+      state.currency = this.selectedCurrency;
       this.closeModal();
     },
     closeModal() {
+      this.selectedCurrency = state.currency;
       this.$modal.hide(this.$options.name);
     }
   }
