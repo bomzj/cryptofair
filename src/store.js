@@ -8,7 +8,8 @@ var store = new Vue({
     return { 
       state: {
         currency: 'USD',
-        tradeType: 'Buy'
+        tradeType: 'Buy',
+        crypto: 'Bitcoin'
       }
     }
   },

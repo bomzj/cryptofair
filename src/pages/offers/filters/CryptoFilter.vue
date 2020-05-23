@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="$modal.show($options.name)" class="crypto-filter">
-      {{ selectedCrypto }}
+      {{ state.crypto }}
     </button>
     <v-modal :name="$options.name"  classes="modal" height="400px">
       <div class="flex flex-col h-full px-8 py-5">
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import store from '@/store.js'
 
 export default {
   name: 'CryptoFilter',
@@ -51,8 +52,9 @@ export default {
         { name: 'Litecoin' }, 
         { name: 'Binance Coin' }
       ],
-      selectedCrypto: 'Bitcoin',
-      searchQuery: ''
+      selectedCrypto: store.state.crypto,
+      searchQuery: '',
+      state: store.state
     }
   },
   created() {
@@ -75,10 +77,11 @@ export default {
       this.searchQuery = '';
     },
     onSave() {
-      // TODO: Save Crypto filter into app state so it will be available for all components
+      store.state.crypto = this.selectedCrypto;
       this.closeModal();
     },
     closeModal() {
+      this.selectedCrypto = store.state.crypto;
       this.$modal.hide(this.$options.name);
     }
   }

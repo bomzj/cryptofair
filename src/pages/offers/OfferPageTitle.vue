@@ -1,16 +1,15 @@
 <template>
-  <h1 class="text-4xl font-medium my-6 text-gray-700">Best Prices to {{ tradeType }} {{ crypto }}</h1>
+  <h1 class="text-4xl font-medium my-6 text-gray-700">The Best Prices to {{ state.tradeType }} {{ state.crypto }}</h1>
 </template>
 
 <script>
-// import state from '@/store.js'
-// console.log(state)
+import store from '@/store.js'
+
 export default {
   name: 'OfferPageTitle',
   data() {
     return {
-      tradeType: 'Buy',
-      crypto: 'Bitcoin'
+      state: store.state
     }
   }
 }
