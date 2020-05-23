@@ -3,10 +3,7 @@
     <BuySellFilter class="m-2"/>
     <CryptoFilter class="m-2"/>
     <PaymentMethodFilter class="m-2" />
-
-    <a href="#" class="border border-solid hover:border-gray-600 text-lg text-gray-500 hover:text-gray-600 font-normal py-1 px-4 rounded-full m-2">
-      More...
-    </a>
+    <MoreFilter class="m-2" />    
   </div>
 </template>
 
@@ -14,43 +11,12 @@
 import BuySellFilter from './filters/BuySellFilter.vue'
 import CryptoFilter from './filters/CryptoFilter.vue'
 import PaymentMethodFilter from './filters/PaymentMethodFilter.vue'
+import MoreFilter from './filters/MoreFilter'
 
 export default {
-  name: 'App',
+  name: 'Filters',
   components: {
-    BuySellFilter, CryptoFilter, PaymentMethodFilter
-  },
-  data() {
-    return {
-      amount: null,
-      cryptoSelect: {
-        value: [
-          { name: 'Bitcoin', code: 'BTC' }
-        ],
-        options: [
-          { name: 'Bitcoin', code: 'BTC' },
-          { name: 'Ethereum', code: 'ETH' },
-          { name: 'Tether', code: 'USDT' }
-        ]
-      },
-      paymentSelect: {
-        value: [
-          { name: 'Bank Transfer' }
-        ],
-        options: [
-          { name: 'Bank Transfer' },
-          { name: 'SEPA Transfer' },
-          { name: 'Credit Card' },
-          { name: 'Skrill' },
-          { name: 'PayPal' },
-          { name: 'TransferWise' },
-        ]
-      }
-    }
+    BuySellFilter, CryptoFilter, PaymentMethodFilter, MoreFilter
   }
 }
 </script>
-
-<style>
-
-</style>
