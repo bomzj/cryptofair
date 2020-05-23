@@ -40,7 +40,7 @@
 </div>
 </template>
 <script>
-import state from '@/app-state.js'
+import store from '@/store.js'
 
 export default {
   name: 'SelectCurrencyButton',
@@ -53,9 +53,9 @@ export default {
         { name: 'RUB' }, 
         
       ],
-      selectedCurrency: state.currency || 'USD',
+      selectedCurrency: store.state.currency,
       searchQuery: '',
-      state: state
+      state: store.state
     }
   },
   created() {
@@ -79,11 +79,11 @@ export default {
     },
     onSave() {
       // Save currency filter into app state so it will be available for all components
-      state.currency = this.selectedCurrency;
+      store.state.currency = this.selectedCurrency;
       this.closeModal();
     },
     closeModal() {
-      this.selectedCurrency = state.currency;
+      this.selectedCurrency = store.state.currency;
       this.$modal.hide(this.$options.name);
     }
   }

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-// import state from '@/app-state.js'
+// import state from '@/store.js'
 // console.log(state)
 export default {
   name: 'OfferPageTitle',

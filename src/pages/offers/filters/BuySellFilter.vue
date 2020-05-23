@@ -1,22 +1,24 @@
 <template>
   <div>
     <button @click="toggleTradeType" class="buy-sell-filter">
-      {{ tradeType }}
+      {{ state.tradeType }}
     </button>
   </div>
 </template>
 
 <script>
+import store from '@/store.js'
+
 export default {
   name: 'BuySellFilter',
   data() {
     return {
-      tradeType: 'Buy'
+      state: store.state
     }
   },
   methods: {
     toggleTradeType() {
-      this.tradeType = this.tradeType == 'Buy' ? 'Sell' : 'Buy';
+      store.state.tradeType = store.state.tradeType == 'Buy' ? 'Sell' : 'Buy';
     }
   }
 }

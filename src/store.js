@@ -3,10 +3,13 @@ import Vue from 'vue'
 // ES6 module is singleton by its nature 
 // since it evaluates/runs code inside only one time on first import
 // Create Vue instance just for managing State object changes
-window.state = new Vue({
+var store = new Vue({
   data() {
     return { 
-      currency: 'USD' 
+      state: {
+        currency: 'USD',
+        tradeType: 'Buy'
+      }
     }
   },
   created() {
@@ -14,7 +17,7 @@ window.state = new Vue({
   },
   // Track all state changes and save to local storage
 	watch: {
-		currency: {
+		state: {
 			handler () {
 				this.saveState();
 			},
@@ -23,16 +26,16 @@ window.state = new Vue({
   },
   methods: {
     saveState() {
-			var json = JSON.stringify(this.currency);
-			localStorage.setItem("currency", json);
+			var json = JSON.stringify(this.state);
+			localStorage.setItem("store", json);
 		},
 		loadState() {
-			var json = localStorage.getItem("currency");
+			var json = localStorage.getItem("store");
 			if (json) {
-				this.currency = JSON.parse(json);
+				this.state = JSON.parse(json);
       }
     }
   }
 });
 
-export default window.state;
+export default store;

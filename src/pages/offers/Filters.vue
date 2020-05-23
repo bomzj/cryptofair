@@ -15,7 +15,7 @@
 </template>
 
 <script>
-//import state from '@/app-state.js'
+//import state from '@/store.js'
 import BuySellFilter from './filters/BuySellFilter.vue'
 import CryptoFilter from './filters/CryptoFilter.vue'
 //console.log(state)
