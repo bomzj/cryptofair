@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-blue-800 text-white p-6">
     <div class="flex flex-wrap overflow-hidden lg:justify-center container mx-auto mb-5">
-      <div class="w-full sm:w-2/3 lg:w-1/3 mr-12 mb-8">
+      <div class="w-full sm:w-full lg:w-1/2 mr-12 mb-8">
         <h3 class="text-xl mb-3">About Us</h3>
         <p class="text-gray-300">
           We are an independent development team that are keen on decentralized techonologies.
