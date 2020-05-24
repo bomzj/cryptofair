@@ -86,7 +86,7 @@ export default {
 @import '../offers-page.css';
 
 .payment-method-filter {
-  @apply button-filter;
+  @apply filter;
   min-width: 62px;
 }
 </style>

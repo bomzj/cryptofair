@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="toggleTradeType" class="buy-sell-filter">
+    <button @click="toggleTradeType" class="filter filter-active">
       {{ state.tradeType }}
     </button>
   </div>
@@ -25,10 +25,7 @@ export default {
 </script>
 
 <style>
-@import '../offers-page.css';
-
-.buy-sell-filter {
-  @apply button-filter;
+button {
   min-width: 66px;
 } 
 </style>

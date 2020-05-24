@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$modal.show($options.name)" class="payment-method-filter">
+    <button @click="$modal.show($options.name)" class="filter" :class="{ 'filter-active': isActive }">
       {{ state.paymentMethods | formatPaymentMethod }}
     </button>
     <v-modal :name="$options.name"  classes="modal" height="400px">
@@ -66,6 +66,9 @@ export default {
     //this.populatePaymentMethodList();
     //console.log('after populatePaymentMethodList()');
   },
+  computed: {
+    isActive: () => !!store.state.paymentMethods.length
+  },
   methods: {
     async populatePaymentMethodList() {
       const response = await fetch('https://api.coingecko.com/api/v3/coins/list');
@@ -92,12 +95,3 @@ export default {
   }
 }
 </script>
-
-<style>
-@import '../offers-page.css';
-
-.payment-method-filter {
-  @apply button-filter;
-  min-width: 62px;
-}
-</style>
