@@ -82,7 +82,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @import '../offers-page.css';
 
 .payment-method-filter {
