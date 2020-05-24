@@ -1,26 +1,26 @@
 <template>
 <div>
   <p class="text-base text-gray-600 ml-6">{{ formatResultFound }}</p>
-  <div v-for="(offer, index) in getOffers()" :key="index" class="flex flex-wrap justify-around">
-    <div class="flex flex-col flex-wrap px-6 py-4 whitespace-no-wrap">
+  <div v-for="(offer, index) in getOffers()" :key="index" class="flex flex-wrap">
+    <div class="px-6 py-4 whitespace-no-wrap xl:w-1/6 lg:w-1/4 md:w-1/2 sm:w-full">
       <a href="#" class="block text-xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <p class="info-hint">Rating <span class="info-value">{{ offer.trader.rating }}</span>, Trades <span class="info-value">{{ offer.trader.trades }}</span></p>
       <p class="info-hint">Exchange <span class="info-value">{{ offer.exchange.name }}</span></p>
     </div>
-    <div class="px-6 py-4 whitespace-no-wrap">
+    <div class="px-6 py-4 xl:w-1/3 lg:w-1/4 md:w-1/2 sm:w-full">
       <p class="info-hint mb-2">Trading Amount <span class="inline-block info-value ml-1">{{ formatTradingAmount(offer) }}</span></p>
       <div class="flex flex-row items-center" >
         <div class="info-hint mr-2">Pay by</div><img v-for="method in offer.paymentMethods" :key="method" width="36" height="36" class="mr-1" :src="getPaymentLogoUrl(method)"/>
       </div>
     </div>
-    <div class="px-6 py-4 whitespace-no-wrap leading-5">
+    <div class="px-6 py-4 whitespace-no-wrap leading-5  xl:w-1/3 lg:w-1/4 md:w-1/2 sm:w-full">
       <div class="flex flex-col">
         <p class="mb-2 text-2xl font-medium">{{ formatConvertedPrice(offer) }} <span class="info-hint font-normal">per coin</span></p> 
         <p class="info-hint">Original Price <span class="info-value">{{ formatOriginalPrice(offer) }}</span></p>
         <p class="info-hint font-medium"><span class="text-green-500">4.2%</span> more than market</p>
       </div>
     </div>
-    <div class="px-6 py-4 whitespace-no-wrap leading-5 font-medium">
+    <div class="px-6 py-4 leading-5 font-medium">
       <a href="#" class="button button-outline-primary">Go to Offer</a>
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>
