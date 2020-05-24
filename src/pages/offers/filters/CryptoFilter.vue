@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$modal.show($options.name)" class="crypto-filter">
+    <button @click="$modal.show($options.name)" class="filter filter-active">
       {{ state.crypto }}
     </button>
     <v-modal :name="$options.name"  classes="modal" height="400px">
@@ -89,10 +89,5 @@ export default {
 </script>
 
 <style>
-@import '../offers-page.css';
 
-.crypto-filter {
-  @apply button-filter;
-  min-width: 62px;
-}
 </style>
