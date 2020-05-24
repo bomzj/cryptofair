@@ -5,7 +5,7 @@
         <h3 class="text-xl mb-3">About Us</h3>
         <p class="text-gray-300">
           We are an independent development team that are keen on decentralized techonologies.
-          We are building <b>the only one in the world</b> real-time P2P cryptocurrency price watcher to get the best possible prices on the person-to-person market.
+          Cryptofair is <b>the only one in the world</b> real-time P2P cryptocurrency price watcher to get the best possible prices on the person-to-person market without fees, registration and app downloading.
         </p>
       </div>
       <div class="mr-12 mb-8">
