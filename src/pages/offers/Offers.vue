@@ -3,7 +3,7 @@
   <div v-for="(offer, index) in getOffers()" :key="index" class="flex flex-wrap justify-around">
     <div class="flex flex-col flex-wrap px-6 py-4 whitespace-no-wrap">
       <a href="#" class="block text-xl leading-5 text-blue-500  mr-4 mb-2">{{ offer.trader.name }}</a>
-      <p class="info-hint">Rating <span class="info-value">4.5</span>, Trades <span class="info-value">156</span></p>
+      <p class="info-hint">Rating <span class="info-value">{{ offer.trader.rating }}</span>, Trades <span class="info-value">{{ offer.trader.trades }}</span></p>
       <p class="info-hint">Exchange <span class="info-value">{{ offer.exchange.name }}</span></p>
     </div>
     <div class="px-6 py-4 whitespace-no-wrap">
