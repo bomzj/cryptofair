@@ -10,7 +10,7 @@
       </div>
       <div class="mr-12 mb-8">
         <h3 class="text-xl mb-3">Contact Us</h3>
-        <a href="mailto:support@cryptofair.io" class="text-blue-200">support@cryptofair.io</a>
+        <a href="mailto:maksim.shamihulau@gmail.com" class="text-blue-200">maksim.shamihulau@gmail.com</a>
       </div>
       <div class="mb-8">
         <h3 class="text-xl mb-3">Follow Us</h3>

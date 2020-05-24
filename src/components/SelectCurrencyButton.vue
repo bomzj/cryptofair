@@ -1,7 +1,7 @@
 <template>
 <div>
   <button @click="$modal.show($options.name)" class="select-currency-button">{{ state.currency }}</button>
-  <v-modal :name="$options.name"  classes="modal" height="400px">
+  <v-modal :name="$options.name"  classes="modal" height="400px" >
       <div class="flex flex-col h-full px-8 py-5">
         <header class="mb-10">
           <h2 class="text-lg text-center font-semibold">Select Currency</h2>
