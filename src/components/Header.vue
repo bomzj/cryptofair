@@ -11,7 +11,7 @@
           </button>
         </div>
         <div class="w-full hidden lg:flex lg:items-center lg:w-auto" ref="menu">
-          <div class="text-sm lg:flex-grow">
+          <div class="text-md lg:flex-grow">
             <a href="/offers" class="block mt-4 lg:inline-block lg:mt-0 text-blue-200 hover:text-white mr-4">
               Offers
             </a>
