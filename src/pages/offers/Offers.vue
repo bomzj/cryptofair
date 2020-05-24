@@ -2,7 +2,7 @@
 <div>
   <div v-for="(offer, index) in getOffers()" :key="index" class="flex flex-wrap justify-around">
     <div class="flex flex-col flex-wrap px-6 py-4 whitespace-no-wrap">
-      <a href="#" class="block text-xl leading-5 text-blue-500  mr-4 mb-2">{{ offer.trader.name }}</a>
+      <a href="#" class="block text-xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <p class="info-hint">Rating <span class="info-value">{{ offer.trader.rating }}</span>, Trades <span class="info-value">{{ offer.trader.trades }}</span></p>
       <p class="info-hint">Exchange <span class="info-value">{{ offer.exchange.name }}</span></p>
     </div>
@@ -12,10 +12,11 @@
         <div class="info-hint mr-2">Pay by</div><img v-for="method in offer.paymentMethods" :key="method" width="36" height="36" class="mr-1" :src="getPaymentLogoUrl(method)"/>
       </div>
     </div>
-    <div class="px-6 py-4 whitespace-no-wrap leading-5 font-medium">
-      <div class="flex flex-col justify-center items-center">
-        <span class="block mr-4 mb-2  text-2xl">{{ formatConvertedPrice(offer) }}</span>  
-        <p class="block info-hint m-0"><span class="text-green-500">4.2%</span> more than market</p>
+    <div class="px-6 py-4 whitespace-no-wrap leading-5">
+      <div class="flex flex-col">
+        <p class="mb-2 text-2xl font-medium">{{ formatConvertedPrice(offer) }} <span class="info-hint font-normal">per coin</span></p> 
+        <p class="info-hint">Original Price <span class="info-value">{{ formatOriginalPrice(offer) }}</span></p>
+        <p class="info-hint font-medium"><span class="text-green-500">4.2%</span> more than market</p>
       </div>
     </div>
     <div class="px-6 py-4 whitespace-no-wrap leading-5 font-medium">
@@ -54,7 +55,7 @@ export default {
     getOffers() {
       // Get all offers that match filters criteria
       let offers = this.offers.filter(
-        o => o.tradeType ==  store.state.tradeType &&
+        o => o.tradeType !=  store.state.tradeType &&
         o.crypto == store.state.crypto &&
         (!store.state.paymentMethods.length || 
           (store.state.paymentMethods.length > 0 && 
@@ -67,13 +68,16 @@ export default {
       });
 
       // if we buy then sort prices from the lowest to highest
-      let ascSorting = (a, b) => b - a;
-      let descSorting = (a, b) => a - b;
-      
+      let ascSorting = (a, b) => a.convertedPrice - b.convertedPrice;
+      let descSorting = (a, b) => b.convertedPrice - a.convertedPrice;
+            
       return offers.sort(store.state.tradeType == 'Buy'? ascSorting : descSorting);
     },
     formatConvertedPrice(offer) {
       return CurrencyConverter.formatPrice(offer.convertedPrice, store.state.currency);
+    },
+    formatOriginalPrice(offer) {
+      return CurrencyConverter.formatPrice(offer.price.value, offer.price.currency);
     },
     formatTradingAmount(offer) {
       let convertedMin = CurrencyConverter.convertCurrency(offer.tradingAmount.min, offer.price.currency, store.state.currency);

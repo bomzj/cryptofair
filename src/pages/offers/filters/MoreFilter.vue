@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$modal.show($options.name)" class="payment-method-filter">
+    <button @click="$modal.show($options.name)" class="filter">
       More...
     </button>
     <v-modal :name="$options.name"  classes="modal" height="400px">
