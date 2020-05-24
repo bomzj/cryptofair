@@ -1,9 +1,9 @@
 <template>
-  <div class="flex flex-wrap items-center my-0">
-    <BuySellFilter class="m-2"/>
-    <CryptoFilter class="m-2"/>
-    <PaymentMethodFilter class="m-2" />
-    <MoreFilter class="m-2" />    
+  <div class="flex flex-wrap items-center py-2 ml-6">
+    <BuySellFilter class="mr-2 mb-2"/>
+    <CryptoFilter class="mr-2 mb-2"/>
+    <PaymentMethodFilter class="mr-2 mb-2" />
+    <MoreFilter class="mr-2 mb-2" />    
   </div>
 </template>
 

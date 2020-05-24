@@ -4,7 +4,7 @@
     <div class="container flex flex-col mx-auto px-6">
       <OfferPageTitle />
       <Filters class="mb-6" />
-      <Offers class=""/>
+      <Offers class="mb-6"/>
     </div>
     <Footer />
   </div>

@@ -1,5 +1,6 @@
 <template>
 <div>
+  <p class="text-base text-gray-600 ml-6">{{ formatResultFound }}</p>
   <div v-for="(offer, index) in getOffers()" :key="index" class="flex flex-wrap justify-around">
     <div class="flex flex-col flex-wrap px-6 py-4 whitespace-no-wrap">
       <a href="#" class="block text-xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
@@ -22,7 +23,7 @@
     <div class="px-6 py-4 whitespace-no-wrap leading-5 font-medium">
       <a href="#" class="button button-outline-primary">Go to Offer</a>
     </div>
-    <hr class="w-full border-gray-400 my-5"/>
+    <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>
   </div>
 </div>
 </template>
@@ -49,7 +50,13 @@ export default {
 
   },
   computed: {
-   
+    offerCount() {
+      return this.getOffers().length;
+    },
+    formatResultFound() {
+      let found = this.offerCount;
+      return found ? `${found} results found`: 'No results found';
+   } 
   },
   methods: {
     getOffers() {

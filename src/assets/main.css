@@ -29,7 +29,7 @@ input:focus, button:focus {
 } 
 
 .button {
-  @apply block px-4 py-2 font-semibold text-lg text-gray-700 border-gray-500 uppercase;
+  @apply inline-block px-4 py-2 font-semibold text-lg text-gray-700 border-gray-500 uppercase;
 }
 
 .button:hover {
