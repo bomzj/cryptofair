@@ -9,7 +9,7 @@
       "trades": 128,
       "country": "Estonia"
     },
-    "tradeType": "Buy",
+    "tradeType": "Sell",
     "crypto": "Bitcoin",
     "price": { 
       "value": 9844.70,
@@ -145,13 +145,35 @@
     "tradeType": "Buy",
     "crypto": "Bitcoin",
     "price": { 
-      "value": 9500.00,
+      "value": 800000.00,
       "currency": "RUB"
     },
     "paymentMethods": ["Bank Transfer", "SEPA Transfer", "TransferWise", "Skrill"], 
     "tradingAmount": {
-      "min": 500,
-      "max": 500
+      "min": 50000,
+      "max": 150000
+    }
+  },
+  { 
+    "exchange": { 
+      "name": "LocalBitcoins" 
+    },
+    "trader": { 
+      "name": "IvanIvanov", 
+      "rating": 2,
+      "trades": 8,
+      "country": "Russia"
+    },
+    "tradeType": "Sell",
+    "crypto": "Bitcoin",
+    "price": { 
+      "value": 790000.00,
+      "currency": "RUB"
+    },
+    "paymentMethods": ["Bank Transfer", "SEPA Transfer", "TransferWise", "Skrill"], 
+    "tradingAmount": {
+      "min": 50000,
+      "max": 150000
     }
   },
   { 
@@ -417,7 +439,76 @@
       "min": 230,
       "max": 5030
     }
-  }
+  },
 
+
+  { 
+    "exchange": { 
+      "name": "Paxful" 
+    },
+    "trader": { 
+      "name": "CrazyDazy", 
+      "rating": 3.5,
+      "trades": 30,
+      "country": "France"
+    },
+    "tradeType": "Sell",
+    "crypto": "Bitcoin",
+    "price": { 
+      "value": 9900,
+      "currency": "USD"
+    },
+    "paymentMethods": ["TransferWise", "SEPA Transfer", "Credit Card"], 
+    "tradingAmount": {
+      "min": 500,
+      "max": 2000
+    }
+  },
+
+  { 
+    "exchange": { 
+      "name": "Paxful" 
+    },
+    "trader": { 
+      "name": "Lol11122", 
+      "rating": 4.5,
+      "trades": 130,
+      "country": "France"
+    },
+    "tradeType": "Sell",
+    "crypto": "Bitcoin",
+    "price": { 
+      "value": 8400,
+      "currency": "EUR"
+    },
+    "paymentMethods": ["TransferWise", "Credit Card"], 
+    "tradingAmount": {
+      "min": 1500,
+      "max": 2400
+    }
+  },
+
+  { 
+    "exchange": { 
+      "name": "Paxful" 
+    },
+    "trader": { 
+      "name": "LostSoul1", 
+      "rating": 3.5,
+      "trades": 30,
+      "country": "France"
+    },
+    "tradeType": "Sell",
+    "crypto": "Bitcoin",
+    "price": { 
+      "value": 9220,
+      "currency": "USD"
+    },
+    "paymentMethods": ["TransferWise"], 
+    "tradingAmount": {
+      "min": 150,
+      "max": 200
+    }
+  }
   
 ]
