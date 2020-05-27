@@ -31,7 +31,7 @@
 <script>
 import offers from './offers.json'
 import store from '@/store.js'
-import CurrencyConverter from '@/currency-converter.js'
+import CurrencyConverter from '@/currency/currency-converter.js'
 
 export default {
   name: 'Offers',
@@ -93,7 +93,7 @@ export default {
     },
     getPaymentLogoUrl(paymentMethodName) {
       let method = paymentMethodName.toLowerCase().replace(' ', '-');
-      return require('./images/payments/' + method + '.svg');
+      return require('./payment-methods/' + method + '.svg');
     }
   }
 }

@@ -1,26 +1,22 @@
 <template>
-  <div id="app">
-    <Header />
+  <BaseLayout>
     <div class="container flex flex-col mx-auto px-6">
       <OfferPageTitle />
       <Filters class="mb-6" />
-      <Offers class="mb-6"/>
+      <OfferList class="mb-6"/>
     </div>
-    <Footer />
-  </div>
+  </BaseLayout>
 </template>
 
 <script>
-import Header from '../../components/Header.vue'
-import Footer from '../../components/Footer.vue'
-import Offers from './Offers.vue'
-import Filters from './Filters.vue'
-import OfferPageTitle from './OfferPageTitle.vue'
+import OfferList from './OfferList'
+import Filters from '@/filter/Filters'
+import OfferPageTitle from './OfferPageTitle'
 
 export default {
   name: 'App',
   components: {
-    Header, OfferPageTitle, Filters, Offers, Footer
+    OfferPageTitle, Filters, OfferList
   }
 }
 </script>

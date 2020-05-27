@@ -15,10 +15,10 @@
       <div class="mb-8">
         <h3 class="text-xl mb-3">Follow Us</h3>
         <ul class="flex text-gray-300">
-          <li class="mr-4"><a href="#"><img src="../assets/medium.svg" width="32"></a></li>
-          <li class="mr-4"><a href="#"><img src="../assets/facebook.svg" width="32"></a></li>
-          <li class="mr-4"><a href="#"><img src="../assets/twitter.svg" width="32"></a></li>
-          <li class="mr-4"><a href="#"><img src="../assets/linkedin.svg" width="32"></a></li>
+          <li class="mr-4"><a href="#"><img src="@/social/medium.svg" width="32"></a></li>
+          <li class="mr-4"><a href="#"><img src="@/social/facebook.svg" width="32"></a></li>
+          <li class="mr-4"><a href="#"><img src="@/social/twitter.svg" width="32"></a></li>
+          <li class="mr-4"><a href="#"><img src="@/social/linkedin.svg" width="32"></a></li>
         </ul>
       </div>
     </div>

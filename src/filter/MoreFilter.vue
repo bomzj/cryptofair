@@ -83,10 +83,5 @@ export default {
 </script>
 
 <style scoped>
-@import '../offers-page.css';
 
-.payment-method-filter {
-  @apply filter;
-  min-width: 62px;
-}
 </style>

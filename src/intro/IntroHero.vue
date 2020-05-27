@@ -8,36 +8,34 @@
       <div class="flex flex-wrap justify-center mt-4">
         <div class="m-6 mr-12 flex flex-col items-center text-center sm:w-1/8 all:w-full">
           <div class="flex items-center">
-            <img src="./btc.svg" width="50" class="mr-2" />
+            <img src="@/coin/btc.svg" width="50" class="mr-2" />
             <span class="inline-block text-2xl font-semibold text-gray-400">Bitcoin</span>
           </div>
           <span class="inline-block text-2xl font-bold mt-2">$9,642.33</span>
         </div>
         <div class="m-6 mr-12 flex flex-col items-center text-center sm:w-1/8 all:w-full">
           <div class="flex items-center">
-            <img src="./eth.svg" width="50" class="mr-2" />
+            <img src="@/coin/eth.svg" width="50" class="mr-2" />
             <span class="inline-block text-2xl font-semibold text-gray-400">Ethereum</span>
           </div>
           <span class="inline-block text-2xl font-bold mt-2">$198.51</span>
         </div>
         <div class="m-6 mr-12 flex flex-col items-center text-center sm:w-1/8 all:w-full">
           <div class="flex items-center">
-            <img src="./xrp.svg" width="50" class="mr-2" />
+            <img src="@/coin/xrp.svg" width="50" class="mr-2" />
             <span class="inline-block text-2xl font-semibold text-gray-400">XRP</span>
           </div>
           <span class="inline-block text-2xl font-bold mt-2">$0.202593</span>
         </div>
         <div class="m-6 mr-12 flex flex-col items-center text-center sm:w-1/8 all:w-full">
           <div class="flex items-center">
-            <img src="./eos.svg" width="50" class="mr-2" />
+            <img src="@/coin/eos.svg" width="50" class="mr-2" />
             <span class="inline-block text-2xl font-semibold text-gray-400">EOS</span>
           </div>
           <span class="inline-block text-2xl font-bold mt-2">$2.53</span>
         </div>
       </div>
     </section>
-
-    
   </section>
 </template>
 

@@ -1,13 +1,7 @@
+import '@/main.js'
 import Vue from 'vue'
-import App from './App.vue'
-import '../../assets/main.css'
-import './offers-page.css'
-import VModal from 'vue-js-modal'
-
-Vue.use(VModal,{ componentName: "v-modal" })
-
-Vue.config.productionTip = false
+import OfferListPage from './OfferListPage.vue'
 
 new Vue({
-  render: h => h(App),
+  render: h => h(OfferListPage),
 }).$mount('#app')

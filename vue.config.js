@@ -3,9 +3,9 @@ module.exports = {
     devtool: 'source-map'
   },
   pages: {
-    index: {
+    home: {
       // entry for the page
-      entry: 'src/pages/index/main.js',
+      entry: 'src/intro/home-page.js',
       // the source template
       template: 'public/index.html',
       // output as dist/index.html
@@ -15,11 +15,11 @@ module.exports = {
       title: 'Home',
       // chunks to include on this page, by default includes
       // extracted common chunks and vendor chunks.
-      chunks: ['chunk-vendors', 'chunk-common', 'index']
+      chunks: ['chunk-vendors', 'chunk-common', 'home']
     },
     offers: {
       // entry for the page
-      entry: 'src/pages/offers/main.js',
+      entry: 'src/offer/offer-list-page.js',
       // the source template
       template: 'public/index.html',
       // output as dist/index.html
@@ -35,9 +35,9 @@ module.exports = {
     // template is inferred to be `public/subpage.html`
     // and falls back to `public/index.html` if not found.
     // Output filename is inferred to be `subpage.html`.
-    news: 'src/pages/other/main.js',
-    exchanges: 'src/pages/other/main.js',
-    coins: 'src/pages/other/main.js',
-    wallets: 'src/pages/other/main.js',
+    news: 'src/empty-page.js',
+    exchanges: 'src/empty-page.js',
+    coins: 'src/empty-page.js',
+    wallets: 'src/empty-page.js'
   }
 }

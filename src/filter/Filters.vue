@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import BuySellFilter from './filters/BuySellFilter.vue'
-import CryptoFilter from './filters/CryptoFilter.vue'
-import PaymentMethodFilter from './filters/PaymentMethodFilter.vue'
-import MoreFilter from './filters/MoreFilter'
+import BuySellFilter from './BuySellFilter'
+import CryptoFilter from './CryptoFilter'
+import PaymentMethodFilter from './PaymentMethodFilter'
+import MoreFilter from './MoreFilter'
 
 export default {
   name: 'Filters',

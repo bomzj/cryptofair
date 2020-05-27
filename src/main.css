@@ -25,7 +25,7 @@ input:focus, button:focus {
 
 .search-input {
   @apply px-10;
-  background: url('./search-icon.svg') no-repeat 12px;
+  background: url('ui/search-icon.svg') no-repeat 12px;
 } 
 
 .button {
