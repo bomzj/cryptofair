@@ -44,11 +44,8 @@ export default {
   },
   data() {
     return {
-      isMenuVisible: null
+     
     }
-  },
-  mounted () {
-    this.isMenuVisible = window.getComputedStyle(this.$refs.menu).display == 'none';
   },
   methods: {
     onBurgerMenuIconClick() {

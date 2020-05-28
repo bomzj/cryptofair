@@ -12,11 +12,12 @@
 import OfferList from './OfferList'
 import Filters from '@/filter/Filters'
 import OfferPageTitle from './OfferPageTitle'
+import BaseLayout from '@/layout/BaseLayout'
 
 export default {
-  name: 'App',
+  name: 'OfferListPage',
   components: {
-    OfferPageTitle, Filters, OfferList
+    BaseLayout, OfferPageTitle, Filters, OfferList
   }
 }
 </script>

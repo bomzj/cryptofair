@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import './filters.css'
 import BuySellFilter from './BuySellFilter'
 import CryptoFilter from './CryptoFilter'
 import PaymentMethodFilter from './PaymentMethodFilter'
