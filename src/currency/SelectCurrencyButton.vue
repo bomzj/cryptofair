@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$modal.show($options.name)" class="button-currency">
+    <button @click="openModal" class="button-currency">
       {{ savedCurrency }}
     </button>
     <v-modal :name="$options.name" :adaptive="true" height="500" width="700">
@@ -19,7 +19,7 @@
           </button>
         </div>
         
-        <div class="flex flex-wrap flex-grow overflow-auto px-8 py-5">
+        <div class="flex flex-wrap flex-grow content-start overflow-auto px-8 py-5">
           <template v-if="filterCurrencyList(topCurrencyList).length">
             <label  v-for="item in filterCurrencyList(topCurrencyList)" :key="item.code" class="flex items-center w-full sm:w-1/2 mb-6">
               <input type="radio" class="form-radio" v-model="selectedCurrencyInModal" :value="item.code">
