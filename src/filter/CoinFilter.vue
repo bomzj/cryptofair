@@ -3,7 +3,7 @@
     <button @click="openModal" class="filter filter-active">
       {{ savedCoin }}
     </button>
-    <v-modal :name="$options.name" :adaptive="true" height="500" width="700">
+    <v-modal :name="$options.name" :adaptive="true" width="700" :height="modalMaxHeight">
       <div class="flex flex-col h-full"> 
         <header class="px-8 py-5">
           <h2 class="text-lg text-center font-semibold">Select Coin</h2>
@@ -48,7 +48,8 @@ export default {
     }
   },
   computed: {
-    savedCoin: () => store.state.coin
+    savedCoin: () => store.state.coin,
+    modalMaxHeight: () => window.innerHeight - 10
   },
   methods: {
     filterCoinList() {

@@ -3,7 +3,7 @@
     <button @click="openModal" class="button-currency">
       {{ savedCurrency }}
     </button>
-    <v-modal :name="$options.name" :adaptive="true" height="500" width="700">
+    <v-modal :name="$options.name" :adaptive="true" width="700" :height="modalMaxHeight">
       <div class="flex flex-col h-full"> 
         <header class="px-8 py-5">
           <h2 class="text-lg text-center font-semibold">Select Currency</h2>
@@ -55,11 +55,12 @@ export default {
       selectedCurrencyInModal: store.state.currency,
       searchQuery: '',
       topCurrencyList: [],
-      bottomCurrencyList: []
+      bottomCurrencyList: [],
     }
   },
   computed: {
     savedCurrency: () => store.state.currency,
+    modalMaxHeight: () => window.innerHeight - 10
   },
   created() {
     this.buildCurrencyLists()
