@@ -23,7 +23,7 @@
           <template v-if="filterCurrencyList(topCurrencyList).length">
             <label  v-for="item in filterCurrencyList(topCurrencyList)" :key="item.code" class="flex items-center w-full sm:w-1/2 mb-6">
               <input type="radio" class="form-radio" v-model="selectedCurrencyInModal" :value="item.code">
-              <span class="ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.code }}</sup></span>
+              <span class="text-lg ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.code }}</sup></span>
             </label> 
           
             <hr class="w-full mx-5 mb-6">
@@ -31,7 +31,7 @@
 
           <label v-for="item in filterCurrencyList(bottomCurrencyList)" :key="item.code" class="flex items-center w-full sm:w-1/2 mb-6">
             <input type="radio" class="form-radio" v-model="selectedCurrencyInModal" :value="item.code">
-            <span class="ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.code }}</sup></span>
+            <span class="text-lg ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.code }}</sup></span>
           </label> 
         </div>
           
