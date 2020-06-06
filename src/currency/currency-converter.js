@@ -7,9 +7,10 @@ var ratesToUSD = {
 
 class CurrencyConverter {
   static convertCurrency(amountFrom, currencyFrom, currencyTo) {
-    let from = 1 / ratesToUSD[currencyFrom];
-    let to = 1 / ratesToUSD[currencyTo];
-    return amountFrom * to / from ;
+    return amountFrom
+    // let from = 1 / ratesToUSD[currencyFrom];
+    // let to = 1 / ratesToUSD[currencyTo];
+    // return amountFrom * to / from ;
   }
 
   static getCurrencySymbol(currency) {

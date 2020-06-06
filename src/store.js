@@ -9,7 +9,7 @@ var store = new Vue({
       state: {
         currency: 'USD',
         tradeType: 'Buy',
-        coin: 'Bitcoin',
+        coin: 'BTC',
         paymentMethods: []
       }
     }

@@ -21,7 +21,7 @@
         
         <div class="flex flex-wrap flex-grow content-start overflow-auto px-8 py-5">
           <label v-for="coin in filterCoinList()" :key="coin.symbol" class="flex items-center w-full sm:w-1/3 mb-6">
-            <input type="radio" class="form-radio" v-model="selectedCoinInModal" :value="coin.name">
+            <input type="radio" class="form-radio" v-model="selectedCoinInModal" :value="coin.symbol">
             <span class="text-lg ml-2">{{ coin.name }} <sup class="text-gray-500">{{ coin.symbol }}</sup></span>
           </label> 
         </div>
@@ -48,7 +48,7 @@ export default {
     }
   },
   computed: {
-    savedCoin: () => store.state.coin,
+    savedCoin: () => coins.find(c => c.symbol == store.state.coin).name,
     modalMaxHeight: () => window.innerHeight - 10
   },
   methods: {

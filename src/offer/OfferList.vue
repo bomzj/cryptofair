@@ -1,7 +1,7 @@
 <template>
 <div>
   <p class="text-base text-gray-600 ml-6">{{ formatResultFound }}</p>
-  <div v-for="(offer, index) in getOffers()" :key="index" class="flex flex-wrap">
+  <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
     <div class="px-6 py-4 whitespace-no-wrap w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/6">
       <a href="#" class="block text-xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <p class="info-hint">Rating <span class="info-value">{{ offer.trader.rating }}</span>, Trades <span class="info-value">{{ offer.trader.trades }}</span></p>
@@ -29,18 +29,24 @@
 </template>
 
 <script>
-import offers from './offers.json'
-import store from '@/store.js'
-import CurrencyConverter from '@/currency/currency-converter.js'
+import OfferService from './offer-service'
+import store from '@/store'
+import CurrencyConverter from '@/currency/currency-converter'
 
 export default {
-  name: 'Offers',
-  components: {
-    
-  },
+  name: 'OfferList',
   data() {
     return { 
-      offers 
+      offers: [],
+      state: store.state
+    }
+  },
+	watch: {
+		state: {
+			async handler() {//(newValue, oldValue) {
+        this.updateOffers()
+			},
+			deep: true
     }
   },
   filters: {
@@ -49,36 +55,46 @@ export default {
     // },
 
   },
+  created() {
+    this.updateOffers()
+  },
   computed: {
     offerCount() {
-      return this.getOffers().length;
+      return this.offers.length
     },
     formatResultFound() {
-      let found = this.offerCount;
-      return found ? `${found} results found`: 'No results found';
+      let found = this.offerCount
+      return found ? `${found} results found` : 'No results found'
    } 
   },
   methods: {
-    getOffers() {
+    async updateOffers() {
       // Get all offers that match filters criteria
-      let offers = this.offers.filter(
-        o => o.tradeType !=  store.state.tradeType &&
-        o.crypto == store.state.crypto &&
-        (!store.state.paymentMethods.length || 
-          (store.state.paymentMethods.length > 0 && 
-          o.paymentMethods.some(p => store.state.paymentMethods.includes(p)))
-        ));
+      // let offers = this.offers.filter(
+      //   o => o.tradeType !=  store.state.tradeType &&
+      //   o.crypto == store.state.crypto &&
+      //   (!store.state.paymentMethods.length || 
+      //     (store.state.paymentMethods.length > 0 && 
+      //     o.paymentMethods.some(p => store.state.paymentMethods.includes(p)))
+      //   ));
+
+      let offers = await OfferService.getOffers(
+        store.state.tradeType, 
+        store.state.coin, 
+        store.state.paymentMethods)
 
       // Normalize prices to selected currency
       offers.forEach(o => {
         o.convertedPrice = CurrencyConverter.convertCurrency(o.price.value, o.price.currency, store.state.currency);
-      });
+      })
+      
+      this.offers = offers
 
       // if we buy then sort prices from the lowest to highest
-      let ascSorting = (a, b) => a.convertedPrice - b.convertedPrice;
-      let descSorting = (a, b) => b.convertedPrice - a.convertedPrice;
+      // let ascSorting = (a, b) => a.convertedPrice - b.convertedPrice;
+      // let descSorting = (a, b) => b.convertedPrice - a.convertedPrice;
             
-      return offers.sort(store.state.tradeType == 'Buy'? ascSorting : descSorting);
+      // return offers.sort(store.state.tradeType == 'Buy'? ascSorting : descSorting);
     },
     formatConvertedPrice(offer) {
       return CurrencyConverter.formatPrice(offer.convertedPrice, store.state.currency);
@@ -92,8 +108,9 @@ export default {
       return `${CurrencyConverter.formatPrice(convertedMin, store.state.currency)} - ${CurrencyConverter.formatPrice(convertedMax, store.state.currency)}`;
     },
     getPaymentLogoUrl(paymentMethodName) {
-      let method = paymentMethodName.toLowerCase().replace(' ', '-');
-      return require('./payment-methods/' + method + '.svg');
+      let method = paymentMethodName.toLowerCase().replace(' ', '-')
+      return method
+      //return require('./payment-methods/' + method + '.svg');
     }
   }
 }
