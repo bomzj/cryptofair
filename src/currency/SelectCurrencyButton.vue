@@ -52,14 +52,14 @@ export default {
   name: 'SelectCurrencyButton',
   data() {
     return {
-      selectedCurrencyInModal: store.state.currency,
+      selectedCurrencyInModal: store.state.userCurrency,
       searchQuery: '',
       topCurrencyList: [],
       bottomCurrencyList: [],
     }
   },
   computed: {
-    savedCurrency: () => store.state.currency,
+    savedCurrency: () => store.state.userCurrency,
     modalMaxHeight: () => window.innerHeight - 10
   },
   created() {
@@ -73,7 +73,7 @@ export default {
       )
     },
     async buildCurrencyLists() {
-      let currencyList = CurrencyService.getCurrencyList()
+      let currencyList = CurrencyService.getCurrencies()
 
       // build top currency list
       let predictedUserCurrency = await CurrencyService.getUserCurrencyByGeolocation()
@@ -94,14 +94,14 @@ export default {
       this.searchQuery = '';
     },
     openModal() {
-      this.selectedCurrencyInModal = store.state.currency;
+      this.selectedCurrencyInModal = store.state.userCurrency;
       this.$modal.show(this.$options.name)
     },
     closeModal() {
       this.$modal.hide(this.$options.name);
     },
     onApply() {
-      store.state.currency = this.selectedCurrencyInModal;
+      store.state.userCurrency = this.selectedCurrencyInModal;
       this.closeModal();
     }
   }

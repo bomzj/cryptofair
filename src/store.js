@@ -5,9 +5,11 @@ import Vue from 'vue'
 // Create Vue instance just for managing State object changes
 var store = new Vue({
   data() {
-    return { 
+    return {
+      // TODO: refactor names for user filters appropriately
       state: {
-        currency: 'USD',
+        // this is not a filter it's just a way to see offer price in user local currency for conveniece
+        userCurrency: 'USD', 
         tradeType: 'Buy',
         coin: 'BTC',
         paymentMethods: []

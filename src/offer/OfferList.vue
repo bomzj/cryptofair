@@ -15,7 +15,7 @@
     </div>
     <div class="px-6 py-4 whitespace-no-wrap leading-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/4  xl:w-2/6">
       <div class="flex flex-col">
-        <p class="mb-2 text-2xl font-medium">{{ formatConvertedPrice(offer) }} <span class="info-hint font-normal">per coin</span></p> 
+        <p class="mb-2 text-2xl font-medium">{{ formatPriceInUserCurrency(offer) }} <span class="info-hint font-normal">per coin</span></p> 
         <p class="info-hint">Original Price <span class="info-value">{{ formatOriginalPrice(offer) }}</span></p>
         <p class="info-hint font-medium"><span class="text-green-500">4.2%</span> more than market</p>
       </div>
@@ -31,7 +31,7 @@
 <script>
 import OfferService from './offer-service'
 import store from '@/store'
-import CurrencyConverter from '@/currency/currency-converter'
+import CurrencyService from '@/currency/currency-service'
 
 export default {
   name: 'OfferList',
@@ -69,43 +69,20 @@ export default {
   },
   methods: {
     async updateOffers() {
-      // Get all offers that match filters criteria
-      // let offers = this.offers.filter(
-      //   o => o.tradeType !=  store.state.tradeType &&
-      //   o.crypto == store.state.crypto &&
-      //   (!store.state.paymentMethods.length || 
-      //     (store.state.paymentMethods.length > 0 && 
-      //     o.paymentMethods.some(p => store.state.paymentMethods.includes(p)))
-      //   ));
-
-      let offers = await OfferService.getOffers(
+      this.offers = await OfferService.getOffers(
         store.state.tradeType, 
         store.state.coin, 
-        store.state.paymentMethods)
-
-      // Normalize prices to selected currency
-      offers.forEach(o => {
-        o.convertedPrice = CurrencyConverter.convertCurrency(o.price.value, o.price.currency, store.state.currency);
-      })
-      
-      this.offers = offers
-
-      // if we buy then sort prices from the lowest to highest
-      // let ascSorting = (a, b) => a.convertedPrice - b.convertedPrice;
-      // let descSorting = (a, b) => b.convertedPrice - a.convertedPrice;
-            
-      // return offers.sort(store.state.tradeType == 'Buy'? ascSorting : descSorting);
+        store.state.paymentMethods,
+        store.state.userCurrency)
     },
-    formatConvertedPrice(offer) {
-      return CurrencyConverter.formatPrice(offer.convertedPrice, store.state.currency);
+    formatPriceInUserCurrency(offer) {
+      return CurrencyService.formatPrice(offer.priceInUserCurrency, store.state.userCurrency)
     },
     formatOriginalPrice(offer) {
-      return CurrencyConverter.formatPrice(offer.price.value, offer.price.currency);
+      return CurrencyService.formatPrice(offer.price.value, offer.price.currency)
     },
     formatTradingAmount(offer) {
-      let convertedMin = CurrencyConverter.convertCurrency(offer.tradingAmount.min, offer.price.currency, store.state.currency);
-      let convertedMax = CurrencyConverter.convertCurrency(offer.tradingAmount.max, offer.price.currency, store.state.currency);
-      return `${CurrencyConverter.formatPrice(convertedMin, store.state.currency)} - ${CurrencyConverter.formatPrice(convertedMax, store.state.currency)}`;
+      return `${CurrencyService.formatPrice(offer.tradingAmount.min, store.state.userCurrency)} - ${CurrencyService.formatPrice(offer.tradingAmount.max, store.state.userCurrency)}`
     },
     getPaymentLogoUrl(paymentMethodName) {
       let method = paymentMethodName.toLowerCase().replace(' ', '-')

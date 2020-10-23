@@ -7,6 +7,8 @@ export default class Offer {
     currency: null
   }
 
+  priceInUserCurrency = null
+
   paymentMethods = []
   
   tradingAmount = {

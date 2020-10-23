@@ -1,12 +1,91 @@
-import LocalBitcoinsOfferProvider from './localbitcoins-offer-provider'
+import Offer from './offer'
+import store from '@/store'
+import CurrencyService from '@/currency/currency-service'
 
 export default class OfferService {
-  static #providers = [LocalBitcoinsOfferProvider]
+  static offerProviders = [this.getLocalBitcoinsOffers]
   
-  static async getOffers(tradeType, coin, paymentMethods) {
-    const requests = this.#providers.map(p => p.getOffers(tradeType, coin, paymentMethods))
+  static async getOffers(tradeType, coin, paymentMethods, userCurrency) {
+    const requests = this.offerProviders.map(i => 
+      i(tradeType, coin, paymentMethods))
+    
     let offers = await Promise.all(requests)
     offers = offers.flat()
+    
+    // Extend offers with additional information
+    for (const offer of offers) {
+      offer.priceInUserCurrency = await CurrencyService.convertCurrency(
+        offer.price.value, 
+        offer.price.currency, 
+        store.state.userCurrency)
+
+      offer.tradingAmount.min = await CurrencyService.convertCurrency(
+        offer.tradingAmount.min, 
+        offer.price.currency, 
+        store.state.userCurrency)
+
+      offer.tradingAmount.max = await CurrencyService.convertCurrency(
+        offer.tradingAmount.max, 
+        offer.price.currency, 
+        store.state.userCurrency)
+    }
+
+    // Get all offers that match filters criteria
+    // let offers = this.offers.filter(
+    //   o => o.tradeType !=  store.state.tradeType &&
+    //   o.crypto == store.state.crypto &&
+    //   (!store.state.paymentMethods.length || 
+    //     (store.state.paymentMethods.length > 0 && 
+    //     o.paymentMethods.some(p => store.state.paymentMethods.includes(p)))
+    //   ));
+
+    // if we buy then sort prices from the lowest to highest
+      // let ascSorting = (a, b) => a.priceInUserCurrency - b.priceInUserCurrency;
+      // let descSorting = (a, b) => b.priceInUserCurrency - a.priceInUserCurrency;
+            
+      // return offers.sort(store.state.tradeType == 'Buy'? ascSorting : descSorting);
+
     return offers
   }
+  
+  static async getLocalBitcoinsOffers(tradeType, coin, paymentMethods) {
+    if (coin != 'BTC') return []
+    
+    // LocalBitcoins API doesn't enable CORS to use their API publicly for some stupid reason
+    // so we need to use proxy which adds CORS headers to allow our site fetch data from LocalBitcoins
+    const corsProxy = '/.netlify/functions/proxy-fetch/'
+    const apiBaseUrl = 'https://localbitcoins.com/'
+
+    let url = corsProxy + apiBaseUrl
+    url += tradeType == 'Buy' ? 'buy-bitcoins-online' : 'sell-bitcoins-online'
+    url += paymentMethods ? '' : ''
+    url += '/.json'
+
+    const response = await fetch(url)
+    //console.log(response)
+    const data = await response.json()
+    
+    const offers = []
+    for (const item of data.data.ad_list) {
+      const offer = new Offer()
+      offer.exchange.name = 'Local Bitcoins'
+      offer.tradeType = 'Buy'  
+      offer.coin = 'BTC'
+      offer.price.value = item.data.temp_price
+      offer.price.currency = item.data.currency
+      offer.tradingAmount.min = item.data.min_amount
+      offer.tradingAmount.max = item.data.max_amount_available
+      offer.paymentMethods.push(item.data.online_provider)
+      offer.trader.name = item.data.profile.username
+      offer.trader.totalTrades = item.data.profile.trade_count
+      offer.trader.rating = item.data.profile.feedback_score
+      offer.trader.country = item.data.countrycode
+      offer.trader.city = item.data.city
+      offer.url = item.actions.public_view
+      offers.push(offer)
+    }
+
+    return offers
+  }
+
 }
