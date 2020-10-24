@@ -49,7 +49,7 @@ import store from '@/store.js'
 import CurrencyService from './currency-service'
 
 export default {
-  name: 'SelectCurrencyButton',
+  name: 'UserCurrencySelector',
   data() {
     return {
       selectedCurrencyInModal: store.state.userCurrency,

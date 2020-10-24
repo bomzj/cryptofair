@@ -4,13 +4,13 @@
   <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
     <div class="px-6 py-4 whitespace-no-wrap w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/6">
       <a href="#" class="block text-xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
-      <p class="info-hint">Rating <span class="info-value">{{ offer.trader.rating }}</span>, Trades <span class="info-value">{{ offer.trader.trades }}</span></p>
+      <p class="info-hint">Total Trades <span class="info-value">{{ offer.trader.tradeCount }}</span></p>
       <p class="info-hint">Exchange <span class="info-value">{{ offer.exchange.name }}</span></p>
     </div>
     <div class="px-6 py-4 w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-2/6">
       <p class="info-hint mb-2">Trading Amount <span class="info-value inline-block">{{ formatTradingAmount(offer) }}</span></p>
       <div class="flex flex-row items-center" >
-        <div class="info-hint whitespace-no-wrap mr-2">Pay by</div><img v-for="method in offer.paymentMethods" :key="method" width="36" height="36" class="mr-1" :src="getPaymentLogoUrl(method)"/>
+        <div class="info-hint whitespace-no-wrap mr-2">Pay by</div><span v-for="method in offer.paymentMethods" :key="method" class="info-value mr-1">{{method}}</span>
       </div>
     </div>
     <div class="px-6 py-4 whitespace-no-wrap leading-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/4  xl:w-2/6">

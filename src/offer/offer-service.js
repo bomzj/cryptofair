@@ -77,7 +77,7 @@ export default class OfferService {
       offer.tradingAmount.max = item.data.max_amount_available
       offer.paymentMethods.push(item.data.online_provider)
       offer.trader.name = item.data.profile.username
-      offer.trader.totalTrades = item.data.profile.trade_count
+      offer.trader.tradeCount = parseInt(item.data.profile.trade_count)
       offer.trader.rating = item.data.profile.feedback_score
       offer.trader.country = item.data.countrycode
       offer.trader.city = item.data.city

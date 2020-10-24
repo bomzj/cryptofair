@@ -28,19 +28,19 @@
               Wallets
             </a>
           </div>
-          <SelectCurrencyButton />
+          <UserCurrencySelector />
         </div>
       </nav>
     </header>
 </template>
 
 <script>
-import SelectCurrencyButton from '@/currency/SelectCurrencyButton'
+import UserCurrencySelector from '@/currency/UserCurrencySelector'
 
 export default {
   name: 'Header',
   components: {
-    SelectCurrencyButton
+    UserCurrencySelector
   },
   data() {
     return {

@@ -23,7 +23,7 @@ export default class Offer {
   trader = { 
     name: null, 
     rating: null,
-    totalTrades: null,
+    tradeCount: null,
     country: null,
     city: null
   }
