@@ -37,23 +37,24 @@
 
 <script>
 import store from '@/store.js'
-import coins from '@/coin/coins.json'
+import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 
 export default {
-  name: 'CoinFilter',
+  name: 'CryptoFilter',
   data() {
     return {
       selectedCoinInModal: store.state.coin,
       searchQuery: '',
+      coins: CryptocurrencyService.getCryptocurrencies()
     }
   },
   computed: {
-    savedCoin: () => coins.find(c => c.symbol == store.state.coin).name,
+    savedCoin: () => CryptocurrencyService.getCryptocurrencies().find(c => c.symbol == store.state.coin).name,
     modalMaxHeight: () => window.innerHeight - 10
   },
   methods: {
     filterCoinList() {
-      return coins.filter(c => 
+      return CryptocurrencyService.getCryptocurrencies().filter(c => 
         c.name.toLowerCase().includes(this.searchQuery) ||
         c.symbol.toLowerCase().includes(this.searchQuery)
       );

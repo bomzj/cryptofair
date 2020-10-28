@@ -6,8 +6,6 @@ export default class CurrencyService {
   static pendingRequests = new Map()
   static currencyList = null
   static currencyRates = null
-  
-  static CurrencyRatesCacheKey = 'CurrencyRates'
 
   static async getUserCurrencyByGeolocation() {
     let response = await fetch('http://ip-api.com/json/?fields=country,currency')
@@ -31,34 +29,29 @@ export default class CurrencyService {
   }
 
   static async getCurrencyRates(baseCurrency) {
-    let requestName = this.CurrencyRatesCacheKey
+    let requestUrl = '/.netlify/functions/currency-rates?base=' + baseCurrency
     
-    let currencyRates = Cache.get(requestName)
+    let currencyRates = Cache.get(requestUrl)
     if (currencyRates) return currencyRates
 
-    // Avoid multiple fetch requests to API
-    let pendingRequest = this.pendingRequests.get(requestName)
-    if (!pendingRequest) {
-      pendingRequest = fetch('/.netlify/functions/currency-rates?base=' + baseCurrency)
-        .then(response => response.json())
+    // Avoid multiple fetch requests to the same API endpoint
+    let pendingRequest = this.pendingRequests.get(requestUrl)
+    if (pendingRequest) return pendingRequest
+    
+    pendingRequest = fetch(requestUrl).then(response => { 
+      currencyRates = response.json() 
       
-      this.pendingRequests.set(requestName, pendingRequest)
+      Cache.set(requestUrl, currencyRates)
       
-      console.log('fetching currency rates...')
-    }  
-    
-    currencyRates = await pendingRequest
-    
-    // Update cache once in case if multiple calls have been made to the method
-    if (!Cache.has(requestName)) {
-      Cache.set(requestName, currencyRates)
-      console.log('currency rates loaded.')
-    }
-    
-    // Remove this pending request once it's fulfilled
-    this.pendingRequests.delete(requestName)
+      // Remove this pending request once it's fulfilled
+      this.pendingRequests.delete(requestUrl)
 
-    return currencyRates
+      return currencyRates
+    })
+    
+    this.pendingRequests.set(requestUrl, pendingRequest)
+    
+    return pendingRequest
   }
 
   static async convertCurrency(amountFrom, currencyFrom, currencyTo) {

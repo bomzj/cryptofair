@@ -1,6 +1,7 @@
 import Offer from './offer'
 import store from '@/store'
 import CurrencyService from '@/currency/currency-service'
+import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 
 export default class OfferService {
   static offerProviders = [this.getLocalBitcoinsOffers]
@@ -12,6 +13,8 @@ export default class OfferService {
     let offers = await Promise.all(requests)
     offers = offers.flat()
     
+    let marketPrice = await CryptocurrencyService.getCryptocurrencyPriceByCode(coin, userCurrency)
+
     // Extend offers with additional information
     for (const offer of offers) {
       offer.priceInUserCurrency = await CurrencyService.convertCurrency(
@@ -28,6 +31,8 @@ export default class OfferService {
         offer.tradingAmount.max, 
         offer.price.currency, 
         store.state.userCurrency)
+
+      offer.priceChangeToMarket = (offer.priceInUserCurrency - marketPrice) * 100 / marketPrice
     }
 
     // Get all offers that match filters criteria

@@ -1,8 +1,13 @@
 <template>
-  <header class="bg-blue-800">
-      <nav class="container mx-auto flex items-center justify-between flex-wrap px-6 py-6">
+  <header class="container flex flex-wrap items-center mx-auto px-6 py-6 bg-gray-200">
+    <SiteLogo class="mr-6" />
+    <SiteShortDescription class="flex-grow mr-6" />
+    <CryptoMarketPrice class="mr-6"/>
+    <UserCurrencySelector />
+      
+      <!-- <nav class="container mx-auto flex items-center justify-between flex-wrap px-6 py-6">
         <div class="flex items-center flex-shrink-0 text-white mr-6">
-          <!-- <img src="../assets/btc-to-usd-white.svg" width="64" height="64" class="mr-2"/> -->
+          <img src="../assets/btc-to-usd-white.svg" width="64" height="64" class="mr-2"/>
           <a href="/" class="font-semibold text-xl tracking-tight inline-block">Cryptofair</a>
         </div>
         <div class="block sm:hidden">
@@ -30,17 +35,20 @@
           </div>
           <UserCurrencySelector />
         </div>
-      </nav>
+      </nav>  -->
     </header>
 </template>
 
 <script>
+import SiteLogo from '@/layout/SiteLogo'
+import SiteShortDescription from '@/layout/SiteShortDescription'
+import CryptoMarketPrice from '@/layout/CryptoMarketPrice'
 import UserCurrencySelector from '@/currency/UserCurrencySelector'
 
 export default {
   name: 'Header',
   components: {
-    UserCurrencySelector
+    SiteLogo, SiteShortDescription, CryptoMarketPrice, UserCurrencySelector
   },
   data() {
     return {

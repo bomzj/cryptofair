@@ -5,7 +5,7 @@ let cachedRates = []
 
 exports.handler = async function handler(event, context, callback) {
   const baseCurrency = event.queryStringParameters.base || "USD"
-  console.log('baseCurrency='+baseCurrency)
+  
   const sendResponse = rates => callback(null, {
     statusCode: 200,
     body: JSON.stringify(rates)

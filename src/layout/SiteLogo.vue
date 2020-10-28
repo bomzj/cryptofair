@@ -1,12 +1,12 @@
 <template>
-  <h1 class="text-4xl font-medium my-6 text-gray-700">The Best Prices to {{ state.tradeType }} {{ state.coin }}</h1>
+  <a href="/" class="inline-block text-4xl font-bold uppercase text-gray-700">Cryptofair</a>
 </template>
 
 <script>
 import store from '@/store.js'
 
 export default {
-  name: 'OfferPageTitle',
+  name: 'SiteLogo',
   data() {
     return {
       state: store.state

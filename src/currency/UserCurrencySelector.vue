@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="openModal" class="button-currency">
+    <button @click="openModal" class="filter filter-active">
       {{ savedCurrency }}
     </button>
     <v-modal :name="$options.name" :adaptive="true" width="700" :height="modalMaxHeight">
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import '@/filter/filters.css'
 import store from '@/store.js'
 import CurrencyService from './currency-service'
 

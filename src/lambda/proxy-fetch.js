@@ -1,3 +1,4 @@
+/* This lambda is useful in case if site's script can not request API due to CORS */
 import fetch from 'node-fetch'
 
 exports.handler = async function handler(event, context, callback) {
