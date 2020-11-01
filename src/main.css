@@ -11,21 +11,27 @@ input:focus, button:focus {
 }
 
 /* Make rounded borders for modals */
-.vm--modal.modal {
-  border-radius: 22px;
+.vm--modal {
+  /*border-radius: 22px;*/
+  border-radius: 0 !important;
 }
 
 .form-radio {
-  @apply w-6 h-6;
+  @apply w-6 h-6 bg-gray-200 border-gray-600;
+}
+
+.form-radio:checked {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23edf2f7' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
 }
 
 .form-checkbox {
-  @apply w-6 h-6;
+  @apply w-6 h-6 bg-gray-200 border-gray-600;
 }
 
 .search-input {
-  @apply px-10;
+  @apply px-10 border-gray-600;
   background: url('ui/search-icon.svg') no-repeat 12px;
+  border-radius: 0;
 } 
 
 .button {
@@ -33,7 +39,7 @@ input:focus, button:focus {
 }
 
 .button:hover {
-  @apply bg-gray-200;
+  @apply bg-gray-300;
 }
 
 .button-primary {

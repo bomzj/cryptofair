@@ -12,8 +12,7 @@ var store = new Vue({
         userCurrency: 'USD', 
         tradeType: 'Buy',
         coin: 'BTC',
-        paymentMethods: [],
-        cryptoPrice: null // TODO: Exclude this property from local storage
+        paymentMethods: []
       }
     }
   },

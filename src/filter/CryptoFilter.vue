@@ -4,16 +4,15 @@
       {{ savedCoin }}
     </button>
     <v-modal :name="$options.name" :adaptive="true" width="700" :height="modalMaxHeight">
-      <div class="flex flex-col h-full"> 
+      <div class="flex flex-col h-full bg-gray-200"> 
         <header class="px-8 py-5">
-          <h2 class="text-lg text-center font-semibold">Select Coin</h2>
-          <button class="float-right -mt-8 rounded-full hover:bg-gray-200" @click="closeModal">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 18 18"><path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>
+          <h2 class="text-xl text-center text-gray-700 font-semibold">Select cryptocurrency you want to {{ state.tradeType.toLowerCase() }}</h2>
+          <button class="float-right -mt-8 rounded-full hover:bg-gray-300" @click="closeModal">
+            <img src="@/ui/close-icon.svg" width="30" height="30" />
           </button>
         </header>
-        <!-- <hr> -->
         <div class="flex items-center px-8 py-5">
-          <input class="form-input block w-full search-input outline-none" v-model="searchQuery" placeholder="Search Coin by Name or Symbol">
+          <input class="form-input block w-full search-input outline-none" v-model="searchQuery" placeholder="Search crypto by name or symbol">
           <button class="-ml-8" @click="clearSearchQuery">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 18"><path fill="#a0aec0" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>
           </button>
@@ -28,7 +27,7 @@
         
         <footer class="flex justify-end px-8 py-5">
           <button class="button mr-4" @click="closeModal">Cancel</button>
-          <button class="button button-primary" @click="onApply">Apply</button>
+          <button class="button button-primary" @click="applyChanges">Apply</button>
         </footer>
       </div>
     </v-modal> 
@@ -43,6 +42,7 @@ export default {
   name: 'CryptoFilter',
   data() {
     return {
+      state: store.state,
       selectedCoinInModal: store.state.coin,
       searchQuery: '',
       coins: CryptocurrencyService.getCryptocurrencies()
@@ -50,7 +50,7 @@ export default {
   },
   computed: {
     savedCoin: () => CryptocurrencyService.getCryptocurrencies().find(c => c.symbol == store.state.coin).name,
-    modalMaxHeight: () => window.innerHeight - 10
+    modalMaxHeight: () => window.innerHeight// - 10
   },
   methods: {
     filterCoinList() {
@@ -69,7 +69,7 @@ export default {
     closeModal() {
       this.$modal.hide(this.$options.name);
     },
-    onApply() {
+    applyChanges() {
       store.state.coin = this.selectedCoinInModal;
       this.closeModal();
     }
