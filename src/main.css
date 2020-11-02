@@ -17,7 +17,7 @@ input:focus, button:focus {
 }
 
 .form-radio {
-  @apply w-6 h-6 bg-gray-200 border-gray-600;
+  @apply w-6 h-6 bg-gray-200 border-gray-500;
 }
 
 .form-radio:checked {
@@ -25,11 +25,11 @@ input:focus, button:focus {
 }
 
 .form-checkbox {
-  @apply w-6 h-6 bg-gray-200 border-gray-600;
+  @apply w-6 h-6 bg-gray-200 border-gray-500;
 }
 
 .search-input {
-  @apply px-10 border-gray-600;
+  @apply px-10 border-gray-500;
   background: url('ui/search-icon.svg') no-repeat 12px;
   border-radius: 0;
 } 

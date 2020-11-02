@@ -38,7 +38,6 @@ export default {
       this.$modal.hide(this.id);
     },
     applyChanges() {
-      this.$emit('apply-changes')
       this.close();
     }
   }
