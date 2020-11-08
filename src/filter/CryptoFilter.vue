@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="$refs.modal.show()" class="filter filter-active">
-      {{ selectedCryptoName }}
+      {{ title }}
     </button>
     <Modal ref="modal" 
            :id="$options.name" 
@@ -11,12 +11,12 @@
       <SearchBox placeholder="Search crypto by name or symbol" 
                  @change="$refs.dataList.filterList($event)" />
       
-      <RadioButtonDataList ref="dataList"
+      <SingleSelectList ref="dataList"
                            :data-source="getCryptos()"
                            item-id-prop="symbol"
                            item-name-prop="name"
                            :selected-item-id="state.coin" 
-                           @change="selectedCryptoIdInModal = $event"/>
+                           @change="selectedCryptoId = $event"/>
     </Modal>
   </div>
 </template>
@@ -25,27 +25,27 @@
 import store from '@/store.js'
 import Modal from '@/ui/Modal'
 import SearchBox from '@/ui/SearchBox'
-import RadioButtonDataList from '@/ui/RadioButtonDataList'
+import SingleSelectList from '@/ui/SingleSelectList'
 import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 
 export default {
   name: 'CryptoFilter',
-  components: { Modal, SearchBox, RadioButtonDataList },
+  components: { Modal, SearchBox, SingleSelectList },
   data() {
     return {
       state: store.state,
-      selectedCryptoIdInModal: store.state.coin,
+      selectedCryptoId: store.state.coin,
     }
   },
   computed: {
-    selectedCryptoName: () => CryptocurrencyService.getCryptocurrencyNameBy(store.state.coin)
+    title: () => CryptocurrencyService.getCryptocurrencyNameBy(store.state.coin)
   },
   methods: {
     getCryptos() { 
       return CryptocurrencyService.getCryptocurrencies() 
     },
     onApplyChanges() {
-      store.state.coin = this.selectedCryptoIdInModal;
+      store.state.coin = this.selectedCryptoId;
     },
   }
 }

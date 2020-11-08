@@ -3,7 +3,7 @@
     <label v-for="item in filteredDataSource" :key="item[itemIdProp]" class="flex items-center w-full sm:w-1/3 mb-6">
       <input type="radio" 
              class="form-radio" 
-             v-model="itemId" 
+             v-model="selected" 
              :value="item[itemIdProp]"
              @change="$emit('change', $event.target.value)">
       <span class="text-lg ml-2">
@@ -16,11 +16,14 @@
 
 <script>
 export default {
-  name: 'RadioButtonDataList',
-  props: ['data-source', 'item-id-prop', 'item-name-prop', 'selected-item-id'],
+  name: 'SingleSelectList',
+  props: ['data-source', 
+          'item-id-prop', 
+          'item-name-prop', 
+          'selected-item-id'],
   data() {
     return {
-      itemId: this.selectedItemId,
+      selected: this.selectedItemId,
       filteredDataSource: this.dataSource
     }
   },
