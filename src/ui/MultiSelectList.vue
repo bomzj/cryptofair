@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap flex-grow content-start overflow-auto px-8 py-5">
-    <label v-for="item in $data._items" 
+    <label v-for="item in itemList" 
            :key="item" 
            class="flex items-center w-full sm:w-1/3 mb-6">
       <input type="checkbox" 
@@ -22,12 +22,15 @@ export default {
   data() {
     return {
       selected: this.selectedItemIds,
-      _items: this.items
+      itemList: this.items
     }
   },
   methods: {
     setItems(items) {
-      this.$data._items = items
+      this.itemList = items
+    },
+    selectItems(itemIds) {
+      this.selected = itemIds
     }
   }
 }
