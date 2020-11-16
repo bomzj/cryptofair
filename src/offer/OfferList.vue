@@ -77,6 +77,7 @@ export default {
       this.offers = await OfferService.getOffers(store.state.tradeType, 
                                                 store.state.coin, 
                                                 store.state.paymentMethods,
+                                                store.state.countryCode,
                                                 store.state.userCurrency)
       this.isLoading = false
     },

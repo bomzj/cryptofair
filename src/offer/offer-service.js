@@ -3,13 +3,14 @@ import store from '@/store'
 import CurrencyService from '@/currency/currency-service'
 import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 import PaymentMethodService from './payment-method-service'
+import LocationService from '../location-service'
 
 export default class OfferService {
   static offerProviders = [this.getLocalBitcoinsOffers]
   
-  static async getOffers(tradeType, coin, paymentMethods, userCurrency) {
+  static async getOffers(tradeType, coin, paymentMethods, countryCode, userCurrency) {
     const requests = this.offerProviders.map(i => 
-                                             i(tradeType, coin, paymentMethods))
+                                             i(tradeType, coin, paymentMethods, countryCode))
     
     let offers = await Promise.all(requests)
     offers = offers.flat()
@@ -54,7 +55,7 @@ export default class OfferService {
     return offers
   }
   
-  static async getLocalBitcoinsOffers(tradeType, coin, paymentMethods) {
+  static async getLocalBitcoinsOffers(tradeType, coin, paymentMethods, countryCode) {
     if (coin != 'BTC') return []
         
     // LocalBitcoins API doesn't enable CORS to use their API publicly for some stupid reason
@@ -70,6 +71,15 @@ export default class OfferService {
     // LocalBitcoins API supports only single payment method per request,
     // that's why we have to send multiple requests based on count of payment methods
     let requestUrls = Array(localBitcoinsPaymentMethods.length || 1).fill(baseUrl)
+
+    // Append country filter if needed
+    if (countryCode) {
+      let countryName = await LocationService.getCountryName(countryCode)
+      requestUrls.forEach((url, i) => 
+                          requestUrls[i] += `/${countryCode}/${countryName}`)
+    }
+
+    // Append payment method if needed
     localBitcoinsPaymentMethods.forEach((method, i) => requestUrls[i] += `/${method}`)
     
     requestUrls.forEach((value, i) => requestUrls[i] += `/.json`)

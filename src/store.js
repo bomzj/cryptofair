@@ -12,7 +12,8 @@ var store = new Vue({
         userCurrency: 'USD', 
         tradeType: 'Buy',
         coin: 'BTC',
-        paymentMethods: []
+        paymentMethods: [],
+        countryCode: ''
       }
     }
   },
