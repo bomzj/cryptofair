@@ -29,8 +29,8 @@ export default {
     setItems(items) {
       this.itemList = items
     },
-    selectItems(itemIds) {
-      this.selected = itemIds
+    selectItem(itemId) {
+      this.selected = itemId
     }
   }
 }

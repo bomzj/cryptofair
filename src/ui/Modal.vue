@@ -32,9 +32,11 @@ export default {
   },
   methods: {
    show() {
+     this.$emit('show')
       this.$modal.show(this.id)
     },
     close() {
+      this.$emit('close')
       this.$modal.hide(this.id);
     },
     applyChanges() {

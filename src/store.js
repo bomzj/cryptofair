@@ -18,29 +18,29 @@ var store = new Vue({
     }
   },
   created() {
-    this.loadState();
+    this.loadState()
   },
   // Track all state changes and save to local storage
 	watch: {
 		state: {
-			handler () {
-				this.saveState();
+			handler() {
+				this.saveState()
 			},
 			deep: true
     }
   },
   methods: {
     saveState() {
-			var json = JSON.stringify(this.state);
-			localStorage.setItem("store", json);
+			var json = JSON.stringify(this.state)
+			localStorage.setItem("store", json)
 		},
 		loadState() {
-			var json = localStorage.getItem("store");
+			var json = localStorage.getItem("store")
 			if (json) {
-				this.state = JSON.parse(json);
+				this.state = { ...this.state, ...JSON.parse(json) }
       }
     }
   }
-});
+})
 
-export default store;
+export default store
