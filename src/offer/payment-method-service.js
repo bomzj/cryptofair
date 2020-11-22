@@ -1,3 +1,6 @@
+import getHttpClient from '@/http-client'
+const http = getHttpClient(24 * 60 * 60)
+
 export default class PaymentMethodService {
   static paymentMethodProviders = [this.getLocalBitcoinsPaymentMethods]
   static paymentMethodMapping = new Map()
@@ -40,10 +43,9 @@ export default class PaymentMethodService {
     const apiUrl = 'https://localbitcoins.com/api/payment_methods/'
     let url = corsProxy + apiUrl
     
-    const response = await fetch(url)
-    const data = await response.json()
-    
-    for (const [key, value] of Object.entries(data.data.methods)) {
+    let response = await http(url)
+        
+    for (const [key, value] of Object.entries(response.data.data.methods)) {
       this.paymentMethodMapping.set(value.name, { localbitcoins: key })
     }
 

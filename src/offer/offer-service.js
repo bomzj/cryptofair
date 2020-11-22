@@ -4,6 +4,8 @@ import CurrencyService from '@/currency/currency-service'
 import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 import PaymentMethodService from './payment-method-service'
 import LocationService from '../location-service'
+import getHttpClient from '@/http-client'
+const http = getHttpClient(5 * 60)
 
 export default class OfferService {
   static offerProviders = [this.getLocalBitcoinsOffers]
@@ -84,10 +86,10 @@ export default class OfferService {
     
     requestUrls.forEach((value, i) => requestUrls[i] += `/.json`)
     
-    let pendingResponses = requestUrls.map(url => fetch(url))
+    let pendingResponses = requestUrls.map(http)
 
     const responses = await Promise.all(pendingResponses)
-    let dataList = await Promise.all(responses.map(r => r.json()))
+    let dataList = responses.map(r => r.data)
 
     const offers = []
     for (const data of dataList) {

@@ -1,15 +1,11 @@
 import _currencies from './currencies.json'
-import Cache from '@/cache'
+import getHttpClient from '@/http-client'
+const http = getHttpClient(12 * 60 * 60)
 
 export default class CurrencyService {
-  /** Is used to prevent multiple fetch requests if a resource is already being fetched */
-  static pendingRequests = new Map()
-  static currencyList = null
-  static currencyRates = null
-
   static async getUserCurrencyByGeolocation() {
-    let response = await fetch('http://ip-api.com/json/?fields=country,currency')
-    let { currency } = await response.json()
+    let response = await http('http://ip-api.com/json/?fields=country,currency')
+    let { currency } = response.data
     return this.getCurrencies().find(i => i.code == currency)
   }
 
@@ -24,38 +20,17 @@ export default class CurrencyService {
 
   static async getConvertibleCurrencies() {
     // Filter all available currencies by currency rates data to get convertibles ones
-    let [currencies, currencyRates] = await Promise.all([this.getCurrencies(), this.getCurrencyRates()])
+    let [currencies, currencyRates] = await Promise.all([this.getCurrencies(), this.getCurrencyRates('USD')])
     return currencies.filter(c => currencyRates.hasOwnProperty(c.code))
   }
 
   static async getCurrencyRates(baseCurrency) {
-    let requestUrl = '/.netlify/functions/currency-rates?base=' + baseCurrency
-    
-    let currencyRates = Cache.get(requestUrl)
-    if (currencyRates) return currencyRates
-
-    // Avoid multiple fetch requests to the same API endpoint
-    let pendingRequest = this.pendingRequests.get(requestUrl)
-    if (pendingRequest) return pendingRequest
-    
-    pendingRequest = fetch(requestUrl).then(response => { 
-      currencyRates = response.json() 
-      
-      Cache.set(requestUrl, currencyRates)
-      
-      // Remove this pending request once it's fulfilled
-      this.pendingRequests.delete(requestUrl)
-
-      return currencyRates
-    })
-    
-    this.pendingRequests.set(requestUrl, pendingRequest)
-    
-    return pendingRequest
+    let response = await http('/.netlify/functions/currency-rates?base=' + baseCurrency)
+    return response.data
   }
 
   static async convertCurrency(amountFrom, currencyFrom, currencyTo) {
-    let rates = Cache.get(this.CurrencyRatesCacheKey) || await this.getCurrencyRates('USD')
+    let rates = await this.getCurrencyRates('USD')
     let from = rates[currencyFrom]
     let to = rates[currencyTo]
     return amountFrom / from * to
