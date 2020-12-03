@@ -75,10 +75,12 @@ export default {
       this.isLoading = true
 
       this.offers = await OfferService.getOffers(store.state.tradeType, 
-                                                store.state.coin, 
-                                                store.state.paymentMethods,
-                                                store.state.countryCode,
-                                                store.state.userCurrency)
+                                                 store.state.coin, 
+                                                 store.state.paymentMethods,
+                                                 store.state.countryCode,
+                                                 store.state.userCurrency,
+                                                 store.state.tradeAmount,
+                                                 store.state.hideNewTraders)
       this.isLoading = false
     },
     formatPriceInUserCurrency(offer) {

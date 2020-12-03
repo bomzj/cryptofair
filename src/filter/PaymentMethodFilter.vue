@@ -53,9 +53,9 @@
 <script>
 import store from '@/store'
 import Modal from '@/ui/Modal'
-import SearchBox from '@/ui/SearchBox'
-import MultiSelectList from '@/ui/MultiSelectList'
-import SimpleListItem from '@/ui/SimpleListItem'
+import SearchBox from '@/ui/SearchBox.vue'
+import MultiSelectList from '@/ui/MultiSelectList.vue'
+import SimpleListItem from '@/ui/SimpleListItem.vue'
 import PaymentMethodService from '@/offer/payment-method-service'
 
 export default {

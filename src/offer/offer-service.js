@@ -10,9 +10,15 @@ const http = getHttpClient(5 * 60)
 export default class OfferService {
   static offerProviders = [this.getLocalBitcoinsOffers]
   
-  static async getOffers(tradeType, coin, paymentMethods, countryCode, userCurrency) {
+  static async getOffers(tradeType, 
+                         coin, 
+                         paymentMethods, 
+                         countryCode, 
+                         userCurrency, 
+                         tradeAmount, 
+                         hideNewTraders) {
     const requests = this.offerProviders.map(i => 
-                                             i(tradeType, coin, paymentMethods, countryCode))
+      i(tradeType, coin, paymentMethods, countryCode, tradeAmount, hideNewTraders))
     
     let offers = await Promise.all(requests)
     offers = offers.flat()
@@ -39,6 +45,20 @@ export default class OfferService {
       offer.priceChangeToMarket = (offer.priceInUserCurrency - marketPrice) * 100 / marketPrice
     }
 
+    // Apply some filters that can not be done via API
+    let tempOffers = [...offers]
+    offers = []
+    for (let offer of tempOffers) {
+      if (tradeAmount && 
+          (tradeAmount < offer.tradingAmount.min ||
+          tradeAmount > offer.tradingAmount.max)) continue
+
+      if (hideNewTraders && !offer.trader.tradeCount) continue
+
+      offers.push(offer)
+    }
+
+
     // Get all offers that match filters criteria
     // let offers = this.offers.filter(
     //   o => o.tradeType !=  store.state.tradeType &&
@@ -57,7 +77,12 @@ export default class OfferService {
     return offers
   }
   
-  static async getLocalBitcoinsOffers(tradeType, coin, paymentMethods, countryCode) {
+  static async getLocalBitcoinsOffers(tradeType, 
+                                      coin, 
+                                      paymentMethods, 
+                                      countryCode, 
+                                      tradeAmount, 
+                                      hideNewTraders) {
     if (coin != 'BTC') return []
         
     // LocalBitcoins API doesn't enable CORS to use their API publicly for some stupid reason

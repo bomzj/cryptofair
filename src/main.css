@@ -31,10 +31,15 @@ input:focus, button:focus {
 .form-checkbox:checked {
   background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23edf2f7' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
 }
-.search-input {
-  @apply px-10 border-gray-500;
-  background: url('ui/search-icon.svg') no-repeat 12px;
+
+.form-input {
+  @apply bg-gray-200 border-gray-500 ;
   border-radius: 0;
+}
+
+.search-input {
+  @apply px-10;
+  background: url('ui/search-icon.svg') no-repeat 12px;
 } 
 
 .button {
@@ -59,4 +64,10 @@ input:focus, button:focus {
 
 .button-outline-primary:hover {
   @apply bg-blue-500 text-white;
+}
+
+.clear-icon {
+  @apply w-5 h-5 bg-gray-500;
+  mask: url(ui/close-icon.svg) no-repeat center;
+  mask-size: 20px;   
 }
