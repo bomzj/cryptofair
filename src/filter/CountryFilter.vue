@@ -12,7 +12,7 @@
         <SearchBox placeholder="Search country by name or code" 
                    @change="onSearchQueryChange" />
         <TagList ref="tagList" 
-                 :items="selectedCountryCode ? [selectedCountryCode] : []" 
+                 :items="getSelectedCountryAsTag()" 
                  @update:items="onTagListUpdate" />
         <SingleSelectList ref="selectList"
                           v-slot="{ item }"
@@ -48,7 +48,7 @@ export default {
   },
   computed: {
     title() { 
-      const countryName = this.countries?.find(c => c.code == store.state.countryCode)?.name
+      const countryName = LocationService.getCountryName(store.state.countryCode)
       return countryName || 'Country'
     },
     hasSelection: () => store.state.countryCode
@@ -60,6 +60,12 @@ export default {
     this.countries = await LocationService.getCountries()
   },
   methods: {
+    getSelectedCountryAsTag() {
+      return this.selectedCountryCode ? 
+             [{ id: this.selectedCountryCode, 
+                name: LocationService.getCountryName(this.selectedCountryCode) }] 
+             : []
+    },
     onModalClose() {
       this.selectedCountryCode = store.state.countryCode
     },
@@ -76,7 +82,7 @@ export default {
     },
     onSelectListUpdate(selectedItemId) {
       this.selectedCountryCode = selectedItemId
-      this.$refs.tagList.setItems([this.selectedCountryCode])
+      this.$refs.tagList.setItems(this.getSelectedCountryAsTag())
     },
     applyChanges() {
       store.state.countryCode = this.selectedCountryCode

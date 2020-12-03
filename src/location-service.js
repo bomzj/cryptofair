@@ -11,12 +11,12 @@ export default class LocationService {
     return responses[1].find(c => c.code == userCountryCode)
   }
   
-  static async getCountries() {
+  static getCountries() {
     //https://raw.githubusercontent.com/umpirsky/country-list/master/data/en/country.json
     return Object.entries(countries).map(([k, v]) => ({ name: v, code: k }))
   }
 
-  static async getCountryName(code) {
-    return (await this.getCountries()).find(c => c.code == code)?.name
+  static getCountryName(code) {
+    return this.getCountries().find(c => c.code == code)?.name
   }
 }
