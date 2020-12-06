@@ -1,4 +1,5 @@
 module.exports = {
+	purge: ['./src/**/*.{vue,js,ts,jsx,tsx}'],
 	corePlugins: {
     outline: false,
     boxShadow: false,
