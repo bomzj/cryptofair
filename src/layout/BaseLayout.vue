@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-200">
+  <div id="app" class="bg-gray-200 overflow-auto">
     <Header />
     <main>
       <slot></slot>
@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Header from '@/layout/Header'
-import Footer from '@/layout/Footer'
+import Header from '@/layout/Header.vue'
+import Footer from '@/layout/Footer.vue'
 
 export default {
   name: 'BaseLayout',
