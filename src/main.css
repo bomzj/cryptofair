@@ -1,8 +1,13 @@
-@import "tailwindcss/base";
-
+/* @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "tailwindcss/utilities"; */
+/* Due to a bug in Chromium, it's important that you include the weird comment '! @import' to avoid performance issues in Chrome DevTools during development */
+/*! @import */ 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@import "tailwindcss/utilities";
+/* @import "tailwindcss"; */
 
 /* Disable input outlining globally */
 input:focus, button:focus {
