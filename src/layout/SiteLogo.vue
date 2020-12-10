@@ -1,5 +1,5 @@
 <template>
-  <a href="/" class="inline-block text-4xl font-bold uppercase text-gray-700">Cryptofair</a>
+  <a href="/" class="inline-block text-4xl lg:text-4xl 2xl:text-6xl font-bold uppercase text-gray-700">Cryptofair</a>
 </template>
 
 <script>

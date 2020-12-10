@@ -1,10 +1,12 @@
 <template>
-  <div id="app" class="bg-gray-200 overflow-auto">
-    <Header />
-    <main>
-      <slot></slot>
-    </main>
-    <Footer />
+  <div id="app" class="bg-gray-200">
+    <div class="lg:container mx-auto overflow-auto">
+      <Header />
+      <main>
+        <slot></slot>
+      </main>
+      <Footer />
+    </div>
   </div>
 </template>
 

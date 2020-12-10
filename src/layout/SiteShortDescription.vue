@@ -1,5 +1,5 @@
 <template>
-  <div class="text-md text-gray-600">
+  <div class="text-base lg:text-lg 2xl:text-3xl text-gray-600">
     <h1>Peer-to-Peer Cryptocurrency Exchange Aggregator</h1>
     <h2>The best prices to {{ state.tradeType.toLowerCase() }} {{ getCryptocurrencyName(state.coin) }} without KYC</h2>
   </div>

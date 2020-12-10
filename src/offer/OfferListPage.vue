@@ -1,6 +1,6 @@
 <template>
   <BaseLayout>
-    <div class="container flex flex-col mx-auto px-6">
+    <div class="flex flex-col mx-auto px-6">
       <Filters class="m-3" />
       <OfferList class="mb-6"/>
     </div>

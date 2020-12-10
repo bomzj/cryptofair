@@ -1,5 +1,5 @@
 <template>
-  <footer class="container m-8">
+  <footer class="m-8">
     <div class="flex flex-col items-center ">
       <h1 class="text-4xl font-medium text-center text-gray-700">
         All the best cryptocurrency prices directly from real people all around the world in one place!
