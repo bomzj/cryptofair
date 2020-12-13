@@ -1,10 +1,10 @@
 <template>
-  <v-modal :name="id" :adaptive="true" width="700" :height="modalMaxHeight">
-    <div class="flex flex-col h-full bg-gray-200"> 
-      <header class="px-8 py-5">
-        <h2 class="text-xl text-center text-gray-700 font-semibold">{{ title }}</h2>
-        <button class="float-right -mt-8 rounded-full hover:bg-gray-300" @click="close">
-          <img src="@/ui/close-icon.svg" width="30" height="30" />
+  <v-modal :name="id" width="100%" :height="modalMaxHeight">
+    <div class="flex flex-col h-full lg:container mx-auto bg-gray-200"> 
+      <header class="flex px-8 py-5">
+        <h2 class="flex-grow text-xl lg:text-2xl 2xl:text-4xl text-center text-gray-700 font-semibold ml-8 lg:ml-10 2xl:ml-12">{{ title }}</h2>
+        <button class="rounded-full hover:bg-gray-300 " @click="close">
+          <img src="@/ui/close-icon.svg" class="w-8 h-8 lg:w-10 lg:h-10 2xl:w-12 2xl:h-12" />
         </button>
       </header>
       <slot></slot>
@@ -28,7 +28,8 @@ export default {
     }
   },
   computed: {
-    modalMaxHeight: () => window.innerHeight
+    modalMaxHeight: () => window.innerHeight,
+    modalMaxWidth: () => document.body.clientWidth
   },
   methods: {
    show() {

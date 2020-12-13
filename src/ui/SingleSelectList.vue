@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-wrap flex-grow content-start overflow-auto px-8 py-5">
+  <div class="flex flex-col sm:flex-row sm:flex-wrap flex-grow content-start overflow-auto px-8 py-5">
     <label v-for="item in itemList" 
            :key="itemIdProp ? item[itemIdProp] : item" 
-           class="flex items-center w-full sm:w-1/3 mb-6">
+           class="flex items-center sm:w-1/2 lg:w-1/3 mb-6 lg:mb-8 2xl:mb-10">
       <input type="radio" 
               class="form-radio" 
               v-model="selected" 

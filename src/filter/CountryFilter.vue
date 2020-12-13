@@ -20,7 +20,7 @@
                           item-id-prop="code"
                           :selected-item-id="selectedCountryCode" 
                           @change="onSelectListUpdate">
-          <span class="text-lg ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.code }}</sup></span>
+          <span class="text-lg lg:text-2xl 2xl:text-3xl ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.code }}</sup></span>
         </SingleSelectList>
       </template>
       <img v-else src="@/ui/spinner.svg" class="w-24 mx-auto"/>

@@ -3,19 +3,29 @@ import getHttpClient from '@/http-client'
 const http = getHttpClient(12 * 60 * 60)
 
 export default class CurrencyService {
-  static async getUserCurrencyByGeolocation() {
+  static currencies = undefined
+
+  static async detectUserCurrency() {
     let response = await http('http://ip-api.com/json/?fields=country,currency')
     let { currency } = response.data
     return this.getCurrencies().find(i => i.code == currency)
   }
 
   static getCurrencies() {
-    let currencyNames = new Intl.DisplayNames(['en'], {type: 'currency'});
-    let currencyCodes = Object.keys(_currencies)
-    let currencies = currencyCodes.map(i =>({name: currencyNames.of(i), code: i}))
+    if (this.currencies) return this.currencies
+    
+    //let currencyNames = new Intl.DisplayNames(['en'], {type: 'currency'});
+    let currencyCodes = Object.entries(_currencies)
+    let currencies = currencyCodes.map(([k, v]) =>({name: v, code: k}))
     
     // sort alphabetically by currency name
-    return currencies.sort((a, b) => a.name.localeCompare(b.name)) 
+    this.currencies = currencies.sort((a, b) => a.name.localeCompare(b.name)) 
+    
+    return this.currencies
+  }
+
+  static getCurrency(code) {
+    return this.currencies.find(c => c.code == code)
   }
 
   static async getConvertibleCurrencies() {
