@@ -44,9 +44,10 @@ export default {
   methods: {
     async updatePrice() {
       this.isLoading = true
-      let price = await CryptocurrencyService.getCryptocurrencyPriceByCode(this.state.coin, this.state.userCurrency)
+      let priceInUSD = await CryptocurrencyService.getCryptocurrencyPriceByCode(this.state.coin, 'USD')
+      let priceInUserCurrency = await CurrencyService.convertCurrency(priceInUSD, 'USD', this.state.userCurrency)
       // TODO: Create global price vue filter or mixin
-      this.cryptoPrice = CurrencyService.formatPrice(price, this.state.userCurrency)
+      this.cryptoPrice = CurrencyService.formatPrice(priceInUserCurrency, this.state.userCurrency)
       this.isLoading = false
     }
   }
