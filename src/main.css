@@ -84,3 +84,26 @@ input:focus, button:focus {
   mask: url(ui/close-icon.svg) no-repeat center;
   /*mask-size: 20px;   */
 }
+
+
+/* Custom scrollbar for all browsers except Firefox. Firefox can be styled a bit differently. */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  @apply bg-gray-200;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500;
+  
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-600;
+}
