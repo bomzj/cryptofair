@@ -25,9 +25,9 @@
 
 <script>
 import store from '@/store.js'
-import Modal from '@/ui/Modal'
-import SearchBox from '@/ui/SearchBox'
-import SingleSelectList from '@/ui/SingleSelectList'
+import Modal from '@/ui/Modal.vue'
+import SearchBox from '@/ui/SearchBox.vue'
+import SingleSelectList from '@/ui/SingleSelectList.vue'
 import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 
 export default {
