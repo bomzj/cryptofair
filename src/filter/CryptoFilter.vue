@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$refs.modal.show()" class="filter filter-active">
+    <button @click="showModal" class="filter filter-active">
       {{ title }}
     </button>
     <Modal ref="modal" 
@@ -9,14 +9,16 @@
            @apply-changes="onApplyChanges">
       
       <SearchBox placeholder="Search crypto by name or symbol" 
-                 @change="$refs.dataList.filterList($event)" />
+                 @change="onSearchQueryChange" />
       
-      <SingleSelectList ref="dataList"
-                           :data-source="getCryptos()"
-                           item-id-prop="symbol"
-                           item-name-prop="name"
-                           :selected-item-id="state.coin" 
-                           @change="selectedCryptoId = $event"/>
+      <SingleSelectList ref="selectList"
+                          v-slot="{ item }"
+                          :items="items"
+                          item-id-prop="symbol"
+                          :selected-item-id="selectedItemId" 
+                          @change="onSelectListUpdate">
+          <span class="text-lg lg:text-2xl 2xl:text-3xl ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.symbol }}</sup></span>
+        </SingleSelectList>
     </Modal>
   </div>
 </template>
@@ -34,18 +36,30 @@ export default {
   data() {
     return {
       state: store.state,
-      selectedCryptoId: store.state.coin,
+      selectedItemId: undefined,
     }
   },
   computed: {
-    title: () => CryptocurrencyService.getCryptocurrencyNameBy(store.state.coin)
+    title: () => CryptocurrencyService.getCryptocurrencyNameBy(store.state.coin),
+    items: () => { console.log('coins'); return CryptocurrencyService.getCryptocurrencies()}
   },
   methods: {
-    getCryptos() { 
-      return CryptocurrencyService.getCryptocurrencies() 
+    showModal() {
+      this.selectedItemId = store.state.coin;
+      this.$refs.modal.show()
+    },
+    onSearchQueryChange(searchQuery) {
+      searchQuery = searchQuery?.toLowerCase()
+      let items = this.items.filter(i => 
+                                    i.name.toLowerCase().includes(searchQuery) ||
+                                    i.symbol.toLowerCase().includes(searchQuery))
+      this.$refs.selectList.setItems(items)
+    },
+    onSelectListUpdate(selectedItemId) {
+      this.selectedItemId = selectedItemId
     },
     onApplyChanges() {
-      store.state.coin = this.selectedCryptoId;
+      store.state.coin = this.selectedItemId;
     },
   }
 }
