@@ -111,8 +111,7 @@ export default class OfferService {
     
     requestUrls.forEach((value, i) => requestUrls[i] += `/.json`)
     
-    let pendingResponses = requestUrls.map(http)
-
+    let pendingResponses = requestUrls.map(url => http(url))
     const responses = await Promise.all(pendingResponses)
     let dataList = responses.map(r => r.data)
 
