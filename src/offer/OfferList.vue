@@ -30,7 +30,7 @@
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>
   </div>
-  <p v-show="!isLoading && !offers.count" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found! Try to change filters.</p>
+  <p v-show="!isLoading && !offers.length" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found! Try to change filters.</p>
 </div>
 </template>
 
