@@ -8,21 +8,23 @@
       <p class="info-hint">Exchange <span class="info-value">{{ offer.exchange.name }}</span></p>
     </div>
     <div class="px-6 py-4 w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-2/6">
-      <p class="info-hint">Trading Amount <span class="info-value inline-block">{{ formatTradingAmount(offer) }}</span></p>
       <div class="flex flex-row items-center" >
-        <div class="info-hint whitespace-no-wrap mr-2">Pay by</div><span v-for="method in offer.paymentMethods" :key="method" class="info-value mr-1">{{method}}</span>
+        <div class="info-hint whitespace-no-wrap mr-2">Pay by</div>
+          <span v-for="method in offer.paymentMethods" :key="method" class="info-value p-1 rounded text-white bg-gray-600 mr-1">{{method}}</span>
       </div>
+      <p class="info-hint">Trading Amount <span class="info-value inline-block">{{ formatTradingAmount(offer) }}</span></p>
+      
     </div>
     <div class="px-6 py-4 whitespace-no-wrap leading-5 w-full sm:w-1/2 md:w-1/2 lg:w-1/4  xl:w-2/6">
       <div class="flex flex-col font-medium">
-        <p class="text-2xl">{{ formatPriceInUserCurrency(offer) }} <span class="info-hint font-normal">per coin</span></p> 
+        <p class="text-2xl">{{ offer.priceInUserCurrency | currency }} <span class="info-hint font-normal">per coin</span></p> 
         <p class="info-hint mt-1">
           <span v-if="state.tradeType == 'Buy'" :class="[offer.priceChangeToMarket >= 0 ? 'text-red-500' : 'text-green-500']">{{ Math.abs(offer.priceChangeToMarket).toFixed(1) }}% </span> 
           <span v-else :class="[offer.priceChangeToMarket >= 0 ? 'text-green-500' : 'text-red-500']">{{ Math.abs(offer.priceChangeToMarket).toFixed(1) }}% </span> 
           <span v-if="offer.priceChangeToMarket >= 0">above market</span>
           <span v-else>below market</span>
         </p>
-        <p v-if="state.userCurrency != offer.price.currency" class="mt-1 info-hint font-normal">Original Price <span class="info-value">{{ formatOriginalPrice(offer) }}</span></p>
+        <p v-if="state.userCurrency != offer.price.currency" class="mt-1 info-hint font-normal">Original Price <span class="info-value">{{ offer.price.value | price }}</span></p>
       </div>
     </div>
     <div class="px-6 py-4 leading-5 font-medium">
@@ -56,12 +58,6 @@ export default {
 			deep: true
     }
   },
-  filters: {
-    // price: function (offer) {
-      
-    // },
-
-  },
   created() {
     this.updateOffers()
   },
@@ -84,14 +80,11 @@ export default {
                                                  store.state.hideNewTraders)
       this.isLoading = false
     },
-    formatPriceInUserCurrency(offer) {
-      return CurrencyService.formatPrice(offer.priceInUserCurrency, store.state.userCurrency)
-    },
-    formatOriginalPrice(offer) {
-      return CurrencyService.formatPrice(offer.price.value, offer.price.currency)
-    },
     formatTradingAmount(offer) {
-      return `${CurrencyService.formatPrice(offer.tradingAmount.min, store.state.userCurrency)} - ${CurrencyService.formatPrice(offer.tradingAmount.max, store.state.userCurrency)}`
+      let currency = this.$options.filters.currency
+      return currency(offer.tradingAmount.min, store.state.userCurrency, true) + 
+             " - " + 
+             currency(offer.tradingAmount.min, store.state.userCurrency, true)
     },
     getPaymentLogoUrl(paymentMethodName) {
       let method = paymentMethodName.toLowerCase().replace(' ', '-')

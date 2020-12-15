@@ -58,23 +58,17 @@ export default class OfferService {
       offers.push(offer)
     }
 
-
     // Get all offers that match filters criteria
-    // let offers = this.offers.filter(
-    //   o => o.tradeType !=  store.state.tradeType &&
-    //   o.crypto == store.state.crypto &&
-    //   (!store.state.paymentMethods.length || 
-    //     (store.state.paymentMethods.length > 0 && 
-    //     o.paymentMethods.some(p => store.state.paymentMethods.includes(p)))
-    //   ));
-
+    
     // if we buy then sort prices from the lowest to highest
-      // let ascSorting = (a, b) => a.priceInUserCurrency - b.priceInUserCurrency;
-      // let descSorting = (a, b) => b.priceInUserCurrency - a.priceInUserCurrency;
+    let sort = (isAsc, a, b) => {
+      let direction = isAsc ? 1 : -1
+      let diff = direction * (a.priceInUserCurrency - b.priceInUserCurrency)
+      if (isFinite(diff)) return diff 
+      else return isFinite(a.price.value) ? -1 : 1 // push offers in crypto currency at the bottom
+    }
             
-      // return offers.sort(store.state.tradeType == 'Buy'? ascSorting : descSorting);
-
-    return offers
+    return offers.sort(sort.bind(this, store.state.tradeType == 'Buy'));
   }
   
   static async getLocalBitcoinsOffers(tradeType, 

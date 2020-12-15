@@ -2,7 +2,7 @@
   <div class="flex border border-gray-600 text-lg xl:text-2xl 2xl:text-3xl text-gray-700 font-semibold p-2">
     <span class="inline-block">{{cryptoName}} </span>
     <img v-show="isLoading" src="@/ui/spinner.svg" class="w-6 mx-8"/>
-    <span v-show="!isLoading" class="inline-block ml-2 font-semibold ">{{cryptoPrice}}</span>
+    <span v-show="!isLoading" class="inline-block ml-2 font-semibold ">{{price | currency}}</span>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       state: store.state,
-      cryptoPrice: null,
+      price: null,
       isLoading: true
     }
   },
@@ -45,9 +45,8 @@ export default {
     async updatePrice() {
       this.isLoading = true
       let priceInUSD = await CryptocurrencyService.getCryptocurrencyPriceByCode(this.state.coin, 'USD')
-      let priceInUserCurrency = await CurrencyService.convertCurrency(priceInUSD, 'USD', this.state.userCurrency)
-      // TODO: Create global price vue filter or mixin
-      this.cryptoPrice = CurrencyService.formatPrice(priceInUserCurrency, this.state.userCurrency)
+      // Convert price to user currency
+      this.price = await CurrencyService.convertCurrency(priceInUSD, 'USD', this.state.userCurrency)
       this.isLoading = false
     }
   }

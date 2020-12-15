@@ -51,9 +51,15 @@ export default class CurrencyService {
     return formatter.formatToParts().find(i => i.type == 'currency').value;
   }
 
-  static formatPrice(value, currency) {
+  static formatPrice(value, currency, hideFractionDigits) {
     try {
-      let formatter = new Intl.NumberFormat(undefined, { style: 'currency', currency });
+      let formatter = new Intl.NumberFormat(undefined, 
+        { style: 'currency', 
+          currency,
+          minimumFractionDigits: hideFractionDigits ? 0 : undefined,
+          maximumFractionDigits: hideFractionDigits ? 0 : undefined,
+        })
+      
       return formatter.format(value);
     } catch (error) {
       console.log('Error occured while currency code is ' + currency)
