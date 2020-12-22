@@ -116,7 +116,7 @@ export default class OfferService {
         offer.exchange.name = 'Local Bitcoins'
         offer.tradeType = 'Buy'  
         offer.coin = 'BTC'
-        offer.price.value = item.data.temp_price
+        offer.price.value = +item.data.temp_price
         offer.price.currency = item.data.currency
         offer.tradingAmount.min = item.data.min_amount
         offer.tradingAmount.max = item.data.max_amount_available

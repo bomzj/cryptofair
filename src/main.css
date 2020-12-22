@@ -47,18 +47,6 @@ input:focus, button:focus {
   @apply inline-block px-4 py-2 font-semibold text-base text-gray-700 border-gray-500 uppercase;
 }
 
-@screen lg {
-  .button {
-    @apply text-lg;
-  }
-}
-
-@screen 2xl {
-  .button {
-    @apply text-3xl;
-  }
-}
-
 .button:hover {
   @apply bg-gray-300;
 }
@@ -106,4 +94,17 @@ input:focus, button:focus {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-gray-600;
+}
+
+/* Responsive breakpoints */
+@screen lg {
+  .button {
+    @apply text-base px-4 py-2;
+  }
+}
+
+@screen 2xl {
+  .button {
+    @apply text-xl px-5 py-4;
+  }
 }
