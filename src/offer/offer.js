@@ -1,6 +1,7 @@
 export default class Offer { 
   tradeType = null
   coin = null
+  url = null
   
   price = { 
     value: null,
@@ -25,6 +26,7 @@ export default class Offer {
     rating: null,
     tradeCount: null,
     country: null,
-    city: null
+    city: null,
+    profileUrl: null
   }
 }

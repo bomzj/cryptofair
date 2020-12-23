@@ -81,9 +81,10 @@ export default class OfferService {
         
     // LocalBitcoins API doesn't enable CORS to use their API publicly for some stupid reason
     // so we need to use proxy which adds CORS headers to allow our site fetch data from LocalBitcoins
+    const siteUrl = 'https://localbitcoins.com/'
     const corsProxy = '/.netlify/functions/proxy-fetch/'
-    let baseUrl = corsProxy + 'https://localbitcoins.com/'
-    baseUrl += tradeType == 'Buy' ? 'buy-bitcoins-online' : 'sell-bitcoins-online'
+    let requestUrl = corsProxy + siteUrl
+    requestUrl += tradeType == 'Buy' ? 'buy-bitcoins-online' : 'sell-bitcoins-online'
 
     let localBitcoinsPaymentMethods = paymentMethods ? await PaymentMethodService
       .translatePaymentMethodsToExchangeKnownIds(paymentMethods, 'localbitcoins') :
@@ -91,7 +92,7 @@ export default class OfferService {
 
     // LocalBitcoins API supports only single payment method per request,
     // that's why we have to send multiple requests based on count of payment methods
-    let requestUrls = Array(localBitcoinsPaymentMethods.length || 1).fill(baseUrl)
+    let requestUrls = Array(localBitcoinsPaymentMethods.length || 1).fill(requestUrl)
 
     // Append country filter if needed
     if (countryCode) {
@@ -127,6 +128,7 @@ export default class OfferService {
         offer.trader.country = item.data.countrycode
         offer.trader.city = item.data.city
         offer.url = item.actions.public_view
+        offer.trader.profileUrl = siteUrl + 'accounts/profile/' + item.data.profile.username
         offers.push(offer)
       }
     }

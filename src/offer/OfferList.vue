@@ -3,7 +3,7 @@
   <img v-show="isLoading" src="@/ui/spinner.svg" class="w-24 mx-auto"/>
   <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap md:justify-between">
     <div class="px-6 py-4 whitespace-no-wrap">
-      <a href="#" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
+      <a :href="offer.trader.profileUrl" target="_blank" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <p class="hint">Total Trades <span class="data">{{ offer.trader.tradeCount }}</span></p>
       <p class="hint">Exchange <span class="data">{{ offer.exchange.name }}</span></p>
     </div>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="px-6 py-4 leading-5 font-medium">
-      <a href="#" class="button button-outline-primary">Go to Offer</a>
+      <a :href="offer.url" target="_blank" class="button button-outline-primary">Go to Offer</a>
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </div>
