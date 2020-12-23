@@ -41,7 +41,7 @@ export default class OfferService {
         offer.tradingAmount.max, 
         offer.price.currency, 
         store.state.userCurrency)
-
+              
       offer.priceChangeToMarket = (offer.priceInUserCurrency - marketPrice) * 100 / marketPrice
     }
 

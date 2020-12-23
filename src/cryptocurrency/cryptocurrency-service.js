@@ -1,4 +1,5 @@
 import cryptocurrencies from './cryptocurrencies.json'
+import CurrencyService from '@/currency/currency-service'
 import getHttpClient from '@/http-client'
 const http = getHttpClient(10)
 
@@ -14,11 +15,14 @@ export default class CryptocurrencyService {
   static async getCryptocurrencyPriceByName(cryptocurrencyName, currencyCode) {
     let requestUrl = 'https://api.coingecko.com/api/v3/simple/price?' +
                       `ids=${cryptocurrencyName}&` +
-                      `vs_currencies=${currencyCode}`
+                      `vs_currencies=USD`
     
     let response = await http(requestUrl)
-    let price = response.data[cryptocurrencyName.toLowerCase()][currencyCode.toLowerCase()]
     
+    let priceInUSD = response.data[cryptocurrencyName.toLowerCase()]['USD'.toLowerCase()]
+    
+    let price = await CurrencyService.convertCurrency(priceInUSD, 'USD', currencyCode)
+
     return price
   }
 
