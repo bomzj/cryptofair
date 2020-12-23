@@ -4,7 +4,7 @@
           v-model.number="$data._input" 
           :placeholder="placeholder"
           @input="preventInvalidInput">
-    <button class="-ml-8 clear-icon" @click="$data._input = undefined" />
+    <button class="-ml-8 clear-icon" @click="$data._input = ''" />
   </div>
 </template>
 
@@ -34,7 +34,7 @@ export default {
         // so we have to use another approach
 				var resetEvent = document.createEvent('Event');
 				resetEvent.initEvent('input', true, true);
-				event.target.value = event.target._value;
+				event.target.value = event.target._value || '';
 				event.target.dispatchEvent(resetEvent);
 			}
     }
