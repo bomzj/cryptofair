@@ -2,7 +2,7 @@
   <div class="flex border border-gray-600 text-lg xl:text-2xl 2xl:text-3xl text-gray-700 font-semibold p-2">
     <span class="inline-block">{{cryptoName}} </span>
     <img v-show="isLoading" src="@/ui/spinner.svg" class="w-6 mx-8"/>
-    <span v-show="!isLoading" class="inline-block ml-2 font-semibold ">{{price | currency}}</span>
+    <span v-show="!isLoading" class="inline-block ml-2 font-semibold ">{{price}}</span>
   </div>
 </template>
 
@@ -46,7 +46,8 @@ export default {
       this.isLoading = true
       let priceInUSD = await CryptocurrencyService.getCryptocurrencyPriceByCode(this.state.coin, 'USD')
       // Convert price to user currency
-      this.price = await CurrencyService.convertCurrency(priceInUSD, 'USD', this.state.userCurrency)
+      let price = await CurrencyService.convertCurrency(priceInUSD, 'USD', this.state.userCurrency)
+      this.price = CurrencyService.formatPrice(price, store.state.userCurrency, true)
       this.isLoading = false
     }
   }

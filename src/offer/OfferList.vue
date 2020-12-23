@@ -17,14 +17,14 @@
     </div>
     <div class="px-6 py-4 whitespace-no-wrap leading-5">
       <div class="flex flex-col font-medium">
-        <p v-if="!isNaN(offer.priceInUserCurrency)" class="text-2xl lg:text-3xl 2xl:text-4xl">{{ offer.priceInUserCurrency | currency }} <span class="hint font-normal">per coin</span></p> 
+        <p v-if="!isNaN(offer.priceInUserCurrency)" class="text-2xl lg:text-3xl 2xl:text-4xl">{{  offer.priceInUserCurrency | currency(state.userCurrency, offer.priceInUserCurrency > 100) }} <span class="hint font-normal">per coin</span></p> 
         <p v-if="!isNaN(offer.priceInUserCurrency)" class="hint font-medium my-1 lg:my-2 2xl:my-3">
           <span v-if="state.tradeType == 'Buy'" :class="[offer.priceChangeToMarket >= 0 ? 'text-red-500' : 'text-green-500']">{{ Math.abs(offer.priceChangeToMarket).toFixed(1) }}% </span> 
           <span v-else :class="[offer.priceChangeToMarket >= 0 ? 'text-green-500' : 'text-red-500']">{{ Math.abs(offer.priceChangeToMarket).toFixed(1) }}% </span> 
           <span v-if="offer.priceChangeToMarket >= 0">above market</span>
           <span v-else>below market</span>
         </p>
-        <p v-if="state.userCurrency != offer.price.currency" class="hint font-normal">Original Price <span class="data">{{ offer.price.value | currency(offer.price.currency) }}</span></p>
+        <p v-if="state.userCurrency != offer.price.currency" class="hint font-normal">Original Price <span class="data">{{ offer.price.value | currency(offer.price.currency, offer.price.value > 100) }}</span></p>
       </div>
     </div>
     <div class="px-6 py-4 leading-5 font-medium">
@@ -94,7 +94,7 @@ export default {
       let method = paymentMethodName.toLowerCase().replace(' ', '-')
       return method
       //return require('./payment-methods/' + method + '.svg');
-    },
+    }
   }
 }
 </script>

@@ -6,7 +6,7 @@
         <!-- The best cryptocurrency prices to buy or sell Bitcoin, Ethereum 
         and other crypto directly from real people around the world in one place! -->
       </h1>
-      <ul class="list-disc text-xl text-gray-600 mt-4">
+      <ul class="list-none text-xl text-gray-600 mt-4">
         <li>First and the only one p2p crypto exchange aggregator!</li>
         <li>Looks up in leading p2p exchanges: LocalBitcoins, Paxful, LocalCryptos and etc</li>
         <li>Finds the best prices to buy or sell Bitcoin, Ethereum and other crypto coins</li>
