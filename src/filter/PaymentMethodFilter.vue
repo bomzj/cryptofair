@@ -12,36 +12,16 @@
         <SearchBox placeholder="Search payment methods" 
                   @change="onSearchQueryChange" />
         
-        <div v-show="selectedPaymentMethods.length" class="flex px-8 py-5">
-          <div v-for="item in selectedPaymentMethods" 
-               :key="item" 
-               class="flex 
-                      items-center border 
-                      bg-gray-300 
-                      text-lg 
-                      text-gray-500 
-                      pl-2 
-                      pr-1 
-                      py-2 
-                      mr-3">
-            <span class="block mr-1">{{item}}</span>
-            <button class="rounded-full hover:bg-gray-400 p-1" @click="deselectItem(item)">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 18 18"><path fill="#a0aec0" d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/></svg>
-            </button>
-          </div>
-          <button v-show="selectedPaymentMethods.length > 1" 
-                  class="button" 
-                  @click="clearAllSelection()">
-            Clear all
-          </button>
-        </div>
-
+        <TagList ref="tagList" 
+                 :items="selectedPaymentMethods" 
+                 @update:items="onTagListUpdate" />
+        
         <MultiSelectList v-slot="{ item }"
                         ref="selectList"
                         :items="paymentMethods"
                         :item-id-prop="null"
                         :selected-item-ids="selectedPaymentMethods" 
-                        @change="selectedPaymentMethods = $event">
+                        @change="onSelectListUpdate">
           <SimpleListItem :item="item" />
         </MultiSelectList>
       </template>
@@ -52,15 +32,16 @@
 
 <script>
 import store from '@/store'
-import Modal from '@/ui/Modal'
+import Modal from '@/ui/Modal.vue'
 import SearchBox from '@/ui/SearchBox.vue'
 import MultiSelectList from '@/ui/MultiSelectList.vue'
 import SimpleListItem from '@/ui/SimpleListItem.vue'
+import TagList from '@/ui/TagList.vue'
 import PaymentMethodService from '@/offer/payment-method-service'
 
 export default {
   name: 'PaymentMethodFilter',
-  components: { Modal, SearchBox, MultiSelectList, SimpleListItem },
+  components: { Modal, SearchBox, MultiSelectList, SimpleListItem, TagList },
   data() {
     return {
       state: store.state,
@@ -91,6 +72,14 @@ export default {
       searchQuery = searchQuery?.toLowerCase()
       let items = this.paymentMethods.filter(i => i.toLowerCase().includes(searchQuery))
       this.$refs.selectList.setItems(items)
+    },
+    onTagListUpdate(selectedItemIds) {
+      this.selectedPaymentMethods = selectedItemIds
+      this.$refs.selectList.selectItems(this.selectedPaymentMethods)
+    },
+    onSelectListUpdate(selectedItemIds) {
+      this.selectedPaymentMethods = selectedItemIds
+      this.$refs.tagList.setItems(this.selectedPaymentMethods)
     },
     onApplyChanges() {
       store.state.paymentMethods = this.selectedPaymentMethods

@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center px-8 py-5">
-    <input class="form-input block w-full outline-none text-lg lg:text-2xl 2xl:text-3xl" 
+    <input class="form-input block w-full outline-none text-xl" 
           v-model.number="$data._input" 
           :placeholder="placeholder"
           @input="preventInvalidInput">

@@ -17,7 +17,7 @@
                           item-id-prop="symbol"
                           :selected-item-id="selectedItemId" 
                           @change="onSelectListUpdate">
-          <span class="text-lg lg:text-2xl 2xl:text-3xl ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.symbol }}</sup></span>
+          <span class="text-xl ml-2">{{ item.name }} <sup class="text-gray-500">{{ item.symbol }}</sup></span>
         </SingleSelectList>
     </Modal>
   </div>
