@@ -13,6 +13,8 @@ export default class CryptocurrencyService {
   }
 
   static async getCryptocurrencyPriceByName(cryptocurrencyName, currencyCode) {
+    cryptocurrencyName = this.getCryptoId(cryptocurrencyName)
+
     let requestUrl = 'https://api.coingecko.com/api/v3/simple/price?' +
                       `ids=${cryptocurrencyName}&` +
                       `vs_currencies=USD`
@@ -29,5 +31,11 @@ export default class CryptocurrencyService {
   static async getCryptocurrencyPriceByCode(cryptocurrencyCode, currencyCode) {
     let name = this.getCryptocurrencyNameBy(cryptocurrencyCode)
     return this.getCryptocurrencyPriceByName(name, currencyCode)
+  }
+
+  static getCryptoId(cryptoName) {
+    cryptoName = cryptoName.toLowerCase()
+    if (cryptoName == 'xrp') cryptoName = 'ripple'
+    return cryptoName
   }
 }

@@ -47,7 +47,7 @@ export default {
       let priceInUSD = await CryptocurrencyService.getCryptocurrencyPriceByCode(this.state.coin, 'USD')
       // Convert price to user currency
       let price = await CurrencyService.convertCurrency(priceInUSD, 'USD', this.state.userCurrency)
-      this.price = CurrencyService.formatPrice(price, store.state.userCurrency, true)
+      this.price = CurrencyService.formatPrice(price, store.state.userCurrency, price > 100)
       this.isLoading = false
     }
   }
