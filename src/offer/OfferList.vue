@@ -32,7 +32,7 @@
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </div>
-  <p v-show="!isLoading && !offers.length" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found! Try to change filters.</p>
+  <p v-show="!isLoading && !offers.length" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">No offers found. Try to change filters.</p>
 </div>
 </template>
 
@@ -59,6 +59,7 @@ export default {
     }
   },
   created() {
+    this.previousGetOffersPromise
     this.updateOffers()
   },
   computed: {
@@ -71,14 +72,22 @@ export default {
       this.offers = []
       this.isLoading = true
 
-      this.offers = await OfferService.getOffers(store.state.tradeType, 
-                                                 store.state.coin, 
-                                                 store.state.paymentMethods,
-                                                 store.state.countryCode,
-                                                 store.state.userCurrency,
-                                                 store.state.tradeAmount,
-                                                 store.state.hideNewTraders)
-      this.isLoading = false
+      let getOffersPromise = this.previousGetOffersPromise = 
+        OfferService.getOffers(store.state.tradeType, 
+                               store.state.coin, 
+                               store.state.paymentMethods,
+                               store.state.countryCode,
+                               store.state.userCurrency,
+                               store.state.tradeAmount,
+                               store.state.hideNewTraders)
+      
+      let result = await this.previousGetOffersPromise
+      
+      // Skip this request result if new request was initiated
+      if (getOffersPromise == this.previousGetOffersPromise) {
+        this.offers = result
+        this.isLoading = false
+      }
     },
     formatTradingAmount(offer) {
       let currency = this.$options.filters.currency
@@ -93,8 +102,7 @@ export default {
     getPaymentLogoUrl(paymentMethodName) {
       let method = paymentMethodName.toLowerCase().replace(' ', '-')
       return method
-      //return require('./payment-methods/' + method + '.svg');
-    }
+    },
   }
 }
 </script>
