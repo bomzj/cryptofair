@@ -90,14 +90,12 @@ export default {
       }
     },
     formatTradingAmount(offer) {
-      let currency = this.$options.filters.currency
-      let from = currency(offer.tradingAmount.min, store.state.userCurrency, true)
-      let to = currency(offer.tradingAmount.min, store.state.userCurrency, true)
+      let from = CurrencyService.formatPrice(offer.tradingAmount.min, store.state.userCurrency, true)
+      let to = CurrencyService.formatPrice(offer.tradingAmount.max, store.state.userCurrency, true)
 
       if (from.includes('NaN')) return 'no data'
-      else if (from == 0) return 'up to ' + to
       else if (from == to) return from
-      else return `from ${from} to ${to}`
+      else return `${from} - ${to}`
     },
     getPaymentLogoUrl(paymentMethodName) {
       let method = paymentMethodName.toLowerCase().replace(' ', '-')
