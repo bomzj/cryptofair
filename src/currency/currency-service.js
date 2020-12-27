@@ -59,7 +59,7 @@ export default class CurrencyService {
           minimumFractionDigits: hideFractionDigits ? 0 : undefined,
           maximumFractionDigits: hideFractionDigits ? 0 : undefined,
           notation: value > 1000000 ? 'compact' : 'standard',
-          maximumSignificantDigits: 3,
+          maximumSignificantDigits: value > 1000000 ? 3 : undefined
         })
       
       return formatter.format(value);
