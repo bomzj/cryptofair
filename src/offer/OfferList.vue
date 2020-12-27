@@ -1,21 +1,21 @@
 <template>
 <div>
   <img v-show="isLoading" src="@/ui/spinner.svg" class="w-24 mx-auto"/>
-  <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap md:justify-between">
-    <div class="px-6 py-4 whitespace-no-wrap">
+  <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
+    <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 whitespace-no-wrap">
       <a :href="offer.trader.profileUrl" target="_blank" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <p class="hint">Total Trades <span class="data">{{ offer.trader.tradeCount }}</span></p>
       <p class="hint">Exchange <span class="data">{{ offer.exchange.name }}</span></p>
     </div>
-    <div class="px-6 py-4 whitespace-no-wrap">
+    <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4">
       <div class="flex flex-row items-center mb-1">
         <span class="hint mr-1">Pay by</span>
         <!-- <span v-for="method in offer.paymentMethods" :key="method" class="data p-1 rounded text-white bg-gray-600 font-medium mr-1">{{method}}</span> -->
         <span v-for="method in offer.paymentMethods" :key="method" class="data mr-1">{{method}}</span>
       </div>
-      <p class="data"><span class="hint">Limit</span> {{ formatTradingAmount(offer) }}</p>
+      <p class="data" v-if="!isNaN(offer.tradingAmount.min)"><span class="hint">Limit</span> {{ formatTradingAmount(offer) }}</p>
     </div>
-    <div class="px-6 py-4 whitespace-no-wrap leading-5">
+    <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 whitespace-no-wrap leading-5">
       <div class="flex flex-col font-medium">
         <p v-if="!isNaN(offer.priceInUserCurrency)" class="text-2xl lg:text-3xl 2xl:text-4xl">{{  offer.priceInUserCurrency | currency(state.userCurrency, offer.priceInUserCurrency > 100) }} <span class="hint font-normal">per coin</span></p> 
         <p v-if="!isNaN(offer.priceInUserCurrency)" class="hint font-medium my-1 lg:my-2 2xl:my-3">
@@ -27,7 +27,7 @@
         <p v-if="state.userCurrency != offer.price.currency" class="hint font-normal">Original Price <span class="data">{{ offer.price.value | currency(offer.price.currency, offer.price.value > 100) }}</span></p>
       </div>
     </div>
-    <div class="px-6 py-4 leading-5 font-medium">
+    <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 leading-5 font-medium">
       <a :href="offer.url" target="_blank" class="button button-outline-primary">Go to Offer</a>
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
@@ -90,10 +90,12 @@ export default {
       }
     },
     formatTradingAmount(offer) {
-      let from = CurrencyService.formatPrice(offer.tradingAmount.min, store.state.userCurrency, true)
-      let to = CurrencyService.formatPrice(offer.tradingAmount.max, store.state.userCurrency, true)
+      let from = CurrencyService.formatPrice(Math.round(offer.tradingAmount.min), 
+                                             store.state.userCurrency, true)
+      let to = CurrencyService.formatPrice(Math.round(offer.tradingAmount.max), 
+                                           store.state.userCurrency, true)
 
-      if (from.includes('NaN')) return 'no data'
+      if (from.includes('NaN')) return undefined
       else if (from == to) return from
       else return `${from} - ${to}`
     },
@@ -107,7 +109,7 @@ export default {
 
 <style>
   .hint {
-    @apply text-base text-gray-500  font-normal	;
+    @apply text-base text-gray-500  font-normal	whitespace-no-wrap;
   }
     
   .data {
