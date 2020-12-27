@@ -41,4 +41,11 @@ window.promisify = function (promise) {
   wrap.reject = _reject
     
   return wrap
-}
+};
+
+/* Polyfills */
+(async () => {
+    // import needed polyfills e.g. Safari doesn't fully support Intl.NumberFormat
+    await import(/*webpackIgnore: true*/ 'https://polyfill.io/v3/polyfill.js?features=Intl')
+  }
+)()
