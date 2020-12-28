@@ -65,7 +65,7 @@ export default class OfferService {
       let direction = isAsc ? 1 : -1
       let diff = direction * (a.priceInUserCurrency - b.priceInUserCurrency)
       if (isFinite(diff)) return diff 
-      else return isFinite(a.price.value) ? -1 : 1 // push offers in crypto currency at the bottom
+      else return isFinite(a.priceInUserCurrency) ? -1 : 1 // push offers in crypto currency at the bottom
     }
             
     return offers.sort(sort.bind(this, store.state.tradeType == 'Buy'));
