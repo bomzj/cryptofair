@@ -9,7 +9,7 @@
            @apply-changes="applyChanges"
            @close="onModalClose">
 
-      <h3 class="px-8 pt-5 text-gray-600 text-lg font-medium">Trade Amount</h3>
+      <h3 class="px-8 pt-5 text-gray-600 text-lg font-medium">Trade Limit</h3>
       <NumericInput :placeholder="'Enter the amount in ' + state.userCurrency +
                                   ' for which you want to ' + state.tradeType.toLowerCase() +
                                   ' the crypto'"

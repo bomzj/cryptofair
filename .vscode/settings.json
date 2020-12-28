@@ -1,6 +1,7 @@
 {
   "files.exclude": {
-    "**/dist": true,
-    "**/node_modules": true
+    "dist": true,
+    "node_modules": true,
+	"lambda": true
   }
 }

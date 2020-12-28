@@ -34,7 +34,8 @@ input:focus, textarea:focus, button:focus {
 }
 
 .form-input, .form-textarea {
-  @apply bg-gray-200 border-gray-500 ;
+  @apply bg-gray-200 border-gray-500 text-xl;
+
   border-radius: 0;
 }
 
@@ -71,6 +72,27 @@ input:focus, textarea:focus, button:focus {
   @apply w-5 h-5 bg-gray-500;
   mask: url(ui/close-icon.svg) no-repeat center;
   /*mask-size: 20px;   */
+}
+
+.page-title {
+  @apply text-3xl font-medium text-gray-700;
+}
+
+/* Transition animation for alerts  */
+.fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter {
+  opacity: 1;
+}
+
+.alert {
+  @apply fixed text-xl w-full top-0 left-0; 
 }
 
 
