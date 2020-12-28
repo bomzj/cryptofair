@@ -1,21 +1,25 @@
 <template>
-  <footer class="m-8">
-    <div class="flex flex-col text-center my-12">
-      <h1 class="page-title">
+  <footer class="mt-20 px-6">
+    <h1 class="page-title text-center mb-4">
         All the best cryptocurrency prices directly from real people all around the world in one place!
         <!-- The best cryptocurrency prices to buy or sell Bitcoin, Ethereum 
         and other crypto directly from real people around the world in one place! -->
-      </h1>
-      <ul class="list-none text-lg text-gray-600">
-        <li>First and the only one p2p crypto exchange aggregator!</li>
-        <li>Looks up in leading p2p exchanges: LocalBitcoins, Paxful, LocalCryptos and etc</li>
-        <li>Finds the best prices to buy or sell Bitcoin, Ethereum and other crypto coins</li>
-        <li>Modern and easy to use UI with convenient search filters to see prices in your local currency</li>
-        <li>No fees, no registration, no app downloading</li>
-        <li>No verification, no KYC, no AML</li>
-      </ul>
+    </h1>
+    <div class="flex flex-wrap">
+      <div class="feature-list">
+        <p>First and the only one p2p crypto exchange aggregator!</p>
+        <p>Looks up in leading p2p exchanges: LocalBitcoins, Paxful, LocalCryptos and etc</p>
+      </div>
+      <div class="feature-list">
+        <p>Finds the best prices to buy or sell Bitcoin, Ethereum and other crypto coins</p>
+        <p>Modern and easy to use UI with convenient search filters to see prices in your local currency</p>
+      </div>
+      <div class="feature-list">
+        <p>No fees, no registration, no app downloading</p>
+        <p>No verification, no KYC, no AML</p>
+      </div>
     </div>
-    <ContactForm />
+    <!-- <ContactForm /> -->
   </footer>
 </template>
 
@@ -27,9 +31,25 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to pmit CSS to this component only -->
 <style scoped>
-ul li {
+.feature-list p {
   @apply my-4;
+}
+
+.feature-list {
+  @apply w-full px-8 text-base text-gray-600;
+}
+
+@screen lg {
+  .feature-list {
+    @apply w-1/2;
+  }
+}
+
+@screen 2xl {
+  .feature-list {
+    @apply w-1/3;
+  }
 }
 </style>

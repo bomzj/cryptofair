@@ -75,7 +75,19 @@ input:focus, textarea:focus, button:focus {
 }
 
 .page-title {
-  @apply text-3xl font-medium text-gray-700;
+  @apply text-lg font-medium text-gray-700;
+}
+
+@screen sm {
+  .page-title {
+    @apply text-2xl;
+  }
+}
+
+@screen lg {
+  .page-title {
+    @apply text-3xl;
+  }
 }
 
 /* Transition animation for alerts  */
