@@ -12,10 +12,13 @@ export default class PaxfulExchange {
   static async loadOffers(query) {
     let { tradeType, coin, paymentMethods, countryCode } = query
   
-    if (coin != 'BTC') return []
-    
+    const cryptoCodeToId = { 'BTC': 1, 'USDT': 4 }
+
+    if (!cryptoCodeToId[coin]) return []
+
     let requestUrl = this.corsProxy + this.baseApiURL + 
                      `offers?camelCase=1&` +
+                     `crypto_currency_id=${cryptoCodeToId[coin]}&` +
                      `visitor_country_iso=${countryCode}&` +
                      `type=${query.tradeType.toLowerCase()}`
 
