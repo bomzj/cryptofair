@@ -1,0 +1,70 @@
+import Offer from '@/offer/offer'
+import PaymentMethodService from '@/offer/payment-method-service'
+import LocationService from '@/location-service'
+import getHttpClient from '@/http-client'
+
+export default class LocalBitcoinsExchange {
+  static http = getHttpClient(5 * 60)
+  
+  static async loadOffers(query) {
+    let { tradeType, coin, paymentMethods, countryCode } = query
+    
+    if (coin != 'BTC') return []
+        
+    // LocalBitcoins API doesn't enable CORS to use their API publicly for some stupid reason
+    // so we need to use proxy which adds CORS headers to allow our site fetch data from LocalBitcoins
+    const siteUrl = 'https://localbitcoins.com/'
+    const corsProxy = '/.netlify/functions/proxy-fetch/'
+    let requestUrl = corsProxy + siteUrl
+    requestUrl += tradeType == 'Buy' ? 'buy-bitcoins-online' : 'sell-bitcoins-online'
+
+    let localBitcoinsPaymentMethods = paymentMethods ? await PaymentMethodService
+      .translatePaymentMethodsToExchangeKnownIds(paymentMethods, 'localbitcoins') :
+      []
+
+    // LocalBitcoins API supports only single payment method per request,
+    // that's why we have to send multiple requests based on count of payment methods
+    let requestUrls = Array(localBitcoinsPaymentMethods.length || 1).fill(requestUrl)
+
+    // Append country filter if needed
+    if (countryCode) {
+      let countryName = await LocationService.getCountryName(countryCode)
+      requestUrls.forEach((url, i) => 
+                          requestUrls[i] += `/${countryCode}/${countryName}`)
+    }
+
+    // Append payment method if needed
+    localBitcoinsPaymentMethods.forEach((method, i) => requestUrls[i] += `/${method}`)
+    
+    requestUrls.forEach((value, i) => requestUrls[i] += `/.json`)
+    
+    let pendingResponses = requestUrls.map(url => this.http(url))
+    const responses = await Promise.all(pendingResponses)
+    let dataList = responses.map(r => r.data)
+
+    const offers = []
+    for (const data of dataList) {
+      for (const item of data.data.ad_list) {
+        const offer = new Offer()
+        offer.exchange.name = 'Local Bitcoins'
+        offer.tradeType = 'Buy'  
+        offer.coin = 'BTC'
+        offer.price.value = +item.data.temp_price
+        offer.price.currency = item.data.currency
+        offer.tradingAmount.min = item.data.min_amount
+        offer.tradingAmount.max = item.data.max_amount_available
+        offer.paymentMethods.push(item.data.online_provider)
+        offer.trader.name = item.data.profile.username
+        offer.trader.tradeCount = parseInt(item.data.profile.trade_count?.replace(' ', ''))
+        offer.trader.rating = item.data.profile.feedback_score
+        offer.trader.country = item.data.countrycode
+        offer.trader.city = item.data.city
+        offer.url = item.actions.public_view
+        offer.trader.profileUrl = siteUrl + 'accounts/profile/' + item.data.profile.username
+        offers.push(offer)
+      }
+    }
+
+    return offers
+  }
+}

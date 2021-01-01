@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     title: () => CryptocurrencyService.getCryptocurrencyNameBy(store.state.coin),
-    items: () => { console.log('coins'); return CryptocurrencyService.getCryptocurrencies()}
+    items: () => { return CryptocurrencyService.getCryptocurrencies() }
   },
   methods: {
     showModal() {

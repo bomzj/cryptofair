@@ -59,7 +59,6 @@ export default {
     }
   },
   created() {
-    this.previousGetOffersPromise
     this.updateOffers()
   },
   computed: {
@@ -72,20 +71,21 @@ export default {
       this.offers = []
       this.isLoading = true
 
-      let getOffersPromise = this.previousGetOffersPromise = 
-        OfferService.getOffers(store.state.tradeType, 
-                               store.state.coin, 
-                               store.state.paymentMethods,
-                               store.state.countryCode,
-                               store.state.userCurrency,
-                               store.state.tradeAmount,
-                               store.state.hideNewTraders)
+      let query = { tradeType:      store.state.tradeType, 
+                    coin:           store.state.coin, 
+                    paymentMethods: store.state.paymentMethods,
+                    countryCode:    store.state.countryCode,
+                    userCurrency:   store.state.userCurrency,
+                    tradeAmount:    store.state.tradeAmount,
+                    hideNewTraders: store.state.hideNewTraders }
+
+      let request = this.lastRequest = OfferService.loadOffers(query)
       
-      let result = await this.previousGetOffersPromise
+      let result = await request
       
       // Skip this request result if new request was initiated
-      if (getOffersPromise == this.previousGetOffersPromise) {
-        this.offers = result
+      if (request == this.lastRequest) {
+        this.offers = result//result.slice(0, 20)
         this.isLoading = false
       }
     },
