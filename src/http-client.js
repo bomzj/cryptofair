@@ -7,6 +7,7 @@ function getHttpClient(cacheMaxAgeInSeconds) {
   const http = axios.create({
     baseURL: '/',
     headers: { 'Cache-Control': 'no-cache' },
+    timeout: 0,
     // cache will be enabled by default
     adapter: cacheAdapterEnhancer(axios.defaults.adapter, { defaultCache: cache })
   })

@@ -19,7 +19,7 @@
         <MultiSelectList v-slot="{ item }"
                         ref="selectList"
                         :items="paymentMethods"
-                        :item-id-prop="null"
+                        item-id-prop=""
                         :selected-item-ids="selectedPaymentMethods" 
                         @change="onSelectListUpdate">
           <SimpleListItem :item="item" />
@@ -50,7 +50,8 @@ export default {
     }
   },
   async created() {
-    this.paymentMethods = await PaymentMethodService.getPaymentMethods()
+    let paymentMethods = await PaymentMethodService.getPaymentMethods()
+    this.paymentMethods = paymentMethods.map(i => i.name)
   },
   computed: {
     hasSelection: () => !!store.state.paymentMethods.length,
