@@ -1,5 +1,4 @@
 import Offer from '@/offer/offer'
-import PaymentMethodService from '@/offer/payment-method-service'
 import LocationService from '@/location-service'
 import getHttpClient from '@/http-client'
 import Fuse from 'fuse.js'

@@ -94,7 +94,7 @@ export default {
       catch (error) {
         this.isError = true
         this.isLoading = false
-        console.log('An error ocurred. Try to reload the page.')
+        console.error(error)
       }
     },
     formatTradingAmount(offer) {

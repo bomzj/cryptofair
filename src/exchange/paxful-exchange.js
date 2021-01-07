@@ -1,13 +1,12 @@
 import Offer from '@/offer/offer'
-import CurrencyService from '@/currency/currency-service'
-import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 import LocationService from '@/location-service'
 import getHttpClient from '@/http-client'
+import Fuse from 'fuse.js'
 
 export default class PaxfulExchange {
   static http = getHttpClient(1)
   static corsProxy = '/.netlify/functions/proxy-fetch/'
-  static baseApiURL = 'https://paxful.com/rest/v1/'
+  static baseApiUrl = this.corsProxy + 'https://paxful.com/rest/v1/'
   
   static async loadOffers(query) {
     let { tradeType, coin, paymentMethods, countryCode } = query
@@ -16,45 +15,30 @@ export default class PaxfulExchange {
 
     if (!cryptoCodeToId[coin]) return []
 
-    let requestUrl = this.corsProxy + this.baseApiURL + 
-                     `offers?camelCase=1&` +
-                     `crypto_currency_id=${cryptoCodeToId[coin]}&` +
-                     `visitor_country_iso=${countryCode}&` +
-                     `type=${query.tradeType.toLowerCase()}`
+    if (paymentMethods?.length) {
+      var paxfulPaymentMethods = await this.getPaxfulPaymentMethodsFrom(paymentMethods)
+      // if paxful doesn't have mappings to payment methods then quit
+      if (!paxfulPaymentMethods?.length) return []
+    }
 
-    
+    let paxfulPaymentMethodsQueryString = paxfulPaymentMethods
+      ?.map((x, i) => `payment-method[${i}]=${x}`) 
+      .join('&')
 
-    // let localBitcoinsPaymentMethods = paymentMethods ? await PaymentMethodService
-    //   .translatePaymentMethodsToExchangeKnownIds(paymentMethods, 'localbitcoins') :
-    //   []
-
-    // LocalBitcoins API supports only single payment method per request,
-    // that's why we have to send multiple requests based on count of payment methods
-    //let requestUrls = Array(localBitcoinsPaymentMethods.length || 1).fill(requestUrl)
-
-    // Append country filter if needed
-    // if (countryCode) {
-    //   let countryName = await LocationService.getCountryName(countryCode)
-    //   requestUrls.forEach((url, i) => 
-    //                       requestUrls[i] += `/${countryCode}/${countryName}`)
-    // }
-
-    // Append payment method if needed
-    //localBitcoinsPaymentMethods.forEach((method, i) => requestUrls[i] += `/${method}`)
-    
-    //requestUrls.forEach((value, i) => requestUrls[i] += `/.json`)
-    
-    //let pendingResponses = requestUrls.map(url => http(url))
-    //const responses = await Promise.all(pendingResponses)
-    //let dataList = responses.map(r => r.data)
+    let requestUrl = this.baseApiUrl + 
+                    `offers?camelCase=1&` +
+                    `crypto_currency_id=${cryptoCodeToId[coin]}&` +
+                    `visitor_country_iso=${countryCode}&` +
+                    `type=${query.tradeType.toLowerCase()}&` +
+                    paxfulPaymentMethodsQueryString
     
     // Paxful always returns 500 offers!
     let response = await this.http(requestUrl)
-    
     let data = response.data.data
     
     // Paxful API doesn't support country filter, 
     // filtering is based on currency code derived from country
+    // Maybe we can filter by currency meaning country filtering?
     if (countryCode) {
       let countryCurrency = await LocationService.getCountryCurrency(countryCode)
       data = data.filter(o => o.fiatCurrencyCode == countryCurrency)
@@ -82,5 +66,37 @@ export default class PaxfulExchange {
     }
 
     return offers
+  }
+
+  static async getPaxfulPaymentMethodsFrom(paymentMethods) {
+    let response = await this.http(this.baseApiUrl + 'payment-methods/')
+    let exchangePaymentMethods = response.data.data
+
+    const fuse = new Fuse(exchangePaymentMethods, { keys: ['name'] })
+
+    let mappedPaymentMethods = []
+    
+    for (const paymentMethod of paymentMethods) {
+      let fixedPaymentMethods = this.fixWrongAutoMappingForPaymentMethod(paymentMethod)
+      // Check if can use automapping
+      if (!fixedPaymentMethods) {
+        let id = fuse.search(paymentMethod)[0]?.item?.slug
+        mappedPaymentMethods.push(id)
+      } // Otherwise add patched values
+      else mappedPaymentMethods.push(...fixedPaymentMethods)
+    }
+
+    return mappedPaymentMethods
+  }
+
+  static fixWrongAutoMappingForPaymentMethod(paymentMethod) {
+    switch (paymentMethod) {
+      case 'Alipay': return []
+      case 'Efectry': return []
+      case 'Paxum': return []
+      case 'PayNow': return []
+      case 'SEPA Transfer': return ['sepa']
+      case 'WorldRemit': return []
+    }
   }
 }
