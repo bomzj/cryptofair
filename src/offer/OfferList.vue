@@ -1,6 +1,9 @@
 <template>
 <div>
-  <img v-show="isLoading" src="@/ui/spinner.svg" class="w-24 mx-auto"/>
+  <div v-show="isLoading">
+    <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 mb-4">Loading offers from LocalBitcoins, Paxful, LocalCryptos exchanges</p>
+    <img src="@/ui/spinner.svg" class="w-24 mx-auto"/>
+  </div>
   <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 whitespace-no-wrap">
       <a :href="offer.trader.profileUrl" target="_blank" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
