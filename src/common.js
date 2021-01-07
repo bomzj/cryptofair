@@ -3,6 +3,10 @@ import '@/main.css'
 
 Vue.config.productionTip = false
 
+Vue.config.errorHandler = function (err, vm, info) {
+  console.log('global error handler invoked')
+}
+
 function renderPage(page) {
   new Vue({
     render: h => h(page),

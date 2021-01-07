@@ -32,7 +32,8 @@
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </div>
-  <p v-show="!isLoading && !offers.length" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">No offers found. Try to change filters.</p>
+  <p v-if="isError" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">An error ocurred. Try to reload the page.</p>
+  <p v-else-if="!isLoading && !offers.length" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">No offers found. Try to change filters.</p>
 </div>
 </template>
 
@@ -47,7 +48,8 @@ export default {
     return { 
       offers: [],
       state: store.state,
-      isLoading: true
+      isLoading: true,
+      isError: false
     }
   },
 	watch: {
@@ -70,6 +72,7 @@ export default {
     async updateOffers() {
       this.offers = []
       this.isLoading = true
+      this.isError = false
 
       let query = { tradeType:      store.state.tradeType, 
                     coin:           store.state.coin, 
@@ -78,15 +81,20 @@ export default {
                     userCurrency:   store.state.userCurrency,
                     tradeAmount:    store.state.tradeAmount,
                     hideNewTraders: store.state.hideNewTraders }
-
-      let request = this.lastRequest = OfferService.loadOffers(query)
-      
-      let result = await request
-      
-      // Skip this request result if new request was initiated
-      if (request == this.lastRequest) {
-        this.offers = result//result.slice(0, 20)
+      try {
+        var request = this.lastRequest = OfferService.loadOffers(query)
+        var result = await request
+        
+        // Skip this request result if new request was initiated
+        if (request == this.lastRequest) {
+          this.offers = result//result.slice(0, 20)
+          this.isLoading = false
+        }
+      }
+      catch (error) {
+        this.isError = true
         this.isLoading = false
+        console.log('An error ocurred. Try to reload the page.')
       }
     },
     formatTradingAmount(offer) {
