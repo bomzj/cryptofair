@@ -5,7 +5,11 @@ const http = getHttpClient(10)
 
 export default class CryptocurrencyService {
   static getCryptocurrencies() {
-    return cryptocurrencies
+    return cryptocurrencies.filter(x => x.symbol == 'BTC' ||
+                                        x.symbol == 'ETH' ||
+                                        x.symbol == 'USDT' ||
+                                        x.symbol == 'LTC' ||
+                                        x.symbol == 'DASH')
   }
 
   static getCryptocurrencyNameBy(code) {

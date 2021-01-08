@@ -9,7 +9,7 @@
            @apply-changes="onApplyChanges">
       
       <SearchBox placeholder="Search crypto by name or symbol" 
-                 @change="onSearchQueryChange" />
+                 @change="onSearchQueryChange" class="hidden" />
       
       <SingleSelectList ref="selectList"
                           v-slot="{ item }"
