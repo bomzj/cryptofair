@@ -50,7 +50,7 @@ export default {
     }
   },
   async created() {
-    let paymentMethods = await PaymentMethodService.getPaymentMethods()
+    let paymentMethods = PaymentMethodService.getPaymentMethods()
     this.paymentMethods = paymentMethods.map(i => i.name)
   },
   computed: {

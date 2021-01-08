@@ -5,9 +5,10 @@ import PaymentMethodService from './payment-method-service'
 import LocationService from '../location-service'
 import LocalBitcoinsExchange from '@/exchange/localbitcoins-exchange'
 import PaxfulExchange from '@/exchange/paxful-exchange'
+import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
 
 export default class OfferService {
-  static exchanges = [/*LocalBitcoinsExchange,*/ PaxfulExchange]
+  static exchanges = [/*LocalBitcoinsExchange, PaxfulExchange,*/ LocalCryptosExchange]
   
   static async loadOffers(query) {
     const requests = this.exchanges.map(e => e.loadOffers(query))

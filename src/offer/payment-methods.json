@@ -1,36 +1,66 @@
 [
   { 
-    "name": "AdvCash" 
+    "name": "AdvCash",
+    "mapping": {
+      "localCryptos": 23
+    }
   },
   { 
-    "name": "Airtel" 
+    "name": "Airtel",
+    "mapping": {
+      "localCryptos": 35
+    }
   },
   { 
-    "name": "Apple Pay" 
+    "name": "Apple Pay",
+    "mapping": {
+      
+    }
   },
   { 
-    "name": "Alipay" 
+    "name": "Alipay",
+    "mapping": {
+      "localCryptos": 7
+    }
   },
   { 
-    "name": "AstroPay" 
+    "name": "AstroPay",
+    "mapping": {
+      
+    }
   },
   { 
-    "name": "Bank Transfer" 
+    "name": "Bank Transfer",
+    "mapping": {
+      "localCryptos": 2
+    }
   },
   { 
-    "name": "Bluebird Card" 
+    "name": "Bluebird Card",
+    "mapping": {
+      
+    }
   },
   { 
-    "name": "Cardless Cash" 
+    "name": "Cardless Cash",
+    "mapping": {
+      "localCryptos": 18
+    }
   },
   { 
-    "name": "Cash in Person" 
+    "name": "Cash in Person",
+    "mapping": {
+      "localCryptos": 1
+    }
   },
   { 
     "name": "Cash App" 
   },
   { 
-    "name": "Cash Deposit" 
+    "name": "Cash Deposit",
+    "mapping": {
+      "localCryptos": 3
+    }
   },
   { 
     "name": "Card to Card" 
@@ -49,16 +79,25 @@
     "name": "Chase Quickpay" 
   },
   { 
-    "name": "Chipper Cash" 
+    "name": "Chipper Cash",
+    "mapping": {
+      "localCryptos": 33
+    }
   },
   { 
     "name": "Easypaisa" 
   },
   { 
-    "name": "EcoCash" 
+    "name": "EcoCash",
+    "mapping": {
+      "localCryptos": 34
+    }
   },
   { 
-    "name": "Efectry" 
+    "name": "Efecty",
+    "mapping": {
+      "localCryptos": 29
+    }
   },
   { 
     "name": "Google Pay" 
@@ -67,31 +106,55 @@
     "name": "GreenDot Card" 
   },
   { 
-    "name": "Gift Card" 
+    "name": "Gift Card",
+    "mapping": {
+      "localCryptos": 12
+    }
   },
   { 
-    "name": "IMPS Transfer" 
+    "name": "IMPS Transfer",
+    "mapping": {
+      "localCryptos": 27
+    }
   },
   { 
-    "name": "Interac e-Transfer" 
+    "name": "Interac e-Transfer",
+    "mapping": {
+      "localCryptos": 25
+    }
   },
   { 
-    "name": "International Wire Transfer (SWIFT)" 
+    "name": "International Wire Transfer (SWIFT)",
+    "mapping": {
+      "localCryptos": 5
+    } 
   },
   { 
-    "name": "M-Pesa" 
+    "name": "M-Pesa",
+    "mapping": {
+      "localCryptos": 19
+    }
   },
   { 
     "name": "MobilePay" 
   },
   { 
-    "name": "Mercado Pago" 
+    "name": "Mercado Pago",
+    "mapping": {
+      "localCryptos": 15
+    }
   },
   { 
-    "name": "MoneyGram" 
+    "name": "MoneyGram",
+    "mapping": {
+      "localCryptos": 11
+    }
   },
   { 
-    "name": "MTN Mobile Money" 
+    "name": "MTN Mobile Money",
+    "mapping": {
+      "localCryptos": 36
+    } 
   },
   { 
     "name": "Neteller" 
@@ -100,16 +163,25 @@
     "name": "OkPay" 
   },
   { 
-    "name": "Other" 
+    "name": "Other",
+    "mapping": {
+      "localCryptos": 6
+    }
   },
   { 
-    "name": "Payeer" 
+    "name": "Payeer",
+    "mapping": {
+      "localCryptos": 14
+    }
   },
   { 
     "name": "Paxum" 
   },
   { 
-    "name": "PayNow" 
+    "name": "PayNow",
+    "mapping": {
+      "localCryptos": 30
+    } 
   },
   { 
     "name": "Paym" 
@@ -121,10 +193,16 @@
     "name": "Payoneer" 
   },
   { 
-    "name": "PayPal" 
+    "name": "PayPal",
+    "mapping": {
+      "localCryptos": 4
+    }
   },
   { 
-    "name": "Paytm" 
+    "name": "Paytm",
+    "mapping": {
+      "localCryptos": 26
+    } 
   },
   { 
     "name": "Payza" 
@@ -133,16 +211,25 @@
     "name": "Perfect Money" 
   },
   { 
-    "name": "Pingit" 
+    "name": "Pingit",
+    "mapping": {
+      "localCryptos": 32
+    }
   },
   { 
     "name": "PostePay" 
   },
   { 
-    "name": "QIWI" 
+    "name": "QIWI",
+    "mapping": {
+      "localCryptos": 20
+    }
   },
   { 
-    "name": "Revolut" 
+    "name": "Revolut",
+    "mapping": {
+      "localCryptos": 37
+    }
   },
   { 
     "name": "RIA Money Transfer" 
@@ -151,34 +238,61 @@
     "name": "Remitly" 
   },
   { 
-    "name": "SEPA Transfer" 
+    "name": "SEPA Transfer",
+    "mapping": {
+      "localCryptos": 17
+    } 
   },
   { 
-    "name": "Skrill" 
+    "name": "Skrill",
+    "mapping": {
+      "localCryptos": 13
+    }
   },
   { 
-    "name": "Swish" 
+    "name": "Swish",
+    "mapping": {
+      "localCryptos": 31
+    } 
   },
   { 
     "name": "Tigo Pesa" 
   },
   { 
-    "name": "TransferWise" 
+    "name": "TransferWise",
+    "mapping": {
+      "localCryptos": 16
+    }
   },
   { 
-    "name": "UPI" 
+    "name": "UPI",
+    "mapping": {
+      "localCryptos": 28
+    }
   },
   { 
-    "name": "Venmo" 
+    "name": "Venmo",
+    "mapping": {
+      "localCryptos": 9
+    } 
   },
   { 
-    "name": "WebMoney" 
+    "name": "WebMoney",
+    "mapping": {
+      "localCryptos": 22
+    } 
   },
   { 
-    "name": "Western Union" 
+    "name": "Western Union",
+    "mapping": {
+      "localCryptos": 10
+    }
   },
   { 
-    "name": "WeChat Pay" 
+    "name": "WeChat Pay",
+    "mapping": {
+      "localCryptos": 8
+    }
   },
   { 
     "name": "WorldRemit" 
@@ -187,7 +301,10 @@
     "name": "Xoom" 
   },
   { 
-    "name": "Yandex.Money" 
+    "name": "Yandex.Money",
+    "mapping": {
+      "localCryptos": 21
+    }
   },
   { 
     "name": "Zelle" 

@@ -1,4 +1,5 @@
 export default class Offer { 
+  // maybe to rename to just 'type'
   tradeType = null
   coin = null
   url = null
