@@ -17,7 +17,7 @@ export default class LocalBitcoinsExchange {
     
     if (paymentMethods?.length) {
       var localBitcoinsPaymentMethods = 
-        await this.getLocalBitcoinsPaymentMethodsFrom(paymentMethods)
+        await this.getLocalBitcoinsPaymentMethodsFrom(paymentMethods, countryCode)
       // if localbitcoins doesn't have mappings to payment methods then quit
       if (!localBitcoinsPaymentMethods?.length) return []
     }
@@ -40,39 +40,43 @@ export default class LocalBitcoinsExchange {
     localBitcoinsPaymentMethods?.forEach((method, i) => requestUrls[i] += `/${method}`)
     
     requestUrls.forEach((value, i) => requestUrls[i] += `/.json`)
-    
-    let pendingResponses = requestUrls.map(url => this.http(url))
-    const responses = await Promise.all(pendingResponses)
-    let dataList = responses.map(r => r.data)
+
+    // Send requests sequentally one by one, 
+    // since LocalBitcoins can not handle normally paralleled requests
+    let localBitcoinsOffers = []
+    for (let requestUrl of requestUrls) {
+      let offers = (await this.http(requestUrl)).data.data.ad_list
+        .map(x => ({ ...x.data, ...x.actions }))
+      localBitcoinsOffers.push(...offers)
+    }
 
     const offers = []
-    for (const data of dataList) {
-      for (const item of data.data.ad_list) {
-        const offer = new Offer()
-        offer.exchange.name = 'Local Bitcoins'
-        offer.tradeType = 'Buy'  
-        offer.coin = 'BTC'
-        offer.price.value = +item.data.temp_price
-        offer.price.currency = item.data.currency
-        offer.tradingAmount.min = item.data.min_amount
-        offer.tradingAmount.max = item.data.max_amount_available
-        offer.paymentMethods.push(item.data.online_provider)
-        offer.trader.name = item.data.profile.username
-        offer.trader.tradeCount = parseInt(item.data.profile.trade_count?.replace(' ', ''))
-        offer.trader.rating = item.data.profile.feedback_score
-        offer.trader.country = item.data.countrycode
-        offer.trader.city = item.data.city
-        offer.url = item.actions.public_view
-        offer.trader.profileUrl = this.siteUrl + 'accounts/profile/' + item.data.profile.username
-        offers.push(offer)
-      }
+  
+    for (const item of localBitcoinsOffers) {
+      const offer = new Offer()
+      offer.exchange.name = 'LocalBitcoins'
+      offer.tradeType = 'Buy'  
+      offer.coin = 'BTC'
+      offer.price.value = +item.temp_price
+      offer.price.currency = item.currency
+      offer.tradingAmount.min = item.min_amount
+      offer.tradingAmount.max = item.max_amount_available
+      offer.paymentMethods.push(item.online_provider)
+      offer.trader.name = item.profile.username
+      offer.trader.tradeCount = parseInt(item.profile.trade_count?.replace(' ', ''))
+      offer.trader.rating = item.profile.feedback_score
+      offer.trader.country = item.countrycode
+      offer.trader.city = item.city
+      offer.url = item.public_view
+      offer.trader.profileUrl = this.siteUrl + 'accounts/profile/' + item.profile.username
+      offers.push(offer)
     }
 
     return offers
   }
 
   static async getLocalBitcoinsPaymentMethodsFrom(paymentMethods, countryCode) {
-    let response = await this.http(this.baseApiUrl + '/api/payment_methods/')
+    let response = await this.http(this.baseApiUrl + 'api/payment_methods/')
    
     let localBitcoinsMethods = Object.entries(response.data.data.methods)
                                 .map(([prop, method]) => { 
