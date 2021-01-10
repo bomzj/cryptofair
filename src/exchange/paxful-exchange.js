@@ -26,12 +26,23 @@ export default class PaxfulExchange {
       ?.map((x, i) => `payment-method[${i}]=${x}`) 
       .join('&')
 
+    if (paymentMethods.includes('Cash in Person')) {
+      //this.http('https://paxful.com/location/search?camelCase=1&q=' + )
+      let countryName = LocationService.getCountryName(countryCode)
+      let geonameResponse = await this.http(this.corsProxy + 
+                                          'http://api.geonames.org/searchJSON?' +
+                                          'username=keke1234&maxRows=20&q=' + countryName)
+      var geonameId = geonameResponse.data.geonames
+                      .find(x => x.countryCode == countryCode)?.geonameId
+    }
+
     let requestUrl = this.baseApiUrl + 
                     `offers?camelCase=1&` +
                     `crypto_currency_id=${cryptoCodeToId[coin]}&` +
                     `visitor_country_iso=${countryCode}&` +
                     `type=${query.tradeType.toLowerCase()}&` +
-                    (paxfulPaymentMethodsQueryString || '')
+                    (paxfulPaymentMethodsQueryString ? paxfulPaymentMethodsQueryString + '&' : '') +
+                    (geonameId ? 'location_id=' + geonameId : '')
     
     // Paxful always returns 500 offers!
     let response = await this.http(requestUrl)
