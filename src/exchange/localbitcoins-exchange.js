@@ -2,6 +2,7 @@ import Offer from '@/offer/offer'
 import LocationService from '@/location-service'
 import getHttpClient from '@/http-client'
 import Fuse from 'fuse.js'
+import PaymentMethodService from '@/offer/payment-method-service'
 
 export default class LocalBitcoinsExchange {
   static siteUrl = 'https://localbitcoins.com/'
@@ -10,6 +11,7 @@ export default class LocalBitcoinsExchange {
   static baseApiUrl = '/.netlify/functions/proxy-fetch/' + this.siteUrl
   static http = getHttpClient(5 * 60)
   
+
   static async loadOffers(query) {
     let { tradeType, coin, paymentMethods, countryCode } = query
     
@@ -61,7 +63,8 @@ export default class LocalBitcoinsExchange {
       offer.price.currency = item.currency
       offer.tradingAmount.min = item.min_amount
       offer.tradingAmount.max = item.max_amount_available
-      offer.paymentMethods.push(item.online_provider)
+      let paymentMethod = this.translateLocalBitcoinsPaymentMethodToPaymentMethod(item.online_provider)
+      offer.paymentMethods.push(paymentMethod)
       offer.trader.name = item.profile.username
       offer.trader.tradeCount = parseInt(item.profile.trade_count?.replace(' ', ''))
       offer.trader.rating = item.profile.feedback_score
@@ -124,4 +127,43 @@ export default class LocalBitcoinsExchange {
       case 'Other': return ['other-remittance', 'other-online-wallet-global', 'other-online-payment']
     }
   }
+
+  static translateLocalBitcoinsPaymentMethodToPaymentMethod(localBitcoinsPaymentMethod) {
+    let paymentMethods = PaymentMethodService.getPaymentMethods()
+    const paymentMethodSearcher = new Fuse(paymentMethods, { keys: ['name'] })
+    
+    // fix some wrong automappings
+    if (localBitcoinsPaymentMethod.includes('ALTCOIN')) return 'Other'
+    if (localBitcoinsPaymentMethod.includes('OTHER')) return 'Other'
+    
+    switch (localBitcoinsPaymentMethod) {
+      case 'BANK_TRANSFER_IMPS': return 'IMPS Transfer'
+      
+      case 'TINKOFF': 
+      case 'SPECIFIC_BANK': 
+      case 'NATIONAL_BANK ': return 'Bank Transfer'
+      case 'CARD_TO_CARD_RUSSIA_VISA': return 'Card to Card'
+      case 'SEPA': return 'SEPA Transfer'
+      case 'MONEYBOOKERS': return 'Skrill'
+      case 'UPI_TRANSFER': return 'UPI' 
+      case 'MPESA_TANZANIA':
+      case 'MPESA_KENYA': return 'M-Pesa'
+      
+      case 'VIPPS': 
+      case 'TWINT': 
+      case 'TELE2': 
+      case 'SUPERFLASH': 
+      case 'SQUARE_CASH': 
+      case 'CASH_AT_ATM': 
+      case 'DWOLLA': 
+      case 'HYPERWALLET':
+      case 'LYDIA':
+      case 'MIR':
+      case 'HAL_CASH ': return 'Other'
+    }
+
+    // Otherwise, search for payment method name
+    return paymentMethodSearcher.search(localBitcoinsPaymentMethod)[0]?.item?.name
+  }
+
 }
