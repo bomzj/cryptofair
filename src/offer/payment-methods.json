@@ -140,12 +140,6 @@
     }
   },
   { 
-    "name": "Gift Card",
-    "mapping": {
-      "localCryptos": 12
-    }
-  },
-  { 
     "name": "IMPS Transfer",
     "mapping": {
       "localCryptos": 27,
