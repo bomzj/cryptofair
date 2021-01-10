@@ -57,6 +57,7 @@ export default class LocalCryptosExchange {
         offer.trader.city = item.city.ascii_name
         offer.url = 'https://localcryptos.com/offer/' + item.id
         offer.trader.profileUrl = 'https://localcryptos.com/profile/' + item.account_username
+        offer.trader.isNew = !parseInt(item.trade_count)
         offers.push(offer)
     }
 

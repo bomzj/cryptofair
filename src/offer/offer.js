@@ -28,6 +28,7 @@ export default class Offer {
     tradeCount: null,
     country: null,
     city: null,
-    profileUrl: null
+    profileUrl: null,
+    isNew: true
   }
 }

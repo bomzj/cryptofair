@@ -72,6 +72,7 @@ export default class LocalBitcoinsExchange {
       offer.trader.city = item.city
       offer.url = item.public_view
       offer.trader.profileUrl = this.siteUrl + 'accounts/profile/' + item.profile.username
+      offer.trader.isNew = !parseInt(item.profile.trade_count)
       offers.push(offer)
     }
 
