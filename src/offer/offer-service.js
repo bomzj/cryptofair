@@ -5,7 +5,7 @@ import PaxfulExchange from '@/exchange/paxful-exchange'
 import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
 
 export default class OfferService {
-  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange]
+  static exchanges = [/*LocalBitcoinsExchange, */PaxfulExchange,/* LocalCryptosExchange*/]
   
   static async loadOffers(query) {
     const requests = this.exchanges.map(e => e.loadOffers(query))

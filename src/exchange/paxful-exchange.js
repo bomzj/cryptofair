@@ -2,6 +2,7 @@ import Offer from '@/offer/offer'
 import LocationService from '@/location-service'
 import getHttpClient from '@/http-client'
 import Fuse from 'fuse.js'
+import PaymentMethodService from '@/offer/payment-method-service'
 
 export default class PaxfulExchange {
   static http = getHttpClient(1)
@@ -30,7 +31,7 @@ export default class PaxfulExchange {
                     `crypto_currency_id=${cryptoCodeToId[coin]}&` +
                     `visitor_country_iso=${countryCode}&` +
                     `type=${query.tradeType.toLowerCase()}&` +
-                    paxfulPaymentMethodsQueryString
+                    (paxfulPaymentMethodsQueryString || '')
     
     // Paxful always returns 500 offers!
     let response = await this.http(requestUrl)
@@ -43,6 +44,8 @@ export default class PaxfulExchange {
       let countryCurrency = await LocationService.getCountryCurrency(countryCode)
       data = data.filter(o => o.fiatCurrencyCode == countryCurrency)
     }
+
+    let allPaymentMethods = PaymentMethodService.getPaymentMethods()
     
     const offers = []
     for (const item of data) {
@@ -54,7 +57,9 @@ export default class PaxfulExchange {
         offer.price.currency = item.fiatCurrencyCode
         offer.tradingAmount.min = item.fiatAmountRangeMin
         offer.tradingAmount.max = item.fiatAmountRangeMax
-        offer.paymentMethods.push(item.paymentMethodName)
+        let paymentMethod = allPaymentMethods
+          .find(x => x.mapping?.paxful == item.paymentMethodSlug)?.name
+        offer.paymentMethods.push(paymentMethod || 'Other')
         offer.trader.name = item.username
         offer.trader.tradeCount = // Need separate api call to get trade count!
         offer.trader.rating = item.score
@@ -92,7 +97,7 @@ export default class PaxfulExchange {
   static fixWrongAutoMappingForPaymentMethod(paymentMethod) {
     switch (paymentMethod) {
       case 'Alipay': return []
-      case 'Efectry': return []
+      case 'Efecty': return []
       case 'Paxum': return []
       case 'PayNow': return []
       case 'SEPA Transfer': return ['sepa']

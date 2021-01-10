@@ -2,64 +2,76 @@
   { 
     "name": "AdvCash",
     "mapping": {
-      "localCryptos": 23
+      "localCryptos": 23,
+      "paxful": "advcash"
     }
   },
   { 
     "name": "Airtel",
     "mapping": {
-      "localCryptos": 35
+      "localCryptos": 35,
+      "paxful": "airtel-money"
     }
   },
   { 
     "name": "Apple Pay",
     "mapping": {
+      "paxful": "applepay"
       
     }
   },
   { 
     "name": "Alipay",
     "mapping": {
-      "localCryptos": 7
+      "localCryptos": 7,
+      "paxful": ""
     }
   },
   { 
     "name": "AstroPay",
     "mapping": {
-      
+      "paxful": "astropay-direct"
     }
   },
   { 
     "name": "Bank Transfer",
     "mapping": {
-      "localCryptos": 2
+      "localCryptos": 2,
+      "paxful": "bank-transfer"
     }
   },
   { 
     "name": "Bluebird Card",
     "mapping": {
+      "paxful": "bluebird-american-express"
       
     }
   },
   { 
     "name": "Cardless Cash",
     "mapping": {
-      "localCryptos": 18
+      "localCryptos": 18,
+      "paxful": "cardless-cash"
     }
   },
   { 
     "name": "Cash in Person",
     "mapping": {
-      "localCryptos": 1
+      "localCryptos": 1,
+      "paxful": "cash-in-person"
     }
   },
   { 
-    "name": "Cash App" 
+    "name": "Cash App",
+    "mapping": {
+      "paxful": "cash-app"
+    }
   },
   { 
     "name": "Cash Deposit",
     "mapping": {
-      "localCryptos": 3
+      "localCryptos": 3,
+      "paxful": "cash-deposit-to-bank"
     }
   },
   { 
@@ -67,30 +79,46 @@
   },
   { 
     "name": "Credit/Debit Card",
-    "tags": ["mastercard, visa"]
+    "mapping": {
+      "paxful": "any-creditdebit-card"
+    }
   },
   { 
-    "name": "Cashier's Check" 
+    "name": "Cashier's Check", 
+    "mapping": {
+      "paxful": "cashiers-check"
+    }
   },
   { 
-    "name": "CashU" 
+    "name": "CashU",
+    "mapping": {
+      "paxful": "cashu"
+    }
   },
   { 
-    "name": "Chase Quickpay" 
+    "name": "Chase Quickpay",
+    "mapping": {
+      "paxful": "chase-quickpay"
+    }
   },
   { 
     "name": "Chipper Cash",
     "mapping": {
-      "localCryptos": 33
+      "localCryptos": 33,
+      "paxful": "chipper-cash"
     }
   },
   { 
-    "name": "Easypaisa" 
+    "name": "Easypaisa", 
+    "mapping": {
+      "paxful": "easypaisa"
+    }
   },
   { 
     "name": "EcoCash",
     "mapping": {
-      "localCryptos": 34
+      "localCryptos": 34,
+      "paxful": "ecocash"
     }
   },
   { 
@@ -100,10 +128,16 @@
     }
   },
   { 
-    "name": "Google Pay" 
+    "name": "Google Pay",
+    "mapping": {
+      "paxful": "google-pay"
+    }
   },
   { 
-    "name": "GreenDot Card" 
+    "name": "GreenDot Card",
+    "mapping": {
+      "paxful": "greendot-card"
+    }
   },
   { 
     "name": "Gift Card",
@@ -114,68 +148,88 @@
   { 
     "name": "IMPS Transfer",
     "mapping": {
-      "localCryptos": 27
+      "localCryptos": 27,
+      "paxful": "imps-transfer"
     }
   },
   { 
     "name": "Interac e-Transfer",
     "mapping": {
-      "localCryptos": 25
+      "localCryptos": 25,
+      "paxful": "interac-e-transfer"
     }
   },
   { 
     "name": "International Wire Transfer (SWIFT)",
     "mapping": {
-      "localCryptos": 5
+      "localCryptos": 5,
+      "paxful": "international-wire-transfer-swift"
     } 
   },
   { 
     "name": "M-Pesa",
     "mapping": {
-      "localCryptos": 19
+      "localCryptos": 19,
+      "paxful": "m-pesa"
     }
   },
   { 
-    "name": "MobilePay" 
+    "name": "MobilePay",
+    "mapping": {
+      "paxful": "mobilepay"
+    }
   },
   { 
     "name": "Mercado Pago",
     "mapping": {
-      "localCryptos": 15
+      "localCryptos": 15,
+      "paxful": "mercado-pago"
     }
   },
   { 
     "name": "MoneyGram",
     "mapping": {
-      "localCryptos": 11
+      "localCryptos": 11,
+      "paxful": "moneygram"
     }
   },
   { 
     "name": "MTN Mobile Money",
     "mapping": {
-      "localCryptos": 36
+      "localCryptos": 36,
+      "paxful": "mtn-mobile-money"
     } 
   },
   { 
-    "name": "Neteller" 
+    "name": "Neteller",
+    "mapping": {
+      "paxful": "neteller"
+    } 
   },
   { 
-    "name": "OkPay" 
+    "name": "OkPay",
+    "mapping": {
+      "paxful": "okpay"
+    } 
   },
   { 
     "name": "Other",
     "mapping": {
-      "localCryptos": 6
+      "localCryptos": 6,
+      "paxful": "other-online-wallets"
     }
   },
   { 
     "name": "Payeer",
     "mapping": {
-      "localCryptos": 14
+      "localCryptos": 14,
+      "paxful": "payeer"
     }
   },
   { 
-    "name": "Paxum" 
+    "name": "Paxum",
+    "mapping": {
+    }
   },
   { 
     "name": "PayNow",
@@ -184,129 +238,180 @@
     } 
   },
   { 
-    "name": "Paym" 
+    "name": "Paym", 
+    "mapping": {
+      "paxful": "paym"
+    } 
   },
   { 
-    "name": "PayID" 
+    "name": "PayID",
+    "mapping": {
+      "paxful": "payid"
+    } 
   },
   { 
-    "name": "Payoneer" 
+    "name": "Payoneer",
+    "mapping": {
+      "paxful": "payoneer"
+    }  
   },
   { 
     "name": "PayPal",
     "mapping": {
-      "localCryptos": 4
+      "localCryptos": 4,
+      "paxful": "paypal"
     }
   },
   { 
     "name": "Paytm",
     "mapping": {
-      "localCryptos": 26
+      "localCryptos": 26,
+      "paxful": "paytm-online-wallet"
     } 
   },
   { 
-    "name": "Payza" 
+    "name": "Payza",
+    "mapping": {
+      "paxful": "payza"
+    } 
   },
   { 
-    "name": "Perfect Money" 
+    "name": "Perfect Money",
+    "mapping": {
+      "paxful": "perfect-money"
+    }  
   },
   { 
     "name": "Pingit",
     "mapping": {
-      "localCryptos": 32
+      "localCryptos": 32,
+      "paxful": "pingit"
     }
   },
   { 
-    "name": "PostePay" 
+    "name": "PostePay",
+    "mapping": {
+      "paxful": "postepay"
+    }  
   },
   { 
     "name": "QIWI",
     "mapping": {
-      "localCryptos": 20
+      "localCryptos": 20,
+      "paxful": "qiwi"
     }
   },
   { 
     "name": "Revolut",
     "mapping": {
-      "localCryptos": 37
+      "localCryptos": 37,
+      "paxful": "revolut"
     }
   },
   { 
-    "name": "RIA Money Transfer" 
+    "name": "RIA Money Transfer",
+    "mapping": {
+      "paxful": "ria-money-transfer"
+    } 
   },
   { 
-    "name": "Remitly" 
+    "name": "Remitly",
+    "mapping": {
+      "paxful": "remitly"
+    } 
   },
   { 
     "name": "SEPA Transfer",
     "mapping": {
-      "localCryptos": 17
+      "localCryptos": 17,
+      "paxful": "sepa"
     } 
   },
   { 
     "name": "Skrill",
     "mapping": {
-      "localCryptos": 13
+      "localCryptos": 13,
+      "paxful": "skrill"
     }
   },
   { 
     "name": "Swish",
     "mapping": {
-      "localCryptos": 31
+      "localCryptos": 31,
+      "paxful": "swish"
     } 
   },
   { 
-    "name": "Tigo Pesa" 
+    "name": "Tigo Pesa", 
+    "mapping": {
+      "paxful": "tigo-pesa"
+    } 
   },
   { 
     "name": "TransferWise",
     "mapping": {
-      "localCryptos": 16
+      "localCryptos": 16,
+      "paxful": "transferwise"
     }
   },
   { 
     "name": "UPI",
     "mapping": {
-      "localCryptos": 28
+      "localCryptos": 28,
+      "paxful": "upi-transfer"
     }
   },
   { 
     "name": "Venmo",
     "mapping": {
-      "localCryptos": 9
+      "localCryptos": 9,
+      "paxful": "venmo"
     } 
   },
   { 
     "name": "WebMoney",
     "mapping": {
-      "localCryptos": 22
+      "localCryptos": 22,
+      "paxful": "webmoney"
     } 
   },
   { 
     "name": "Western Union",
     "mapping": {
-      "localCryptos": 10
+      "localCryptos": 10,
+      "paxful": "western-union"
     }
   },
   { 
     "name": "WeChat Pay",
     "mapping": {
-      "localCryptos": 8
+      "localCryptos": 8,
+      "paxful": "wechat-pay"
     }
   },
   { 
-    "name": "WorldRemit" 
+    "name": "WorldRemit",
+    "mapping": {
+
+    }
   },
   { 
-    "name": "Xoom" 
+    "name": "Xoom",
+    "mapping": {
+      "paxful": "xoom-money-transfer"
+    }
   },
   { 
     "name": "Yandex.Money",
     "mapping": {
-      "localCryptos": 21
+      "localCryptos": 21,
+      "paxful": "yandexmoney"
     }
   },
   { 
-    "name": "Zelle" 
+    "name": "Zelle",
+    "mapping": {
+      "paxful": "zelle-pay"
+    }
   }
 ]
