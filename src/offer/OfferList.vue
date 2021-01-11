@@ -5,6 +5,11 @@
     <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500 mb-4">Some payment methods can cause delay up to one minute!</p>
     <img src="@/ui/spinner.svg" class="w-24 mx-auto"/>
   </div>
+  <p v-if="isError" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">An error ocurred. Try to reload the page.</p>
+  <div v-else-if="!isLoading && !offers.length" class="my-8">
+    <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found. Try to change filters.</p>
+    <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500">Some payment methods require Country to be specified.</p>
+  </div>
   <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 whitespace-no-wrap">
       <a :href="offer.trader.profileUrl" target="_blank" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
@@ -37,11 +42,7 @@
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </div>
-  <p v-if="isError" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">An error ocurred. Try to reload the page.</p>
-  <div v-else-if="!isLoading && !offers.length" class="my-8">
-    <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found. Try to change filters.</p>
-    <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500">Some payment methods require Country to be specified.</p>
-  </div>
+  <p v-show="!isLoading && offers.length" class="hint mt-4">*Offers price is just for reference and doesn't include exchange fees</p>
 </div>
 </template>
 
