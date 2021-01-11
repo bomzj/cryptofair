@@ -5,7 +5,7 @@ import PaxfulExchange from '@/exchange/paxful-exchange'
 import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
 
 export default class OfferService {
-  static exchanges = [/*LocalBitcoinsExchange, */PaxfulExchange,/* LocalCryptosExchange*/]
+  static exchanges = [/*LocalBitcoinsExchange, PaxfulExchange,*/ LocalCryptosExchange]
   
   static async loadOffers(query) {
     const requests = this.exchanges.map(e => e.loadOffers(query))
@@ -42,7 +42,7 @@ export default class OfferService {
     return offers.filter(o => !((tradeAmount && 
                                 (tradeAmount < o.tradingAmount.min ||
                                  tradeAmount > o.tradingAmount.max)) || 
-                               (hideNewTraders && !o.trader.tradeCount) ))
+                               (hideNewTraders && o.trader.isNew) ))
   }
 
   static async convertOffersToUserCurrency(offers, query) {

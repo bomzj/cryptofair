@@ -41,6 +41,9 @@ var store = new Vue({
 			if (json) {
 				this.state = { ...this.state, ...JSON.parse(json) }
       }
+    },
+    isStateSaved() {
+      return !!localStorage.getItem("store")
     }
   }
 })

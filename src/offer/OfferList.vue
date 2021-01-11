@@ -38,7 +38,10 @@
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </div>
   <p v-if="isError" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">An error ocurred. Try to reload the page.</p>
-  <p v-else-if="!isLoading && !offers.length" class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 my-8">No offers found. Try to change filters.</p>
+  <div v-else-if="!isLoading && !offers.length" class="my-8">
+    <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found. Try to change filters.</p>
+    <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500">Some payment methods require Country to be specified.</p>
+  </div>
 </div>
 </template>
 

@@ -1,3 +1,3 @@
 import OfferListPage from './OfferListPage'
-import renderPage from '@/common.js'
+import renderPage from '@/app.js'
 renderPage(OfferListPage)

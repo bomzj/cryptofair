@@ -1,24 +1,30 @@
 import Vue from 'vue'
 import '@/main.css'
+import store from '@/store'
+import LocationService from '@/location-service'
+
+(async () => {
+  // Detect user Country only on first visit
+  if (!store.isStateSaved()) {
+    store.state.countryCode = (await LocationService.detectUserCountry())?.code
+  }
+})()
 
 Vue.config.productionTip = false
 
 Vue.config.errorHandler = function (err, vm, info) {
   console.log('global error handler invoked')
+  console.error(err)
 }
 
-function renderPage(page) {
+export default function renderPage(page) {
   new Vue({
     render: h => h(page),
   }).$mount('#app')
 }
 
-export default renderPage;
-
 /* Global filters */
-import store from '@/store'
 import CurrencyService from '@/currency/currency-service'
-
 Vue.filter('currency', function (value, currencyCode, hideFractionDigits) {
   if (!currencyCode) currencyCode = store.state.userCurrency
   return CurrencyService.formatPrice(value, currencyCode, hideFractionDigits)

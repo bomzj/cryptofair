@@ -9,8 +9,9 @@ export default class LocationService {
     let getUserCountryCodeRequest = http('http://ip-api.com/json/?fields=countryCode')
     let getCountriesRequest = this.getCountries()
     let responses = await Promise.all([getUserCountryCodeRequest, getCountriesRequest])
-    let { userCountryCode } = responses[0].data
-    return responses[1].find(c => c.code == userCountryCode)
+    // Get user country code
+    let { countryCode } = responses[0].data
+    return responses[1].find(c => c.code == countryCode)
   }
   
   static async detectUserCurrency() {

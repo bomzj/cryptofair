@@ -7,7 +7,7 @@
            :id="$options.name" 
            title="Select a country to filter offers by"
            @apply-changes="applyChanges"
-           @close="onModalClose">
+           @show="onModalShow">
       <template v-if="countries">
         <SearchBox placeholder="Search country by name or code" 
                    @change="onSearchQueryChange" />
@@ -34,7 +34,7 @@ import Modal from '@/ui/Modal.vue'
 import SearchBox from '@/ui/SearchBox.vue'
 import SingleSelectList from '@/ui/SingleSelectList.vue'
 import TagList from '@/ui/TagList.vue'
-import LocationService from '../location-service'
+import LocationService from '@/location-service'
 
 export default {
   name: 'CountryFilter',
@@ -66,7 +66,8 @@ export default {
                 name: LocationService.getCountryName(this.selectedCountryCode) }] 
              : []
     },
-    onModalClose() {
+    onModalShow() {
+      // We have to watch for countryCode since it's loading async on user first visit
       this.selectedCountryCode = store.state.countryCode
     },
     onSearchQueryChange(searchQuery) {
