@@ -12,6 +12,7 @@ export default class Offer {
   priceInUserCurrency = null
 
   paymentMethods = []
+  paymentInfo = ''
   
   tradingAmount = {
     min: null,

@@ -12,12 +12,13 @@
       <p class="hint">Exchange <span class="data">{{ offer.exchange.name }}</span></p>
     </div>
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4">
-      <div class="flex flex-row items-center mb-1">
-        <span class="hint mr-1">Pay by</span>
-        <!-- <span v-for="method in offer.paymentMethods" :key="method" class="data p-1 rounded text-white bg-gray-600 font-medium mr-1">{{method}}</span> -->
-        <span v-for="method in offer.paymentMethods" :key="method" class="data mr-1">{{method}}</span>
+      <div class="flex flex-row items-center">
+        <!-- <span class="hint mr-1">Pay by</span> -->
+        <span v-for="method in offer.paymentMethods" :key="method" class="data text-gray-600 font-medium mr-1">{{method}}</span>
+        <!-- <span v-for="method in offer.paymentMethods" :key="method" class="data mr-1">{{method}}</span> -->
       </div>
-      <p class="data" v-if="!isNaN(offer.tradingAmount.min)"><span class="hint">Limit</span> {{ formatTradingAmount(offer) }}</p>
+      <p class="hint whitespace-normal" v-if="offer.paymentInfo">{{ offer.paymentInfo }}</p>
+      <p class="data mt-1" v-if="!isNaN(offer.tradingAmount.min)"><span class="hint">Limit</span> {{ formatTradingAmount(offer) }}</p>
     </div>
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 whitespace-no-wrap leading-5">
       <div class="flex flex-col font-medium">

@@ -58,6 +58,7 @@ export default class LocalCryptosExchange {
         offer.url = 'https://localcryptos.com/offer/' + item.id
         offer.trader.profileUrl = 'https://localcryptos.com/profile/' + item.account_username
         offer.trader.isNew = !parseInt(item.trade_count)
+        offer.paymentInfo = item.headline
         offers.push(offer)
     }
 
