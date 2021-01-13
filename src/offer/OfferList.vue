@@ -104,7 +104,7 @@ export default {
         
         // Skip this request result if new request was initiated
         if (request == this.lastRequest) {
-          this.offers = result//result.slice(0, 20)
+          this.offers = result.slice(0, 50)
           this.isLoading = false
         }
       }
