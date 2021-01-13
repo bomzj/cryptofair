@@ -20,7 +20,7 @@ export default {
           'selected-items'],
   data() {
     return {
-      selected: this.selectedItemIds,
+      selected: this.selectedItems,
       itemList: this.items
     }
   },

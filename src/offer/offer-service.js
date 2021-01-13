@@ -5,10 +5,15 @@ import PaxfulExchange from '@/exchange/paxful-exchange'
 import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
 
 export default class OfferService {
-  static exchanges = [/*LocalBitcoinsExchange, PaxfulExchange,*/ LocalCryptosExchange]
+  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange]
   
   static async loadOffers(query) {
-    const requests = this.exchanges.map(e => e.loadOffers(query))
+    console.log(this.exchanges)
+    var exchanges = query.exchanges.length ? 
+      this.exchanges.filter(e => query.exchanges.some(name => e.name.includes(name))) :
+      this.exchanges
+    
+    const requests = exchanges.map(e => e.loadOffers(query))
     
     let offers = (await Promise.allSettled(requests))
                                .filter(x => x.value)

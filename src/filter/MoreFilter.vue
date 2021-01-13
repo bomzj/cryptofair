@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="$refs.modal.show()" class="filter" :class="{'filter-active' : hasSelection}">
+    <button @click="$refs.modal.show()" class="filter" :class="{'filter-active' : isFilterActive}">
       More...
     </button>
     <Modal ref="modal"
@@ -14,14 +14,12 @@
         <NumericInput :placeholder="'Enter the amount in ' + state.userCurrency +
                                     ' for which you want to ' + state.tradeType.toLowerCase() +
                                 ' the crypto'"
-                        :input.sync="tradeAmount" />
+                      :input.sync="tradeAmount" />
       
         <h3 class="px-8 pt-5 text-gray-600 text-lg font-medium">Trader</h3>
         <div class="flex flex-wrap content-start px-8 py-5">
           <label class="flex items-center w-full sm:w-1/3 mb-6">
-            <input type="checkbox" 
-                  class="form-checkbox" 
-                  v-model="hideNewTraders">
+            <input type="checkbox" class="form-checkbox" v-model="hideNewTraders">
             <SimpleListItem item="Hide new traders" />
           </label> 
         </div>
@@ -56,16 +54,21 @@ export default {
       tradeAmount: store.state.tradeAmount,
       hideNewTraders: store.state.hideNewTraders,
       allExchanges: ['LocalBitcoins', 'LocalCryptos', 'Paxful'],
-      selectedExchanges: []
+      selectedExchanges: store.state.exchanges
     }
   },
   computed: {
-    hasSelection: () => store.state.tradeAmount || store.state.hideNewTraders
+    isFilterActive() {
+      return store.state.tradeAmount || 
+             store.state.hideNewTraders ||
+             !!store.state.exchanges.length
+    } 
   },
   methods: {
     onModalClose() {
       this.tradeAmount = store.state.tradeAmount
       this.hideNewTraders = store.state.hideNewTraders
+      this.selectedExchanges = store.state.exchanges
     },
     applyChanges() {
       store.state.tradeAmount = this.tradeAmount

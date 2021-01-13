@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-show="isLoading">
-    <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 mb-1">Loading offers from LocalBitcoins, Paxful, LocalCryptos exchanges</p>
+    <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 mb-1">{{ loadingTitle }}</p>
     <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500 mb-4">Some payment methods can cause delay up to one minute!</p>
     <img src="@/ui/spinner.svg" class="w-24 mx-auto"/>
   </div>
@@ -75,6 +75,13 @@ export default {
   computed: {
     offerCount() {
       return this.offers.length
+    },
+    loadingTitle() {
+      let loadingExchanges = store.state.exchanges.length ? 
+                             store.state.exchanges.join(', ') :
+                             'LocalBitcoins, Paxful, LocalCryptos'
+      
+      return `Loading offers from ${loadingExchanges} exchanges...`
     }
   },
   methods: {
@@ -89,7 +96,8 @@ export default {
                     countryCode:    store.state.countryCode,
                     userCurrency:   store.state.userCurrency,
                     tradeAmount:    store.state.tradeAmount,
-                    hideNewTraders: store.state.hideNewTraders }
+                    hideNewTraders: store.state.hideNewTraders,
+                    exchanges:      store.state.exchanges }
       try {
         var request = this.lastRequest = OfferService.loadOffers(query)
         var result = await request
