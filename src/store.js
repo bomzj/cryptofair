@@ -15,7 +15,8 @@ var store = new Vue({
         paymentMethods: [],
         countryCode: '',
         tradeAmount: undefined,
-        hideNewTraders: false
+        hideNewTraders: false,
+        exchanges: []
       }
     }
   },

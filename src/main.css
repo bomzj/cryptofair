@@ -15,6 +15,16 @@ input:focus, textarea:focus, button:focus {
 .vm--modal {
   @apply bg-gray-200 !important;
   border-radius: 0 !important;
+  /* fix to hide horizontal scrollbar */
+  width: 100% !important; 
+  margin-bottom: 0 !important;
+  height: 100% !important;
+  overflow: auto !important;
+}
+/* remove overlay that prevents to drag scrollbar by mouse */
+.vm--overlay {
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .form-radio {

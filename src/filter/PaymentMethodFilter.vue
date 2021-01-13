@@ -19,8 +19,7 @@
         <MultiSelectList v-slot="{ item }"
                         ref="selectList"
                         :items="paymentMethods"
-                        item-id-prop=""
-                        :selected-item-ids="selectedPaymentMethods" 
+                        :selected-items="selectedPaymentMethods" 
                         @change="onSelectListUpdate">
           <SimpleListItem :item="item" />
         </MultiSelectList>

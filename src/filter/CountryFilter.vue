@@ -54,9 +54,6 @@ export default {
     hasSelection: () => store.state.countryCode
   },
   async created() {
-    // if (!this.selectedCountry) {
-    //   this.selectedCountry = await this.detectUserCountry()
-    // }
     this.countries = await LocationService.getCountries()
   },
   methods: {

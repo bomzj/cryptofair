@@ -1,5 +1,10 @@
 <template>
-  <v-modal :name="id" :width="modalMaxWidth" :height="modalMaxHeight">
+  <v-modal ref="modal" :name="id" 
+          :width="modalMaxWidth()"
+          :height="isScrollable ? 'auto': modalMaxHeight()" 
+          :scrollable="isScrollable ? true : false" 
+          :reset="true"
+          @before-close="onBeforeClose()">
     <div class="flex flex-col h-full lg:container mx-auto bg-gray-200"> 
       <header class="flex px-8 py-5">
         <h2 class="flex-grow text-xl lg:text-2xl 2xl:text-4xl text-center text-gray-700 font-semibold ml-8 lg:ml-10 2xl:ml-12">{{ title }}</h2>
@@ -17,17 +22,15 @@
 </template>
 
 <script>
+import Vue from 'vue'
 export default {
   name: 'Modal',
-  props: ['id', 'title'],
+  props: ['id', 'title', 'isScrollable'],
   data() {
     return {
-      
     }
   },
   computed: {
-    modalMaxHeight: () => window.innerHeight,
-    modalMaxWidth: () => document.body.clientWidth
   },
   methods: {
     show() {
@@ -37,15 +40,20 @@ export default {
       this.$modal.show(this.id)
     },
     close() {
-      // enable page scroll bar on showing modal
-      document.body.style.overflow = 'auto'
+      
       this.$emit('close')
       this.$modal.hide(this.id);
+    },
+    onBeforeClose() {
+      // enable page scroll bar on showing modal
+      document.body.style.overflow = 'auto'
     },
     applyChanges() {
       this.$emit('apply-changes')
       this.close();
-    }
+    },
+    modalMaxHeight: () => window.innerHeight,
+    modalMaxWidth: () => document.body.clientWidth,
   }
 }
 </script>

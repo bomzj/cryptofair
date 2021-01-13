@@ -17,8 +17,7 @@
 export default {
   name: 'MultiSelectList',
   props: ['items', 
-          'item-id-prop',
-          'selected-item-ids'],
+          'selected-items'],
   data() {
     return {
       selected: this.selectedItemIds,
