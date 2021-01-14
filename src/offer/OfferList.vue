@@ -43,7 +43,10 @@
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </div>
-  <p v-show="!isLoading && offers.length" class="hint mt-4">*Offers price is just for reference and doesn't include exchange fees</p>
+  <div v-show="!isLoading && offers.length" class="mt-6">
+    <p class="hint">*Offers list displays the best 50 offers on the p2p market</p>
+    <p class="hint">**Offers price is just for reference and doesn't include exchange fees</p>
+  </div>
 </div>
 </template>
 
@@ -88,7 +91,7 @@ export default {
                              store.state.exchanges.join(', ') :
                              'LocalBitcoins, Paxful, LocalCryptos'
       
-      return `Loading offers from ${loadingExchanges} exchanges...`
+      return `Loading offers from ${loadingExchanges}`
     }
   },
   methods: {
