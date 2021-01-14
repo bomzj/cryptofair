@@ -51,7 +51,7 @@ export default class LocalBitcoinsExchange {
         .map(x => ({ ...x.data, ...x.actions }))
       localBitcoinsOffers.push(...offers)
     }
-
+    
     const offers = []
   
     for (const item of localBitcoinsOffers) {
@@ -74,6 +74,7 @@ export default class LocalBitcoinsExchange {
       offer.trader.profileUrl = this.siteUrl + 'accounts/profile/' + item.profile.username
       offer.trader.isNew = !parseInt(item.profile.trade_count)
       offer.paymentInfo = item.bank_name
+      offer.trader.lastSeen = item.profile.last_online
       offers.push(offer)
     }
 

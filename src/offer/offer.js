@@ -30,6 +30,7 @@ export default class Offer {
     country: null,
     city: null,
     profileUrl: null,
-    isNew: true
+    isNew: true,
+    lastSeen: undefined
   }
 }

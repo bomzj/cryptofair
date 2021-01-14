@@ -80,6 +80,7 @@ export default class PaxfulExchange {
         offer.trader.profileUrl = 'https://paxful.com/user/' + item.username
         offer.trader.isNew = !parseInt(item.feedbackPositive)
         offer.paymentInfo = item.paymentMethodLabel
+        offer.trader.lastSeen = item.lastSeen * 1000
         offers.push(offer)
     }
 

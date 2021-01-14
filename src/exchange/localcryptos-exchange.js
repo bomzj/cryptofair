@@ -59,6 +59,7 @@ export default class LocalCryptosExchange {
         offer.trader.profileUrl = 'https://localcryptos.com/profile/' + item.account_username
         offer.trader.isNew = !parseInt(item.trade_count)
         offer.paymentInfo = item.headline
+        offer.trader.lastSeen = Date.now() - item.reputation.last_seen_ago * 1000
         offers.push(offer)
     }
 

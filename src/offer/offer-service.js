@@ -8,7 +8,6 @@ export default class OfferService {
   static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange]
   
   static async loadOffers(query) {
-    console.log(this.exchanges)
     var exchanges = query.exchanges.length ? 
       this.exchanges.filter(e => query.exchanges.some(name => e.name.includes(name))) :
       this.exchanges

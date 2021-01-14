@@ -15,6 +15,7 @@
       <a :href="offer.trader.profileUrl" target="_blank" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <!-- <p class="hint">Total Trades <span class="data">{{ offer.trader.tradeCount }}</span></p> -->
       <p class="hint">Exchange <span class="data">{{ offer.exchange.name }}</span></p>
+      <p class="hint">Seen <span class="data">{{ offer.trader.lastSeen | relativeTime }}</span></p>
     </div>
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4">
       <div class="flex flex-row items-center">
@@ -50,6 +51,7 @@
 import OfferService from './offer-service'
 import store from '@/store'
 import CurrencyService from '@/currency/currency-service'
+import DateFormatter from '@/date-formatter' 
 
 export default {
   name: 'OfferList',
@@ -67,6 +69,11 @@ export default {
         this.updateOffers()
 			},
 			deep: true
+    }
+  },
+  filters: {
+    relativeTime(date) {
+      return DateFormatter.relativeTimeFormat(date)
     }
   },
   created() {
