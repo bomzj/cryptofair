@@ -4,9 +4,10 @@ const http = getHttpClient(12 * 60 * 60)
 
 export default class CurrencyService {
   static currencies = undefined
+  static corsProxy = '/.netlify/functions/proxy-fetch/'
 
   static async detectUserCurrency() {
-    let response = await http('http://ip-api.com/json/?fields=country,currency')
+    let response = await http(this.corsProxy + 'http://ip-api.com/json/?fields=country,currency')
     let { currency } = response.data
     return this.getCurrencies().find(i => i.code == currency)
   }

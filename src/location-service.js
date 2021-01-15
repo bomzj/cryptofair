@@ -6,7 +6,7 @@ export default class LocationService {
   static corsProxy = '/.netlify/functions/proxy-fetch/'
   
   static async detectUserCountry() {
-    let getUserCountryCodeRequest = http('http://ip-api.com/json/?fields=countryCode')
+    let getUserCountryCodeRequest = http(this.corsProxy + 'http://ip-api.com/json/?fields=countryCode')
     let getCountriesRequest = this.getCountries()
     let responses = await Promise.all([getUserCountryCodeRequest, getCountriesRequest])
     // Get user country code
@@ -15,7 +15,7 @@ export default class LocationService {
   }
   
   static async detectUserCurrency() {
-    let response = await http('http://ip-api.com/json/?fields=currency')
+    let response = await http(this.corsProxy + 'http://ip-api.com/json/?fields=currency')
     let { currency } = response.data
     // I found that Belarussian currency has wrong code, maybe there can others who knows
     if (currency == 'BYR') currency = 'BYN'
