@@ -2,12 +2,24 @@
 import axios from 'axios'
 
 exports.handler = async function handler(event, context, callback) {
-  const requestUrl = event.path.substring(event.path.indexOf('/', 1) + 1)
-  console.log(event.path)
-  console.log(requestUrl)
-  //console.log(event.queryStringParameters)
-  const response = await axios(requestUrl, { params: event.queryStringParameters })
+  let requestUrlStartIndex = event.path.indexOf('http://', 1)
+  if (requestUrlStartIndex == -1) { 
+    requestUrlStartIndex = event.path.indexOf('https://', 1)
+  }
   
+  if (requestUrlStartIndex == -1) {
+    callback(null, {
+      statusCode: 400,
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
+    return
+  }
+
+  const requestUrl = event.path.substring(requestUrlStartIndex)
+  const response = await axios(requestUrl, { params: event.queryStringParameters })
+
   callback(null, {
     statusCode: 200,
     headers: {
