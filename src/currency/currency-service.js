@@ -1,5 +1,6 @@
 import _currencies from './currencies.json'
 import getHttpClient from '@/http-client'
+import LocationService from '@/location-service'
 const http = getHttpClient(12 * 60 * 60)
 
 export default class CurrencyService {
@@ -7,9 +8,8 @@ export default class CurrencyService {
   static corsProxy = '/.netlify/functions/proxy-fetch/'
 
   static async detectUserCurrency() {
-    let response = await http(this.corsProxy + 'http://ip-api.com/json/?fields=country,currency')
-    let { currency } = response.data
-    return this.getCurrencies().find(i => i.code == currency)
+    let currency = await LocationService.detectUserCurrency()
+    return this.getCurrencies().find(i => i.code == currency.code)
   }
 
   static getCurrencies() {

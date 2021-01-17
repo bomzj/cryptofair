@@ -35,6 +35,7 @@ import SearchBox from '@/ui/SearchBox.vue'
 import SingleSelectList from '@/ui/SingleSelectList.vue'
 import TagList from '@/ui/TagList.vue'
 import CurrencyService from './currency-service'
+import LocationService from '@/location-service'
 
 export default {
   name: 'UserCurrencySelector',
@@ -64,7 +65,7 @@ export default {
       let detectedUserCurrency = await CurrencyService.detectUserCurrency()
       if (detectedUserCurrency) {
         topCurrencyCodes = topCurrencyCodes.filter(c => c != detectedUserCurrency.code)
-        topCurrencyCodes = topCurrencyCodes.splice(0, 0, detectedUserCurrency.code)
+        topCurrencyCodes.splice(0, 0, detectedUserCurrency.code)
       }
 
       let topCurrencies = topCurrencyCodes.map(c => CurrencyService.getCurrency(c))
