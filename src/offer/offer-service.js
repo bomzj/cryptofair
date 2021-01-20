@@ -3,9 +3,10 @@ import CryptocurrencyService from '@/cryptocurrency/cryptocurrency-service'
 import LocalBitcoinsExchange from '@/exchange/localbitcoins-exchange'
 import PaxfulExchange from '@/exchange/paxful-exchange'
 import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
+import HodlHodlExchange from '@/exchange/hodlhodl-exchange'
 
 export default class OfferService {
-  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange]
+  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange, HodlHodlExchange]
   
   static async loadOffers(query) {
     var exchanges = query.exchanges.length ? 

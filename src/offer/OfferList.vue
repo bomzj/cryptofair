@@ -18,10 +18,8 @@
       <p class="hint">Seen <span class="data">{{ offer.trader.lastSeen | relativeTime }}</span></p>
     </div>
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4">
-      <div class="flex flex-row items-center">
-        <!-- <span class="hint mr-1">Pay by</span> -->
-        <span v-for="method in offer.paymentMethods" :key="method" class="data text-gray-600 font-medium mr-1">{{method}}</span>
-        <!-- <span v-for="method in offer.paymentMethods" :key="method" class="data mr-1">{{method}}</span> -->
+      <div class="flex flex-col">
+        <span v-for="method in offer.paymentMethods" :key="method" class="data text-gray-600 font-medium">{{method}}</span>
       </div>
       <p class="hint whitespace-normal" v-if="offer.paymentInfo">{{ offer.paymentInfo }}</p>
       <p class="data mt-1" v-if="!isNaN(offer.tradingAmount.min)"><span class="hint">Limit</span> {{ formatTradingAmount(offer) }}</p>
@@ -76,6 +74,7 @@ export default {
   },
   filters: {
     relativeTime(date) {
+      if (!Date.parse(date)) return date
       return DateFormatter.relativeTimeFormat(date)
     }
   },
@@ -88,10 +87,10 @@ export default {
     },
     loadingTitle() {
       let loadingExchanges = store.state.exchanges.length ? 
-                             store.state.exchanges.join(', ') :
-                             'LocalBitcoins, Paxful, LocalCryptos'
+                             store.state.exchanges :
+                             OfferService.exchanges.map(x => x.name.replace('Exchange', ''))
       
-      return `Loading offers from ${loadingExchanges}`
+      return `Loading offers from ${loadingExchanges.join(', ')}`
     }
   },
   methods: {

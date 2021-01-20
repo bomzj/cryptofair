@@ -44,6 +44,7 @@ import NumericInput from '@/ui/NumericInput.vue'
 import CurrencyService from '@/currency/currency-service'
 import SimpleListItem from '@/ui/SimpleListItem.vue'
 import MultiSelectList from '@/ui/MultiSelectList.vue'
+import OfferService from '@/offer/offer-service'
 
 export default {
   name: 'MoreFilter',
@@ -53,7 +54,7 @@ export default {
       state: store.state,
       tradeAmount: store.state.tradeAmount,
       hideNewTraders: store.state.hideNewTraders,
-      allExchanges: ['LocalBitcoins', 'LocalCryptos', 'Paxful'],
+      allExchanges: OfferService.exchanges.map(x => x.name.replace('Exchange', '')),
       selectedExchanges: store.state.exchanges
     }
   },

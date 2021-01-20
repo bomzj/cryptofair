@@ -5,7 +5,7 @@ import Fuse from 'fuse.js'
 import PaymentMethodService from '@/offer/payment-method-service'
 
 export default class PaxfulExchange {
-  static http = getHttpClient(1)
+  static http = getHttpClient(5 * 60)
   static corsProxy = '/.netlify/functions/proxy-fetch/'
   static baseApiUrl = this.corsProxy + 'https://paxful.com/rest/v1/'
   
@@ -40,7 +40,7 @@ export default class PaxfulExchange {
                     `offers?camelCase=1&` +
                     `crypto_currency_id=${cryptoCodeToId[coin]}&` +
                     `visitor_country_iso=${countryCode}&` +
-                    `type=${query.tradeType.toLowerCase()}&` +
+                    `type=${tradeType.toLowerCase()}&` +
                     (paxfulPaymentMethodsQueryString ? paxfulPaymentMethodsQueryString + '&' : '') +
                     (geonameId ? 'location_id=' + geonameId : '')
     

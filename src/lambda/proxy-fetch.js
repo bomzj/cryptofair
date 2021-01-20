@@ -1,5 +1,11 @@
 /* This lambda is useful in case if site's script can not request API due to CORS */
 import axios from 'axios'
+import qs from 'qs'
+
+// Serialize query params that represents object with props
+axios.defaults.paramsSerializer = params => {
+  return qs.stringify(params)
+}
 
 exports.handler = async function handler(event, context, callback) {
   let requestUrlStartIndex = event.path.indexOf('http://', 1)
@@ -18,7 +24,17 @@ exports.handler = async function handler(event, context, callback) {
   }
 
   const requestUrl = event.path.substring(requestUrlStartIndex)
-  const response = await axios(requestUrl, { params: event.queryStringParameters })
+  
+  try {
+    var response = await axios(requestUrl, { params: event.queryStringParameters })
+  } catch (error) {
+    console.error(error)
+    callback(null, {
+      statusCode: 500, 
+      body: JSON.stringify(error)
+    })
+    return
+  }
 
   callback(null, {
     statusCode: 200,

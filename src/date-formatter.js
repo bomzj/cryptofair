@@ -6,7 +6,7 @@ export default class DateFormatter {
     else if (date instanceof Date) {
       date = +date
     }
-    else if (!Number.isInteger(date)) throw 'Invalid date type'
+    else if (!Number.isInteger(date)) throw 'Invalid date format'
 
     const nowDate = +(new Date())
     const relativeTimeFormatter = new Intl.RelativeTimeFormat(undefined, { 
