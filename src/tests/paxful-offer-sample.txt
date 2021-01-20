@@ -1,0 +1,51 @@
+Paxful
+
+authorized: true
+cityName: null
+countryName: null
+cryptoCurrencyId: 1
+declinedTradesInARow: null
+defaultFlowType: "default"
+feePercentage: 0.5
+feedbackPositive: 4
+fiatAmountRangeMax: 10000
+fiatAmountRangeMin: 5000
+fiatCurrencyCode: "RUB"
+fiatPricePerBtc: 2958239.610326
+fiatUSDPricePerBtc: 39931.1
+idHashed: "xuCDUVeAdcx"
+index: 438
+isBlocked: false
+isFeatured: true
+isFeaturedByModerator: false
+isOnline: true
+lastSeen: 1610207950
+lastSeenString: "Seen 2 hours ago"
+layout: "offer"
+limitInARowReachedAt: null
+locationCountryIsoCode: null
+locationCountryLocationId: null
+locationSubdivisionLocationId: null
+margin: -2
+offerType: "sell"
+paymentMethodGroupId: 5
+paymentMethodId: 15
+paymentMethodLabel: "Ð¡Ð±ÐµÑ€Ð±Ð°Ð½Ðº Ð¢Ð¸Ð½ÑŒÐºÐ¾Ñ„Ñ„"
+paymentMethodName: "Bank Transfer"
+paymentMethodSlug: "bank-transfer"
+percentPerUsd: -1.86
+predefinedAmount: null
+pricePerBtc: 1.01897418
+pricePerUsd: 0.98
+releaseTimeCustom: 99999
+releaseTimeMedianHumanize: ""
+requireMinPastTrades: 5
+requireVerifiedId: true
+requiresVerification: true
+score: 1000.399311
+showOnlyTrustedUser: false
+subdivisionName: null
+tags: []
+userBadges: []
+userTimezone: "Asia/Barnaul"
+username: "Boymep"

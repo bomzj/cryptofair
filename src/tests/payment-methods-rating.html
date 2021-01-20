@@ -1,0 +1,79 @@
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<table>
+<thead>
+	<th>Local bitcoins pament method</th>
+	<th>Paxful payment method</th>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>	
+</tbody
+</table>
+
+<script src="localbitcoins-payment-methods.json" ></script>
+<script src="payment-methods.json" ></script>
+<script src="paxful-payment-methods.json"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.js"></script>
+
+<script>
+async function downloadOffers() {
+	let url = 'https://localbitcoins.com/buy-bitcoins-online/.json'
+	corsProxy = 'http://localhost:8080/.netlify/functions/proxy-fetch/' //'https://cors-anywhere.herokuapp.com/' //
+	let offers = []
+	for (var i = 0; i < 80; i++) {
+		let page = `?page=${i}`
+		//requests.push(fetch(corsProxy + url + page, { signal: controller.signal }))
+		let response = await fetch(corsProxy + url + page)
+		let data = await response.json()
+		offers.push(...data.data.ad_list.map(i => i.data))
+	}
+	
+	//let responses = await Promise.all(requests)
+	/*
+	let dataPromises = []
+	for (let response of responses) {
+		let dataPromise = response.json()
+		dataPromises.push(dataPromise)
+	}
+	
+	let data = await Promise.all(dataPromises)
+	
+	data = data.flat()
+	data = data.map(data => data.data.ad_list.map(i => i.data))
+	offers.push(...data)
+	*/
+	
+	return offers
+}
+
+async function main() {
+	let offers = await downloadOffers()
+	let paymentMethods = []
+	
+	for (let offer of offers) {
+		let paymentMethod = paymentMethods.find(i => i.name == offer.online_provider)
+		if (!paymentMethod) {
+			paymentMethod = { name: offer.online_provider, count: 0 }
+			paymentMethods.push(paymentMethod)
+		}
+		paymentMethod.count++
+	}
+
+	paymentMethods.sort((a,b) => {
+		if (a.count > b.count) return -1
+		if (a.count < b.count) return 1
+		else return 0
+	})
+
+
+
+	for (var paymentMethod of paymentMethods) {
+		console.log(paymentMethod)
+	}
+}
+
+main()
+
+</script>
