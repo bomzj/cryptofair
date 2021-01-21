@@ -4,7 +4,8 @@
     "mapping": {
       "localCryptos": 23,
       "paxful": "advcash",
-      "hodlHodl": 39
+      "hodlHodl": 39,
+      "localCoinSwap": "advcash"
     }
   },
   { 
@@ -12,14 +13,16 @@
     "mapping": {
       "localCryptos": 35,
       "paxful": "airtel-money",
-      "hodlHodl": ""
+      "hodlHodl": "",
+      "localCoinSwap": ""
     }
   },
   { 
     "name": "Apple Pay",
     "mapping": {
       "paxful": "applepay",
-      "hodlHodl": ""
+      "hodlHodl": "",
+      "localCoinSwap": "applepay"
     }
   },
   { 
@@ -27,14 +30,16 @@
     "mapping": {
       "localCryptos": 7,
       "paxful": "",
-      "hodlHodl": 123
+      "hodlHodl": 123,
+      "localCoinSwap": "alipay"
     }
   },
   { 
     "name": "AstroPay",
     "mapping": {
       "paxful": "astropay-direct",
-      "hodlHodl": ""
+      "hodlHodl": "",
+      "localCoinSwap": "astropay-direct"
     }
   },
   { 
@@ -43,14 +48,16 @@
       "localCryptos": 2,
       "paxful": "bank-transfer",
       "hodlHodl": [337, 66, 114, 328, 324, 361, 325, 322, 326, 1020, 323, 
-                   797, 492, 327, 168, 53, 264, 370, 201, 661]
+                   797, 492, 327, 168, 53, 264, 370, 201, 661],
+      "localCoinSwap": "bank-transfers"
     }
   },
   { 
     "name": "Bluebird Card",
     "mapping": {
       "paxful": "bluebird-american-express",
-      "hodlHodl": ""
+      "hodlHodl": "",
+      "localCoinSwap": "bluebird-american-express"
       
     }
   },
@@ -59,7 +66,8 @@
     "mapping": {
       "localCryptos": 18,
       "paxful": "cardless-cash",
-      "hodlHodl": [571, 636, 517]
+      "hodlHodl": [571, 636, 517],
+      "localCoinSwap": "cardless-cash"
     }
   },
   { 
@@ -67,14 +75,16 @@
     "mapping": {
       "localCryptos": 1,
       "paxful": "cash-in-person",
-      "hodlHodl": 26
+      "hodlHodl": 26,
+      "localCoinSwap": "cash-in-person"
     }
   },
   { 
     "name": "Cash App",
     "mapping": {
       "paxful": "cash-app",
-      "hodlHodl": 75
+      "hodlHodl": 75,
+      "localCoinSwap": "cash-app-square-cash"
     }
   },
   { 
@@ -82,35 +92,43 @@
     "mapping": {
       "localCryptos": 3,
       "paxful": "cash-deposit-to-bank",
-      "hodlHodl": [368, 395, 1347, 799, 630]
+      "hodlHodl": [368, 395, 1347, 799, 630],
+      "localCoinSwap": "cash-deposit"
     }
   },
   { 
-    "name": "Card to Card" 
+    "name": "Card to Card",
+    "mapping": {
+      "localCoinSwap": ""
+    }
   },
   { 
     "name": "Credit/Debit Card",
     "mapping": {
       "paxful": "any-creditdebit-card",
-      "hodlHodl": [7]
+      "hodlHodl": [7],
+      "localCoinSwap": "creditdebit-card"
     }
   },
   { 
     "name": "Cashier's Check", 
     "mapping": {
-      "paxful": "cashiers-check"
+      "paxful": "cashiers-check",
+      "localCoinSwap": ""
     }
   },
   { 
     "name": "CashU",
     "mapping": {
-      "paxful": "cashu"
+      "paxful": "cashu",
+      "localCoinSwap": ""
     }
   },
   { 
     "name": "Chase Quickpay",
     "mapping": {
-      "paxful": "chase-quickpay"
+      "paxful": "chase-quickpay",
+      "localCoinSwap": "chase-quickpay"
     }
   },
   { 
@@ -118,46 +136,53 @@
     "mapping": {
       "localCryptos": 33,
       "paxful": "chipper-cash",
-      "hodlHodl": [498]
+      "hodlHodl": [498],
+      "localCoinSwap": "chipper-cash"
     }
   },
   { 
     "name": "Easypaisa", 
     "mapping": {
-      "paxful": "easypaisa"
+      "paxful": "easypaisa",
+      "localCoinSwap": ""
     }
   },
   { 
     "name": "EcoCash",
     "mapping": {
       "localCryptos": 34,
-      "paxful": "ecocash"
+      "paxful": "ecocash",
+      "localCoinSwap": "ecocash"
     }
   },
   { 
     "name": "Efecty",
     "mapping": {
-      "localCryptos": 29
+      "localCryptos": 29,
+      "localCoinSwap": "efecty"
     }
   },
   { 
     "name": "Google Pay",
     "mapping": {
       "paxful": "google-pay",
-      "hodlHodl": [10]
+      "hodlHodl": [10],
+      "localCoinSwap": "google-pay"
     }
   },
   { 
     "name": "GreenDot Card",
     "mapping": {
-      "paxful": "greendot-card"
+      "paxful": "greendot-card",
+      "localCoinSwap": "greendot-prepaid-debit-card"
     }
   },
   { 
     "name": "IMPS Transfer",
     "mapping": {
       "localCryptos": 27,
-      "paxful": "imps-transfer"
+      "paxful": "imps-transfer",
+      "localCoinSwap": "imps-transfer"
     }
   },
   { 
@@ -165,7 +190,8 @@
     "mapping": {
       "localCryptos": 25,
       "paxful": "interac-e-transfer",
-      "hodlHodl": [125]
+      "hodlHodl": [125],
+      "localCoinSwap": "interac-e-transfer"
     }
   },
   { 
@@ -173,7 +199,8 @@
     "mapping": {
       "localCryptos": 5,
       "paxful": "international-wire-transfer-swift",
-      "hodlHodl": 2
+      "hodlHodl": 2,
+      "localCoinSwap": "swift-international-transfer"
     } 
   },
   { 
@@ -181,13 +208,15 @@
     "mapping": {
       "localCryptos": 19,
       "paxful": "m-pesa",
-      "hodlHodl": 535
+      "hodlHodl": 535,
+      "localCoinSwap": "m-pesa"
     }
   },
   { 
     "name": "MobilePay",
     "mapping": {
-      "paxful": "mobilepay"
+      "paxful": "mobilepay",
+      "localCoinSwap": ""
     }
   },
   { 
@@ -195,7 +224,8 @@
     "mapping": {
       "localCryptos": 15,
       "paxful": "mercado-pago",
-      "hodlHodl": 480
+      "hodlHodl": 480,
+      "localCoinSwap": "mercado-pago"
     }
   },
   { 
@@ -203,7 +233,8 @@
     "mapping": {
       "localCryptos": 11,
       "paxful": "moneygram",
-      "hodlHodl": 12
+      "hodlHodl": 12,
+      "localCoinSwap": "moneygram"
     }
   },
   { 
@@ -211,28 +242,32 @@
     "mapping": {
       "localCryptos": 36,
       "paxful": "mtn-mobile-money",
-      "hodlHodl": 40
+      "hodlHodl": 40,
+      "localCoinSwap": "mtn-mobile-money"
     } 
   },
   { 
     "name": "Neteller",
     "mapping": {
       "paxful": "neteller",
-      "hodlHodl": 11
+      "hodlHodl": 11,
+      "localCoinSwap": "neteller"
     } 
   },
   { 
     "name": "OkPay",
     "mapping": {
       "paxful": "okpay",
-      "hodlHodl": ""
+      "hodlHodl": "",
+      "localCoinSwap": "okpay"
     } 
   },
   { 
     "name": "Other",
     "mapping": {
       "localCryptos": 6,
-      "paxful": "other-online-wallets"
+      "paxful": "other-online-wallets",
+      "localCoinSwap": ""
     }
   },
   { 
@@ -240,40 +275,46 @@
     "mapping": {
       "localCryptos": 14,
       "paxful": "payeer",
-      "hodlHodl": 14
+      "hodlHodl": 14,
+      "localCoinSwap": "payeer"
     }
   },
   { 
     "name": "Paxum",
     "mapping": {
-      "hodlHodl": 132
+      "hodlHodl": 132,
+      "localCoinSwap": "paxum"
       
     }
   },
   { 
     "name": "PayNow",
     "mapping": {
-      "localCryptos": 30
+      "localCryptos": 30,
+      "localCoinSwap": "paynow"
     } 
   },
   { 
     "name": "Paym", 
     "mapping": {
-      "paxful": "paym"
+      "paxful": "paym",
+      "localCoinSwap": "paym"
     } 
   },
   { 
     "name": "PayID",
     "mapping": {
       "paxful": "payid",
-      "hodlHodl": 409
+      "hodlHodl": 409,
+      "localCoinSwap": "payid"
     } 
   },
   { 
     "name": "Payoneer",
     "mapping": {
       "paxful": "payoneer",
-      "hodlHodl": 15
+      "hodlHodl": 15,
+      "localCoinSwap": "payoneer"
     }  
   },
   { 
@@ -281,7 +322,8 @@
     "mapping": {
       "localCryptos": 4,
       "paxful": "paypal",
-      "hodlHodl": 16
+      "hodlHodl": 16,
+      "localCoinSwap": "paypal"
     }
   },
   { 
@@ -289,33 +331,38 @@
     "mapping": {
       "localCryptos": 26,
       "paxful": "paytm-online-wallet",
-      "hodlHodl": 122
+      "hodlHodl": 122,
+      "localCoinSwap": "paytm-online-wallet"
     } 
   },
   { 
     "name": "Payza",
     "mapping": {
-      "paxful": "payza"
+      "paxful": "payza",
+      "localCoinSwap": ""
     } 
   },
   { 
     "name": "Perfect Money",
     "mapping": {
       "paxful": "perfect-money",
-      "hodlHodl": 17
+      "hodlHodl": 17,
+      "localCoinSwap": "perfect-money"
     }  
   },
   { 
     "name": "Pingit",
     "mapping": {
       "localCryptos": 32,
-      "paxful": "pingit"
+      "paxful": "pingit",
+      "localCoinSwap": "barclays-pingit"
     }
   },
   { 
     "name": "PostePay",
     "mapping": {
-      "paxful": "postepay"
+      "paxful": "postepay",
+      "localCoinSwap": "postepay"
     }  
   },
   { 
@@ -323,7 +370,8 @@
     "mapping": {
       "localCryptos": 20,
       "paxful": "qiwi",
-      "hodlHodl": 18
+      "hodlHodl": 18,
+      "localCoinSwap": "qiwi"
     }
   },
   { 
@@ -331,20 +379,23 @@
     "mapping": {
       "localCryptos": 37,
       "paxful": "revolut",
-      "hodlHodl": 52
+      "hodlHodl": 52,
+      "localCoinSwap": "revolut"
     }
   },
   { 
     "name": "RIA Money Transfer",
     "mapping": {
       "paxful": "ria-money-transfer",
-      "hodlHodl": 127
+      "hodlHodl": 127,
+      "localCoinSwap": "ria-money-transfers"
     } 
   },
   { 
     "name": "Remitly",
     "mapping": {
-      "paxful": "remitly"
+      "paxful": "remitly",
+      "localCoinSwap": ""
     } 
   },
   { 
@@ -352,7 +403,8 @@
     "mapping": {
       "localCryptos": 17,
       "paxful": "sepa",
-      "hodlHodl": 4
+      "hodlHodl": 4,
+      "localCoinSwap": "sepa-transfer"
     } 
   },
   { 
@@ -360,7 +412,8 @@
     "mapping": {
       "localCryptos": 13,
       "paxful": "skrill",
-      "hodlHodl": 19
+      "hodlHodl": 19,
+      "localCoinSwap": "skrill"
     }
   },
   { 
@@ -368,13 +421,15 @@
     "mapping": {
       "localCryptos": 31,
       "paxful": "swish",
-      "hodlHodl": 35
+      "hodlHodl": 35,
+      "localCoinSwap": "swish-payment"
     } 
   },
   { 
     "name": "Tigo Pesa", 
     "mapping": {
-      "paxful": "tigo-pesa"
+      "paxful": "tigo-pesa",
+      "localCoinSwap": ""
     } 
   },
   { 
@@ -382,7 +437,8 @@
     "mapping": {
       "localCryptos": 16,
       "paxful": "transferwise",
-      "hodlHodl": 208
+      "hodlHodl": 208,
+      "localCoinSwap": "transferwise"
     }
   },
   { 
@@ -390,7 +446,8 @@
     "mapping": {
       "localCryptos": 28,
       "paxful": "upi-transfer",
-      "hodlHodl": 126
+      "hodlHodl": 126,
+      "localCoinSwap": "upi-payments"
     }
   },
   { 
@@ -398,7 +455,8 @@
     "mapping": {
       "localCryptos": 9,
       "paxful": "venmo",
-      "hodlHodl": 20
+      "hodlHodl": 20,
+      "localCoinSwap": "venmo"
     } 
   },
   { 
@@ -406,7 +464,8 @@
     "mapping": {
       "localCryptos": 22,
       "paxful": "webmoney",
-      "hodlHodl": 9
+      "hodlHodl": 9,
+      "localCoinSwap": "webmoney"
     } 
   },
   { 
@@ -414,7 +473,8 @@
     "mapping": {
       "localCryptos": 10,
       "paxful": "western-union",
-      "hodlHodl": 24
+      "hodlHodl": 24,
+      "localCoinSwap": "western-union"
     }
   },
   { 
@@ -422,20 +482,23 @@
     "mapping": {
       "localCryptos": 8,
       "paxful": "wechat-pay",
-      "hodlHodl": 285
+      "hodlHodl": 285,
+      "localCoinSwap": "wechat-pay"
     }
   },
   { 
     "name": "WorldRemit",
     "mapping": {
-      "hodlHodl": 321
+      "hodlHodl": 321,
+      "localCoinSwap": "worldremit"
     }
   },
   { 
     "name": "Xoom",
     "mapping": {
       "paxful": "xoom-money-transfer",
-      "hodlHodl": 22
+      "hodlHodl": 22,
+      "localCoinSwap": ""
     }
   },
   { 
@@ -443,14 +506,16 @@
     "mapping": {
       "localCryptos": 21,
       "paxful": "yandexmoney",
-      "hodlHodl": 23
+      "hodlHodl": 23,
+      "localCoinSwap": "yandex-money"
     }
   },
   { 
     "name": "Zelle",
     "mapping": {
       "paxful": "zelle-pay",
-      "hodlHodl": 124
+      "hodlHodl": 124,
+      "localCoinSwap": "zelle-pay"
     }
   }
 ]

@@ -74,7 +74,7 @@ export default {
   },
   filters: {
     relativeTime(date) {
-      if (!Date.parse(date)) return date
+      if (new Date(date) == 'Invalid Date') return date
       return DateFormatter.relativeTimeFormat(date)
     }
   },

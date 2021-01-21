@@ -2,6 +2,7 @@
 <head>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <script src="hodlhodl-payment_methods.json"></script>
+<script src="localcoinswap-payment-methods.json"></script>
 <script src="localbitcoins-payment-methods.json" ></script>
 <script src="payment-methods.json" ></script>
 <script src="paxful-payment-methods.json"></script>
@@ -10,7 +11,7 @@
 </head>
 <body>
 	<div id="app">
-		<div v-for="item in paymentMethods">{{item.name}}  ({{item.id}})</div>
+		<div v-for="item in paymentMethods">{{item.name}}  ({{item.slug}})</div>
 	</div>
 <script>
 var app = new Vue({
@@ -19,7 +20,8 @@ var app = new Vue({
     paymentMethods: []
   },
   created() {
-	var paymentMethods = hodlhodl.payment_methods.sort((a, b) => a.name.localeCompare(b.name))
+  //var paymentMethods = hodlhodl.payment_methods.sort((a, b) => a.name.localeCompare(b.name))
+  var paymentMethods = localcoinswap.results
 	this.paymentMethods = paymentMethods
   }
 })

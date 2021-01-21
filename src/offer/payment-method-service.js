@@ -28,7 +28,7 @@ export default class PaymentMethodService {
       .find(x => { 
         let mapping = x.mapping ? x.mapping[exchangeName] : undefined
         let hasMapping = false
-        if (Array.isArray(mapping)) hasMapping = mapping.includes(+exchangePaymentMethod)
+        if (Array.isArray(mapping)) hasMapping = mapping.includes(exchangePaymentMethod)
         else hasMapping = mapping == exchangePaymentMethod
         return hasMapping
       })

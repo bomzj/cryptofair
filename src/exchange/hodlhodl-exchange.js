@@ -49,11 +49,11 @@ export default class HodlHodlExchange {
         if (query.tradeType == 'Buy') {
           var mappedPaymentMethods = item.payment_method_instructions?.map(x => 
             PaymentMethodService
-              .mapExchangePaymentMethodToBaseOne(x.payment_method_id, 'hodlHodl')) 
+              .mapExchangePaymentMethodToBaseOne(+x.payment_method_id, 'hodlHodl')) 
         } else {
           mappedPaymentMethods = item.payment_methods?.map(x => 
             PaymentMethodService
-              .mapExchangePaymentMethodToBaseOne(x.id, 'hodlHodl')) 
+              .mapExchangePaymentMethodToBaseOne(+x.id, 'hodlHodl')) 
         }
         mappedPaymentMethods = mappedPaymentMethods ?? ['Other']
         // Remove duplicates

@@ -4,9 +4,10 @@ import LocalBitcoinsExchange from '@/exchange/localbitcoins-exchange'
 import PaxfulExchange from '@/exchange/paxful-exchange'
 import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
 import HodlHodlExchange from '@/exchange/hodlhodl-exchange'
+import LocalCoinSwapExchange from '@/exchange/localcoinswap-exchange'
 
 export default class OfferService {
-  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange, HodlHodlExchange]
+  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange, HodlHodlExchange, LocalCoinSwapExchange]
   
   static async loadOffers(query) {
     var exchanges = query.exchanges.length ? 
@@ -16,7 +17,11 @@ export default class OfferService {
     const requests = exchanges.map(e => e.loadOffers(query))
     
     let offers = (await Promise.allSettled(requests))
-                               .filter(x => x.value)
+                               .filter(x => {
+                                  // log all errors
+                                  if (x.reason) console.error(x.reason) 
+                                  return x.value
+                                })
                                .map(x => x.value)
                                .flat()
 

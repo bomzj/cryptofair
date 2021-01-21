@@ -9,9 +9,8 @@ export default class DateFormatter {
     else if (!Number.isInteger(date)) throw 'Invalid date format'
 
     const nowDate = +(new Date())
-    const relativeTimeFormatter = new Intl.RelativeTimeFormat(undefined, { 
-                                                                          style: 'long', 
-                                                                          numeric: 'auto' })
+    const relativeTimeFormatter = new Intl
+      .RelativeTimeFormat(undefined, { style: 'long', numeric: 'auto' })
     
     let timeDiff = Math.abs(Math.round((date - nowDate) / 1000))
     
