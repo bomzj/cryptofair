@@ -30,7 +30,7 @@ export default class LocalCoinSwapExchange {
       `coin_currency=${coin}&` +
       `hide_new=${hideNewTraders ? 1 : 0}&` +
       'limit=50&' +
-      'ordering=country_first,current_price_usd&' +
+      `ordering=${countryCode ? 'country_first,' : ''}current_price_usd&` +
       (countryCode ? `country_code=${countryCode}&` : '')
 
     let requestUrls = Array(exchangePaymentMethods?.length || 1)
