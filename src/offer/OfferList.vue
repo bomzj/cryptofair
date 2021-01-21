@@ -43,7 +43,7 @@
   </div>
   <div v-show="!isLoading && offers.length" class="mt-6">
     <p class="hint">*Offers list displays the best 50 offers on the p2p market</p>
-    <p class="hint">**Offers price is just for reference and doesn't include exchange fees</p>
+    <p class="hint">**Offers price is just for reference and doesn't include exchanges' fees</p>
   </div>
 </div>
 </template>
