@@ -1,0 +1,198 @@
+paymentMethods =[
+  { 
+    "name": "AdvCash" 
+  },
+  { 
+    "name": "Airtel" 
+  },
+  { 
+    "name": "Apple Pay" 
+  },
+  { 
+    "name": "Alipay" 
+  },
+  { 
+    "name": "AstroPay" 
+  },
+  { 
+    "name": "Bank Transfer" 
+  },
+  { 
+    "name": "Bluebird Card" 
+  },
+  { 
+    "name": "Cardless Cash" 
+  },
+  { 
+    "name": "Cash in Person" 
+  },
+  { 
+    "name": "Cash App" 
+  },
+  { 
+    "name": "Cash Deposit" 
+  },
+  { 
+    "name": "Card to Card" 
+  },
+  { 
+    "name": "Credit/Debit Card",
+    "tags": ["mastercard, visa"]
+  },
+  { 
+    "name": "Cashier's Check" 
+  },
+  { 
+    "name": "CashU" 
+  },
+  { 
+    "name": "Chase Quickpay" 
+  },
+  { 
+    "name": "Chipper Cash" 
+  },
+  { 
+    "name": "Easypaisa" 
+  },
+  { 
+    "name": "EcoCash" 
+  },
+  { 
+    "name": "Efectry" 
+  },
+  { 
+    "name": "Google Pay" 
+  },
+  { 
+    "name": "GreenDot Card" 
+  },
+  { 
+    "name": "Gift Card" 
+  },
+  { 
+    "name": "IMPS Transfer" 
+  },
+  { 
+    "name": "Interac e-Transfer" 
+  },
+  { 
+    "name": "International Wire Transfer (SWIFT)" 
+  },
+  { 
+    "name": "M-Pesa" 
+  },
+  { 
+    "name": "MobilePay" 
+  },
+  { 
+    "name": "Mercado Pago" 
+  },
+  { 
+    "name": "MoneyGram" 
+  },
+  { 
+    "name": "MTN Mobile Money" 
+  },
+  { 
+    "name": "Neteller" 
+  },
+  { 
+    "name": "OkPay" 
+  },
+  { 
+    "name": "Other" 
+  },
+  { 
+    "name": "Payeer" 
+  },
+  { 
+    "name": "Paxum" 
+  },
+  { 
+    "name": "PayNow" 
+  },
+  { 
+    "name": "Paym" 
+  },
+  { 
+    "name": "PayID" 
+  },
+  { 
+    "name": "Payoneer" 
+  },
+  { 
+    "name": "PayPal" 
+  },
+  { 
+    "name": "Paytm" 
+  },
+  { 
+    "name": "Payza" 
+  },
+  { 
+    "name": "Perfect Money" 
+  },
+  { 
+    "name": "Pingit" 
+  },
+  { 
+    "name": "PostePay" 
+  },
+  { 
+    "name": "QIWI" 
+  },
+  { 
+    "name": "Revolut" 
+  },
+  { 
+    "name": "RIA Money Transfer" 
+  },
+  { 
+    "name": "Remitly" 
+  },
+  { 
+    "name": "SEPA Transfer" 
+  },
+  { 
+    "name": "Skrill" 
+  },
+  { 
+    "name": "Swish" 
+  },
+  { 
+    "name": "Tigo Pesa" 
+  },
+  { 
+    "name": "TransferWise" 
+  },
+  { 
+    "name": "UPI" 
+  },
+  { 
+    "name": "Venmo" 
+  },
+  { 
+    "name": "WebMoney" 
+  },
+  { 
+    "name": "WeChat" 
+  },
+  { 
+    "name": "Western Union" 
+  },
+  { 
+    "name": "WeChat Pay" 
+  },
+  { 
+    "name": "WorldRemit" 
+  },
+  { 
+    "name": "Xoom" 
+  },
+  { 
+    "name": "Yandex.Money" 
+  },
+  { 
+    "name": "Zelle" 
+  }
+]
