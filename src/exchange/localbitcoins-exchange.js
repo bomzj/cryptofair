@@ -5,6 +5,7 @@ import Fuse from 'fuse.js'
 import PaymentMethodService from '@/offer/payment-method-service'
 
 export default class LocalBitcoinsExchange {
+  static name = 'LocalBitcoins'
   static siteUrl = 'https://localbitcoins.com/'
   // LocalBitcoins API doesn't enable CORS to use their API publicly for some stupid reason
   // so we need to use proxy which adds CORS headers to allow our site fetch data from LocalBitcoins

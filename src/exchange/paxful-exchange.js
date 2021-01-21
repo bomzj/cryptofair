@@ -5,6 +5,7 @@ import Fuse from 'fuse.js'
 import PaymentMethodService from '@/offer/payment-method-service'
 
 export default class PaxfulExchange {
+  static name = 'Paxful'
   static http = getHttpClient(5 * 60)
   static corsProxy = '/.netlify/functions/proxy-fetch/'
   static baseApiUrl = this.corsProxy + 'https://paxful.com/rest/v1/'

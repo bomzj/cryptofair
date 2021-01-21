@@ -3,6 +3,7 @@ import getHttpClient from '@/http-client'
 import PaymentMethodService from '@/offer/payment-method-service'
 
 export default class LocalCryptosExchange {
+  static name = 'LocalCryptos'
   static http = getHttpClient(5 * 60)
   static corsProxy = '/.netlify/functions/proxy-fetch/'
   static baseApiUrl = this.corsProxy + 'https://localcryptosapi.com/v1/'

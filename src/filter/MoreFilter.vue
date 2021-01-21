@@ -54,7 +54,7 @@ export default {
       state: store.state,
       tradeAmount: store.state.tradeAmount,
       hideNewTraders: store.state.hideNewTraders,
-      allExchanges: OfferService.exchanges.map(x => x.name.replace('Exchange', '')),
+      allExchanges: OfferService.exchanges.map(x => x.name),
       selectedExchanges: store.state.exchanges
     }
   },

@@ -88,7 +88,7 @@ export default {
     loadingTitle() {
       let loadingExchanges = store.state.exchanges.length ? 
                              store.state.exchanges :
-                             OfferService.exchanges.map(x => x.name.replace('Exchange', ''))
+                             OfferService.exchanges.map(x => x.name)
       
       return `Loading offers from ${loadingExchanges.join(', ')}`
     }
