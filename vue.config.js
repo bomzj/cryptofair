@@ -14,7 +14,7 @@ module.exports = {
       filename: 'index.html',
       // when using title option,
       // template title tag needs to be <title><%= htmlWebpackPlugin.options.title %></title>
-      title: 'Peer-to-Peer Cryptocurrency Exchange Aggregator',
+      title: 'P2P Crypto Exchanges Aggregator ₿  (Best Prices 2021)',
       // chunks to include on this page, by default includes
       // extracted common chunks and vendor chunks.
       chunks: ['chunk-vendors', 'chunk-common', 'offers']
