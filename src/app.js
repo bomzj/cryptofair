@@ -1,14 +1,6 @@
 import Vue from 'vue'
 import '@/main.css'
 import store from '@/store'
-import LocationService from '@/location-service'
-
-(async () => {
-  // Detect user Country only on first visit
-  if (!store.isStateSaved()) {
-    store.state.countryCode = (await LocationService.detectUserCountry())?.code
-  }
-})()
 
 Vue.config.productionTip = false
 

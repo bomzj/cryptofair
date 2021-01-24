@@ -5,9 +5,11 @@ import PaxfulExchange from '@/exchange/paxful-exchange'
 import LocalCryptosExchange from '@/exchange/localcryptos-exchange'
 import HodlHodlExchange from '@/exchange/hodlhodl-exchange'
 import LocalCoinSwapExchange from '@/exchange/localcoinswap-exchange'
+import BinanceExchange from '@/exchange/binance-exchange'
 
 export default class OfferService {
-  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange, HodlHodlExchange, LocalCoinSwapExchange]
+  static exchanges = [LocalBitcoinsExchange, PaxfulExchange, LocalCryptosExchange, 
+                      HodlHodlExchange, LocalCoinSwapExchange, /*BinanceExchange*/]
   
   static async loadOffers(query) {
     var exchanges = query.exchanges.length ? 
@@ -47,12 +49,13 @@ export default class OfferService {
   }
 
   static applyAdditionalFiltering(offers, query) {
-    let { tradeAmount, hideNewTraders } = query
+    let { tradeAmount, hideNewTraders, currency } = query
     
     return offers.filter(o => !((tradeAmount && 
                                 (tradeAmount < o.tradingAmount.min ||
                                  tradeAmount > o.tradingAmount.max)) || 
-                               (hideNewTraders && o.trader.isNew) ))
+                               (hideNewTraders && o.trader.isNew) ||
+                               (currency && o.price.currency != currency) ))
   }
 
   static async convertOffersToUserCurrency(offers, query) {

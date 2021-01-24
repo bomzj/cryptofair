@@ -9,7 +9,7 @@ export default class LocalCryptosExchange {
   static baseApiUrl = this.corsProxy + 'https://localcryptosapi.com/v1/'
   
   static async loadOffers(query) {
-    let { tradeType, coin, paymentMethods, countryCode } = query
+    let { tradeType, coin, paymentMethods, countryCode, currency } = query
   
     const cryptoCodeToId = { 'BTC': 2, 'ETH': 1, 'DASH': 4, 'LTC': 3 }
 
@@ -26,6 +26,7 @@ export default class LocalCryptosExchange {
     let requestUrl = this.baseApiUrl + 
                     `offers/find?sort_by=price&offer_type=${offerType}&` +
                     `market_id=${cryptoCodeToId[coin]}&` +
+                    `local_currency_code=${currency ?? ''}&` +
                     (countryCode ? `city_id=${countryCode}&` : '')
 
     let requestUrls = Array(localCryptosPaymentMethods?.length || 1).fill(requestUrl)

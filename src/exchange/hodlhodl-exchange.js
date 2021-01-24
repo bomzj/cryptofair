@@ -9,7 +9,7 @@ export default class HodlHodlExchange {
   static baseApiUrl = this.corsProxy + 'https://hodlhodl.com/'
   
   static async loadOffers(query) {
-    let { tradeType, coin, paymentMethods, countryCode, tradingAmount } = query
+    let { tradeType, coin, paymentMethods, countryCode, tradingAmount, currency } = query
 
     if (coin != 'BTC') return []
 
@@ -23,6 +23,7 @@ export default class HodlHodlExchange {
    
     let requestUrl = this.baseApiUrl + 'api/v1/offers?' + 
       `filters[side]=${offerType}&` + 
+      `filters[currency_code]=${currency ?? ''}&` + 
       (countryCode ? `filters[country]=${countryCode}&` : '')
 
     let requestUrls = Array(hodlHodlPaymentMethods?.length || 1)

@@ -11,7 +11,7 @@ export default class PaxfulExchange {
   static baseApiUrl = this.corsProxy + 'https://paxful.com/rest/v1/'
   
   static async loadOffers(query) {
-    let { tradeType, coin, paymentMethods, countryCode } = query
+    let { tradeType, coin, paymentMethods, countryCode, currency } = query
   
     const cryptoCodeToId = { 'BTC': 1, 'USDT': 4 }
 
@@ -42,6 +42,7 @@ export default class PaxfulExchange {
                     `crypto_currency_id=${cryptoCodeToId[coin]}&` +
                     `visitor_country_iso=${countryCode}&` +
                     `type=${tradeType.toLowerCase()}&` +
+                    `currency=${currency ?? ''}&` +
                     (paxfulPaymentMethodsQueryString ? paxfulPaymentMethodsQueryString + '&' : '') +
                     (geonameId ? 'location_id=' + geonameId : '')
     

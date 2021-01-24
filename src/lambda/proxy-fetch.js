@@ -26,7 +26,13 @@ exports.handler = async function handler(event, context, callback) {
   const requestUrl = event.path.substring(requestUrlStartIndex)
   
   try {
-    var response = await axios(requestUrl, { params: event.queryStringParameters })
+    console.log('-------------------------')
+    console.log(event)
+    var response = await axios(requestUrl, { 
+      method: event.httpMethod,
+      params: event.queryStringParameters,
+      data: event.body
+    })
   } catch (error) {
     console.error(error)
     callback(null, {

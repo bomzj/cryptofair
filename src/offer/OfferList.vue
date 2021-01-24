@@ -106,7 +106,8 @@ export default {
                     userCurrency:   store.state.userCurrency,
                     tradeAmount:    store.state.tradeAmount,
                     hideNewTraders: store.state.hideNewTraders,
-                    exchanges:      store.state.exchanges }
+                    exchanges:      store.state.exchanges,
+                    currency:       store.state.currency }
       try {
         var request = this.lastRequest = OfferService.loadOffers(query)
         var result = await request

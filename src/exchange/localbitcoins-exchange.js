@@ -14,7 +14,7 @@ export default class LocalBitcoinsExchange {
   
 
   static async loadOffers(query) {
-    let { tradeType, coin, paymentMethods, countryCode } = query
+    let { tradeType, coin, paymentMethods, countryCode, currency } = query
     
     if (coin != 'BTC') return []
     
@@ -37,6 +37,11 @@ export default class LocalBitcoinsExchange {
       let countryName = await LocationService.getCountryName(countryCode)
       requestUrls.forEach((url, i) => 
                           requestUrls[i] += `/${countryCode}/${countryName}`)
+    }
+
+    // Append currency filter if needed
+    if (!countryCode && currency) {
+      requestUrls.forEach((url, i) => requestUrls[i] += '/' + currency)
     }
 
     // Append payment method if needed

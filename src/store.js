@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import CurrencyService from '@/currency/currency-service'
+import LocationService from '@/location-service'
 
 // ES6 module is singleton by its nature 
 // since it evaluates/runs code inside only one time on first import
@@ -12,12 +14,14 @@ var store = new Vue({
         userCurrency: 'USD', 
         tradeType: 'Buy',
         coin: 'BTC',
+        currency: undefined,
         paymentMethods: [],
         countryCode: '',
         tradeAmount: undefined,
         hideNewTraders: false,
         exchanges: []
-      }
+      },
+      isStateReady: false
     }
   },
   created() {
@@ -37,10 +41,30 @@ var store = new Vue({
 			var json = JSON.stringify(this.state)
 			localStorage.setItem("store", json)
 		},
-		loadState() {
+		async loadState() {
 			var json = localStorage.getItem("store")
 			if (json) {
 				this.state = { ...this.state, ...JSON.parse(json) }
+      }
+      
+      // Skip loading of country/currency filters if user already visited the site
+      if (this.isStateSaved()) {
+        this.isStateReady = true 
+        return
+      }
+      
+      // Load country/currency filters only on first visit
+      try {
+        this.isStateReady = false
+        let responses = await Promise.all([LocationService.detectUserCountry(), 
+                                           CurrencyService.detectUserCurrency()])
+        store.state.countryCode = responses[0].code
+        store.state.userCurrency = store.state.currency = responses[1].code
+      } catch (error) {
+        console.error(error)
+      }
+      finally {
+        this.isStateReady = true
       }
     },
     isStateSaved() {
