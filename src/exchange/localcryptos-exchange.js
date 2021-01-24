@@ -26,7 +26,7 @@ export default class LocalCryptosExchange {
     let requestUrl = this.baseApiUrl + 
                     `offers/find?sort_by=price&offer_type=${offerType}&` +
                     `market_id=${cryptoCodeToId[coin]}&` +
-                    `local_currency_code=${currency ?? ''}&` +
+                    (currency ? `local_currency_code=${currency}&` : '') +
                     (countryCode ? `city_id=${countryCode}&` : '')
 
     let requestUrls = Array(localCryptosPaymentMethods?.length || 1).fill(requestUrl)

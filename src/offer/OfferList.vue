@@ -67,7 +67,7 @@ export default {
 	watch: {
 		state: {
 			async handler() {//(newValue, oldValue) {
-        this.updateOffers()
+        if (store.isStateReady) this.updateOffers()
 			},
 			deep: true
     }
@@ -79,7 +79,7 @@ export default {
     }
   },
   created() {
-    this.updateOffers()
+    if (store.isStateReady) this.updateOffers()
   },
   computed: {
     offerCount() {
