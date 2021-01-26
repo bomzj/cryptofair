@@ -6,7 +6,7 @@
     <div class="flex flex-wrap">
       <div class="feature-list">
         <h4>First and the only one <b> peer-to-peer (p2p) crypto exchanges aggregator!</b></h4>
-        <h4>P2P traiding platforms is a best way to buy & sell Bitcoin (BTC), Ethereum (ETH) and other cryptocurrencies globally without ID veryfication. <b> Find and Compare prices </b> among 5 leading secure person to person exchanges: LocalBitcoins, Paxful, LocalCryptos, etc</h4>
+        <h4>P2P traiding platforms is a best way to buy & sell Bitcoin (BTC), Ethereum (ETH) and other cryptocurrencies globally without ID verification. <b> Find and Compare prices </b> among 5 leading secure person to person exchanges: LocalBitcoins, Paxful, LocalCryptos, etc</h4>
         <h4>Search for your best crypto trading deal today <b>without fees / registration / app downloading</b></h4>
       </div>
       <div class="feature-list">
