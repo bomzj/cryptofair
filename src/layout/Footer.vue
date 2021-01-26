@@ -5,14 +5,15 @@
     </h3>
     <div class="flex flex-wrap">
       <div class="feature-list">
-        <h4>First and the only one p2p crypto exchanges aggregator!</h4>
-        <h4>Compare prices among 5 leading secure p2p exchanges: LocalBitcoins, Paxful, LocalCryptos, etc</h4>
-        <h4>Search for your best crypto trading deal today without fees, registration, app downloading</h4>
+        <h4>First and the only one <b> peer-to-peer (p2p) crypto exchanges aggregator!</b></h4>
+        <h4>P2P traiding platforms is a best way to buy & sell Bitcoin (BTC), Ethereum (ETH) and other cryptocurrencies globally without ID veryfication. <b> Find and Compare prices </b> among 5 leading secure person to person exchanges: LocalBitcoins, Paxful, LocalCryptos, etc</h4>
+        <h4>Search for your best crypto trading deal today <b>without fees / registration / app downloading</b></h4>
       </div>
       <div class="feature-list">
-        <h4>Find the best prices to buy/sell the most popular cryptocoins - Bitcoin, Ethereum, Tether and others</h4>
+        <h4>Find best prices from millions real people to trade the most popular cryptocoins - <b>Bitcoin, Ethereum, Tether</b> and others</h4>
         <h4>Modern and easy to use UI with convenient search filters to see prices in your local currency</h4>
-        <h4>No verification, no KYC, no AML to start search now</h4>
+        <h4>Buy Bitcoin with PayPal, Credit card, Skrill or 100+ other payment methods</h4>
+        <h4>Looking for how to <b>trade Bitcoin anonymously</b>? Start to search offers now without verification! No KYC, No AML</h4>
       </div>
     </div>
     <!-- <ContactForm /> -->
