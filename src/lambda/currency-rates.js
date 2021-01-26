@@ -1,8 +1,16 @@
 import getHttpClient from '../http-client.js'
-const http = getHttpClient(8 * 60 * 60)
+const cacheTtlInSeconds = 8 * 60 * 60
+const http = getHttpClient(cacheTtlInSeconds)
 
-// TODO: Implement real cloud distributed cache
-let cachedRates = undefined
+import faunadb from 'faunadb' /* Import faunaDB sdk */
+
+/* configure faunaDB Client with our secret */
+const q = faunadb.query
+const client = new faunadb.Client({
+  secret: 'fnAEAZxfaoACB6MWUnKJi9M1Ibyiw_5bd6t5dPD_'
+})
+
+let cachedRatesInMemory = undefined
 
 exports.handler = async function handler(event, context, callback) {
   const baseCurrency = event.queryStringParameters.base || "USD"
@@ -12,7 +20,7 @@ exports.handler = async function handler(event, context, callback) {
     body: JSON.stringify(rates)
   })
   
-  let rates = getCurrencyRatesFromCache(baseCurrency)
+  let rates = await getCurrencyRatesFromCache(baseCurrency)
   
   if (!rates) {
     let rates = await fetchCurrencyRates(baseCurrency)
@@ -43,10 +51,29 @@ async function fetchCurrencyRates(baseCurrency) {
   return response.data.rates
 }
 
-function getCurrencyRatesFromCache(baseCurrency) {
-  return cachedRates
+async function getCurrencyRatesFromCache(baseCurrency) {
+  // Try to get cached rates from the memory cache
+  if (cachedRatesInMemory) return cachedRatesInMemory
+
+  // Then get cached currency rates from the cloud cache
+  console.log('Getting currency rates from the cloud cache...')
+  let cachedRatesInCloud = await client.query(
+    q.Get(q.Ref(q.Collection('Cache'), '288683618880979463')))
+    
+  let cloudCacheUpdateDate = new Date(cachedRatesInCloud.ts / 1000)
+  let cacheLifeInSeconds = (+(new Date()) - cloudCacheUpdateDate) / 1000
+  console.log('Currency rates cloud cache life is ' + cacheLifeInSeconds + ' seconds')
+  if (cacheLifeInSeconds > cacheTtlInSeconds) console.log('Cloud cache is expired and will be updated')
+  return cacheLifeInSeconds > cacheTtlInSeconds ?  undefined : cachedRatesInCloud.data
 }
 
-function cacheCurrencyRates(rates, baseCurrency) {
-  return cachedRates = rates
+async function cacheCurrencyRates(rates, baseCurrency) {
+  // Update cloud cache
+  console.log('Updating the cloud cache with new currency rates...')
+  client.query(q.Replace(
+    q.Ref(q.Collection('Cache'), '288683618880979463'), { data: rates }))
+    .then((ret) => console.log('Currency rates cloud cache update completed'))
+
+  // Update in memory cache
+  return cachedRatesInMemory = rates
 }
