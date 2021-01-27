@@ -1,5 +1,5 @@
 <template>
-<div>
+<section>
   <div v-show="isLoading">
     <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600 mb-1">{{ loadingTitle }}</p>
     <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500 mb-4">Some payment methods can cause delay up to one minute!</p>
@@ -10,7 +10,7 @@
     <p class="text-xl lg:text-2xl 2xl:text-3xl text-center text-gray-600">No offers found. Try to change filters.</p>
     <p class="text-base lg:text-lg 2xl:text-xl text-center text-gray-500">Some payment methods require Country to be specified.</p>
   </div>
-  <div v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
+  <article v-for="(offer, index) in offers" :key="index" class="flex flex-wrap">
     <div class="w-full sm:w-1/2 lg:w-1/4 px-6 py-4 whitespace-no-wrap">
       <a :href="offer.trader.profileUrl" target="_blank" class="block text-xl lg:text-2xl 2xl:text-3xl leading-5 text-blue-500 mb-2">{{ offer.trader.name }}</a>
       <!-- <p class="hint">Total Trades <span class="data">{{ offer.trader.tradeCount }}</span></p> -->
@@ -40,12 +40,12 @@
       <a :href="offer.url" target="_blank" class="button button-outline-primary">Go to Offer</a>
     </div>
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
-  </div>
+  </article>
   <div v-show="!isLoading && offers.length" class="mt-6">
     <p class="hint">*Offers list displays the best 50 offers on the p2p market</p>
     <p class="hint">**Offers price is just for reference and doesn't include exchanges' fees</p>
   </div>
-</div>
+</section>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <article>
     <button @click="$refs.modal.show()" class="filter filter-active">
       {{ savedCurrency }}
     </button>
@@ -24,7 +24,7 @@
       </template>
       <img v-else src="@/ui/spinner.svg" class="w-24 mx-auto"/>
     </Modal> 
-  </div>
+  </article>
 </template>
 
 <script>

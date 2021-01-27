@@ -1,9 +1,9 @@
 <template>
-  <div class="flex border border-gray-600 text-lg xl:text-2xl 2xl:text-3xl text-gray-700 font-semibold p-2">
+  <article class="flex border border-gray-600 text-lg xl:text-2xl 2xl:text-3xl text-gray-700 font-semibold p-2">
     <span class="inline-block">{{cryptoName}} </span>
     <img v-show="isLoading" src="@/ui/spinner.svg" class="w-6 mx-8"/>
     <span v-show="!isLoading" class="inline-block ml-2 font-semibold ">{{price}}</span>
-  </div>
+  </article>
 </template>
 
 <script>

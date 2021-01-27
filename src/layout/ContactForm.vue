@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col my-4">
+  <article class="flex flex-col my-4">
     <h3 class="page-title text-center mb-4">Contact us</h3>
     <div class="flex flex-col my-4" v-if="!isFormSent">
       <input v-model="mail" class="form-input block my-2" placeholder="Your email address" :readonly="isFormSending"/>
@@ -23,7 +23,7 @@
         <strong>Внимание!</strong> Минимальный оптовый заказ - от {{ wholesalePriceThreshold }} руб.
       </div>
     </transition> -->
-  </div>
+  </article>
 </template>
 
 <script>
