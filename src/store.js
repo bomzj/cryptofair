@@ -56,10 +56,10 @@ var store = new Vue({
       // Load country/currency filters only on first visit
       try {
         this.isStateReady = false
-        let responses = await Promise.all([LocationService.detectUserCountry(), 
-                                           CurrencyService.detectUserCurrency()])
+        let responses = await Promise.all([LocationService.detectUserCountry(),]) 
+                                          // CurrencyService.detectUserCurrency()])
         store.state.countryCode = responses[0].code
-        store.state.userCurrency = store.state.currency = responses[1].code
+        //store.state.userCurrency = store.state.currency = responses[1].code
       } catch (error) {
         console.error(error)
       }
