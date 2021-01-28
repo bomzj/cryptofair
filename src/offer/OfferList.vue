@@ -42,8 +42,8 @@
     <hr class="w-full border-gray-400 my-5" v-show="offerCount - 1 != index"/>  
   </article>
   <div v-show="!isLoading && offers.length" class="mt-6">
-    <p class="hint">*Offers list displays the best 50 offers on the p2p market</p>
-    <p class="hint">**Offers price is just for reference and doesn't include exchanges' fees</p>
+    <p class="hint whitespace-normal">*Offers list displays the best 50 offers on the p2p market</p>
+    <p class="hint whitespace-normal">**Offers price is just for reference and doesn't include exchanges' fees</p>
   </div>
 </section>
 </template>
