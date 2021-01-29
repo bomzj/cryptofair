@@ -57,7 +57,7 @@ input:focus, textarea:focus, button:focus {
 } 
 
 .button {
-  @apply inline-block px-4 py-2 font-semibold text-base text-gray-700 border-gray-500 uppercase;
+  @apply inline-block px-4 py-2 font-semibold text-base text-gray-700 border-gray-500 bg-gray-200 uppercase;
 }
 
 .button:hover {

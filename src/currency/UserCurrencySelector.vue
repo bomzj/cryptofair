@@ -5,6 +5,7 @@
     </button>
     <Modal ref="modal" 
            :id="$options.name" 
+           :is-scrollable="true"
            title="Select a currency to display prices in" 
            @show="onModalOpen"
            @apply-changes="applyChanges">

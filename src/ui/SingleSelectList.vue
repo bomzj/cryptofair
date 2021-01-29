@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col sm:flex-row sm:flex-wrap flex-grow content-start justify-around1 overflow-auto px-8 py-5">
+  <div class="flex flex-col sm:flex-row sm:flex-wrap flex-grow content-start px-8 py-5">
     <label v-for="item in itemList" 
            :key="itemIdProp ? item[itemIdProp] : item" 
            class="flex items-center mb-6 sm:w-1/2 lg:w-1/3 2xl:w-1/4">
