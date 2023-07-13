@@ -4,6 +4,8 @@
 
 CryptoFair is a peer-to-peer cryptocurrency exchange aggregator that allows you to compare the best prices for buying Bitcoin and other cryptocurrencies without the need for KYC (Know Your Customer) verification. With CryptoFair, you can access all the best cryptocurrency prices directly from millions of real people around the world in one convenient place.
 
+![cryptofair](https://github.com/bomzj/cryptofair/assets/2025775/f0a4a18f-59f7-4e19-a4a8-529c216e30f2)
+
 ## Features
 
 - **P2P Cryptocurrency Exchanges Aggregator**: CryptoFair is the first and only peer-to-peer (p2p) crypto exchanges aggregator. It brings together five leading secure person-to-person exchanges, including LocalBitcoins, Paxful, LocalCryptos, and more, allowing you to compare prices and find the best trading deals.
