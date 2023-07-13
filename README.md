@@ -54,7 +54,7 @@ Follow these instructions to get CryptoFair up and running on your local machine
    npm run serve
    ```
 
-2. Open your browser and navigate to [http://localhost:3000](http://localhost:3000)
+2. Open your browser and navigate to [http://localhost:8080](http://localhost:8080)
 
 ## Contributing
 
